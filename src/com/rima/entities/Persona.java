@@ -89,6 +89,11 @@ public class Persona {
 	    return bActivo;
 	}
 	
+	public Date mostrarFechaVencimiento( int iIDPersona ) {
+		Date dFechaVencimiento = new Date();
+		return dFechaVencimiento;
+	}
+	
 	public boolean corroborarExistencia( int iIDPersona ) {
 		return true;
 	}
