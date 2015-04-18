@@ -17,10 +17,6 @@ public class Administrador {
 		return true;
 	}
 
-	public boolean mostrarInformacionActual() {
-		return true;
-	}
-
 	public Administrador consultarInformacion( int iIDPersona ) {
 		Administrador adAdministrador = new Administrador();
 		return adAdministrador;
