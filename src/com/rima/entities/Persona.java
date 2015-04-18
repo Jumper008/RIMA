@@ -17,7 +17,7 @@ public class Persona {
 	protected String sNombre;
 	protected String sCorreo;
 	protected String sContrasena;
-	protected Date dFechaNacimeinto;
+	protected Date dFechaNacimiento;
 	protected Date dFechaIngreso;
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
@@ -41,7 +41,7 @@ public class Persona {
 	    return sNombre;
 	}
 	
-	public void setsNombre( String sCor ) {
+	public void setsCorreo( String sCor ) {
 	    sCorreo = sCor;;
 	}
 	
@@ -57,12 +57,12 @@ public class Persona {
 	    return sContrasena;
 	}
 	
-	public void setdFechaDeNacimiento( Date dFecha ) {
-	    dFechaDeNacimiento = dFecha;
+	public void setdFechaNacimiento( Date dFecha ) {
+	    dFechaNacimiento = dFecha;
 	}
 	
-	public Date getFechaDeNacimiento() {
-	    return dFechaDeNacimiento; 
+	public Date getFechaNacimiento() {
+	    return dFechaNacimiento; 
 	}
 	
 	public void setdFechaIngreso( Date dFecha ) {
@@ -87,9 +87,6 @@ public class Persona {
 	
 	public boolean getbActivo() {
 	    return bActivo;
-	}
-
-
 	}
 	
 	public boolean corroborarExistencia( int iIDPersona ) {
