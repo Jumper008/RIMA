@@ -14,6 +14,18 @@ import java.util.Calendar;
 
 public class Administrador extends Persona {
 	
+	public Administrador() {
+            super();
+        }
+        
+	public Administrador( int iIDPersona, String sNombre, String sCorreo, 
+	       String sContrasena, Date dFechaNacimiento, Date dFechaIngreso, 
+	       Date dFechaVencimiento, boolean bActivo) {
+	       
+	    super(iIDPersona, sNombre, sCorreo, sContrasena, dFechaNacimiento, 
+		   dFechaIngreso, dFechaVencimiento, bActivo);
+	}
+	
 	public boolean agregarAdministrador( Administrador admAdministrador ) {
 		Calendar cal = Calendar.getInstance();
 		int iIDAdministrador = admAdministrador.iIDAdministrador;

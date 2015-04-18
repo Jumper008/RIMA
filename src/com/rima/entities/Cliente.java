@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 /*
  *Author: Equipo 5
  *
@@ -15,7 +14,8 @@ import java.util.Calendar;
 
 public class Cliente {
 	protected String sCuentaBancaria;
-        private Statement stmt;
+	private transient Conexion conn;
+	private Statement stmt;
         
         public Cliente() {
             super();

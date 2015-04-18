@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class Persona {
+	
 	protected int iIDPersona;
 	protected String sNombre;
 	protected String sCorreo;

@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 /*
  *Author: Equipo 5
  *
@@ -22,7 +21,7 @@ public class Articulo {
 	private transient Conexion conn;
 	private Statement stmt;
 
-		public Articulo(Conexion conn) {
+	public Articulo(Conexion conn) {
 		this.conn = conn;
         }
 	

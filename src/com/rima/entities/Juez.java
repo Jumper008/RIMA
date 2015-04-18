@@ -12,7 +12,45 @@ import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
-public class Juez extends Autor{
+public class Juez{
+	
+	protected int iIDPersona;
+	protected String sNombre;
+	protected String sCorreo;
+	protected String sContrasena;
+	protected Date dFechaNacimiento;
+	protected Date dFechaIngreso;
+	protected Date dFechaVencimiento;
+	protected boolean bActivo;
+	private transient Conexion conn;
+	private Statement stmt;
+	
+        public Juez(Conexion conn) {
+		this.conn = conn;
+        }
+	
+	public Juez() {
+		iIDPersona = 0;
+		sNombre = "";
+		sCorreo = "";
+		sContrasena = "";
+		dFechaNacimiento = new Date();
+		dFechaIngreso = new Date();
+		dFechaVencimiento = new Date();
+		bActivo = false;
+	}
+	
+	public Juez(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
+		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+		this.iIDPersona = iIDPersona;
+		this.sNombre = sNombre;
+		this.sCorreo = sCorreo;
+		this.sContrasena = sContrasena;
+		this.dFechaNacimiento = dFechaNacimiento;
+		this.dFechaIngreso = dFechaIngreso;
+		this.dFechaVencimiento = dFechaVencimiento;
+		this.bActivo = bActivo;
+	}
 
 	public boolean agregarJuez( Juez juJuez ) {
 		Calendar cal = Calendar.getInstance();
