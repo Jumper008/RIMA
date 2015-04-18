@@ -21,6 +21,35 @@ public class Persona {
 	protected Date dFechaIngreso;
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
+	private transient Conexion conn;
+	private Statement stmt;
+	
+        public Persona(Conexion conn) {
+		this.conn = conn;
+        }
+	
+	public Persona() {
+		iIDPersona = 0;
+		sNombre = "";
+		sCorreo = "";
+		sContrasena = "";
+		dFechaNacimiento = new Date();
+		dFechaIngreso = new Date();
+		dFechaVencimiento = new Date();
+		bActivo = false;
+	}
+	
+	public Persona(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
+		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+		this.iIDPersona = iIDPersona;
+		this.sNombre = sNombre;
+		this.sCorreo = sCorreo;
+		this.sContrasena = sContrasena;
+		this.dFechaNacimiento = dFechaNacimiento;
+		this.dFechaIngreso = dFechaIngreso;
+		this.dFechaVencimiento = dFechaVencimiento;
+		this.bActivo = bActivo;
+	}
 	
 	public void setiIDPersona( int iID ) {
 	    if ( !corroborarExistencia( iID ) )
@@ -91,18 +120,49 @@ public class Persona {
 	
 	public Date mostrarFechaVencimiento( int iIDPersona ) {
 		Date dFechaVencimiento = new Date();
-		return dFechaVencimiento;
+		Calendar cal = Calendar.getInstance();
+		try{
+		     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
+		     ResultSet rs = stmt.getResultSet();
+		     if(rs.next()) {
+			String _strDate = rs.getString("dFechaVencimiento");
+			int day = Integer.parseInt(_strDate.substring(8,9));
+			int month = Integer.parseInt(_strDate.substring(5,6));
+			int year = Integer.parseInt(_strDate.substring(0,3));
+			cal.set(Calendar.DATE, day);
+			cal.set(Calendar.MONTH, month);
+			cal.set(Calendar.YEAR, year);
+			dFechaVencimiento = cal.getTime();
+			return dFechaVencimiento;
+		     }
+		     return null;
+		  } catch (SQLException e) {return null;}
 	}
 	
 	public boolean corroborarExistencia( int iIDPersona ) {
-		return true;
+		try{
+		     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
+		     ResultSet rs = stmt.getResultSet();
+		     if(rs.next()) {
+			return true;
+		     }
+		     return false;
+		  } catch (SQLException e) {return false;}
 	}
 	
 	public boolean desactivarPersona( int iIDPersona ) {
+		try {
+			String s = "UPDATE Persona SET bActivo = " + false + " WHERE iIDPersona = " + iIDPersona;
+			conn.stmt.executeUpdate(s);
+		     } catch (SQLException e) {System.out.println ("Cannot execute desactivarPersona()" + e);}
 		return true;
 	}
 	
 	public boolean activarPersona( int iIDPersona ) {
+		try {
+			String s = "UPDATE Persona SET bActivo = " + true + " WHERE iIDPersona = " + iIDPersona;
+			conn.stmt.executeUpdate(s);
+		     } catch (SQLException e) {System.out.println ("Cannot execute activarPersona()" + e);}
 		return true;
 	}
 	
