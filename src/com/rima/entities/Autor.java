@@ -13,21 +13,28 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class Autor {
-	protected int iIDAutor;
 
-	public void SubmitInformacion() {
+	public vector < int > consultarPublicaciones( int iIDPersona ) {
 
 	}
-
-	public boolean ValidarInformacionAutor() {
-		return true;
+	
+	public vector < int > consultarPublicacionesPropias( int iIDPersona ) {
+	    
+	} 
+	
+	public vector < String > mostrarNombreDeAutores() {
+	    
 	}
-
-	public boolean enviarArticulo() {
-		return true;
+	
+	public Boolean agregarAutor( Autor autAutor ) {
+	    
 	}
-
-	public boolean revisarDuplicados() {
-		return true;
+	
+	public Boolean eidtarAutor( Autor autAutor ) {
+	    
+	}
+	
+	public Autor consultarInformacion( int iIDPersona ) {
+	    
 	}
 }
