@@ -33,16 +33,16 @@ public class Articulo {
 		iContador = 0;
 	}
 	
-	public Articulo(int iIDArticulo, String sNombre, String sResumen, boolean bPublicadO, int iContador) {
+	public Articulo(int iIDArticulo, String sNombre, String sResumen, boolean bPublicado, int iContador) {
 		this.iIDArticulo = iIDArticulo;
 		this.sNombre = sNombre;
 		this.sResumen = sResumen;
-		this.bPublicadO = bPublicado;
+		this.bPublicado = bPublicado;
 		this.iContador = iContador;
 	}
 
 	public Articulo consultarInformacion( int iIDArticulo ) {
-		Articulo articulo = new articulo();
+		Articulo arArticulo = new Articulo();
 		try{
 		     stmt.executeQuery ("SELECT * FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
 		     ResultSet rs = stmt.getResultSet();
@@ -52,10 +52,10 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicadO,_iContador);
+			arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
 		     }
-		     return arArticulo;
 		  } catch (SQLException e) { return null;}
+		  return arArticulo;
 	}
 
 	// regresa solo los artículos publicados de un autor
@@ -70,11 +70,11 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicadO,_iContador);
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
 			vArticulos.add(arArticulo);
 		     }
-		     return vArticulos;
 		  } catch (SQLException e) { return null;}
+		  return vArticulos;
 	}
 
 	// regresa todos los artículos, publicados o no, de un autor
@@ -89,13 +89,14 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicadO,_iContador);
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
 			vArticulos.add(arArticulo);
 		     }
-		     return vArticulos;
 		  } catch (SQLException e) { return null;}
+		  return vArticulos;
 	}
 
+	// Métodos todavía no han sido implementados.
 	public boolean aumentarVotos( int iIDArticulo ) {
 		return true;
 	}

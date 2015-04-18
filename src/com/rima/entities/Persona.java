@@ -22,8 +22,8 @@ public class Persona {
 	protected Date dFechaIngreso;
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
-	private transient Conexion conn;
-	private Statement stmt;
+	protected transient Conexion conn;
+	protected Statement stmt;
 	
         public Persona(Conexion conn) {
 		this.conn = conn;

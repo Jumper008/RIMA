@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
-public class Autor {
+public class Autor extends Persona{
 	
 	protected int iIDPersona;
 	protected String sNombre;
@@ -23,7 +23,7 @@ public class Autor {
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
 	private transient Conexion conn;
-	private Statement stm;
+	private Statement stmt;
 	
         public Autor(Conexion conn) {
 		this.conn = conn;
@@ -55,8 +55,8 @@ public class Autor {
 	public Vector <Articulo> consultarPublicaciones( int iIDPersona ) {
 		Vector<Articulo> vArticulo = new Vector<Articulo>();
 		try{
-			stm.executeQuery("SELECT * FROM Articulo WHERE iIDAutor = " + iIDPersona + "and bPublicado = " + true);
-			ResultSet rs = stm.getResultSet();
+			stmt.executeQuery("SELECT * FROM Articulo WHERE iIDAutor = " + iIDPersona + "and bPublicado = " + true);
+			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
 			int _iIDArticulo = rs.getInt("iIDArticulo");
 			String _strNombre = rs.getString("sNombre");
@@ -92,8 +92,8 @@ public class Autor {
 	public Vector <String> mostrarNombreDeAutores() {
 		Vector<String> vNombres = new Vector<String>();
 		try{
-			stm.executeQuery("SELECT sNombre FROM Autor");
-			ResultSet rs = stm.getResultSet();
+			stmt.executeQuery("SELECT sNombre FROM Autor");
+			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
 				int _iIDAutor = rs.getInt("iIDAutor");
 				String _strNombre = rs.getString("sNombre");
@@ -141,6 +141,7 @@ public class Autor {
 				return false;
 			
 		} catch (SQLException e) {System.out.println ("Cannot execute agregarAutor()"+ e);}
+		return false;
 	}
 	
 	public boolean editarAutor( Autor autAutor ) {
@@ -196,22 +197,23 @@ public class Autor {
 		Date dFechaIngreso = new Date();
 		Date dFechaNacimiento = new Date();
 		Calendar cal = Calendar.getInstance();
+		Autor auAutor = new Autor();
 		
 		try{
-			stm.executeQuery("SELECT iIDAutor FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsiIDAutor = stm.getResultSet();
+			stmt.executeQuery("SELECT iIDAutor FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsiIDAutor = stmt.getResultSet();
 			int iIDPersonaAux = rsiIDAutor.getInt("iIDAutor");
 
-			stm.executeQuery("SELECT sNombre FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsNombre = stm.getResultSet();
+			stmt.executeQuery("SELECT sNombre FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsNombre = stmt.getResultSet();
 			String sNombre = rsNombre.getString("sNombre");
 
-			stm.executeQuery("SELECT sCorreo FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsCorreo = stm.getResultSet();
+			stmt.executeQuery("SELECT sCorreo FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsCorreo = stmt.getResultSet();
 			String sCorreo = rsCorreo.getString("sCorreo");
 
-			stm.executeQuery("SELECT dFechaNacimiento FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsFechaNacimiento = stm.getResultSet();
+			stmt.executeQuery("SELECT dFechaNacimiento FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsFechaNacimiento = stmt.getResultSet();
 			String _strDate = rsFechaNacimiento.getString("dFechaNacimiento");
 			int day = Integer.parseInt(_strDate.substring(8,9));
 			int month = Integer.parseInt(_strDate.substring(5,6));
@@ -221,16 +223,16 @@ public class Autor {
 			cal.set(Calendar.YEAR, year);
 			dFechaNacimiento = cal.getTime();
 
-			stm.executeQuery("SELECT sContrasena FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsContrasena = stm.getResultSet();
+			stmt.executeQuery("SELECT sContrasena FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsContrasena = stmt.getResultSet();
 			String sContrasena = rsContrasena.getString("sContrasena");
 			
-			stm.executeQuery("SELECT bActivo FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsActivo = stm.getResultSet();
+			stmt.executeQuery("SELECT bActivo FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsActivo = stmt.getResultSet();
 			boolean bActivo = rsActivo.getBoolean("bActivo");
 
-			stm.executeQuery("SELECT dFechaIngreso FROM Autor Where iIDAutor = " + iIDPersona);
-			ResultSet rsFechaIngreso = stm.getResultSet();
+			stmt.executeQuery("SELECT dFechaIngreso FROM Autor Where iIDAutor = " + iIDPersona);
+			ResultSet rsFechaIngreso = stmt.getResultSet();
 			_strDate = rsFechaIngreso.getString("dFechaIngreso");
 			day = Integer.parseInt(_strDate.substring(8,9));
 			month = Integer.parseInt(_strDate.substring(5,6));
@@ -240,8 +242,8 @@ public class Autor {
 			cal.set(Calendar.YEAR, year);
 			dFechaIngreso = cal.getTime();
 
-			stm.executeQuery("SELECT dFechaVencimiento FROM Autor WHERE iIDAutor = "+ iIDPersona);
-			ResultSet rsFechaVencimiento = stm.getResultSet();
+			stmt.executeQuery("SELECT dFechaVencimiento FROM Autor WHERE iIDAutor = "+ iIDPersona);
+			ResultSet rsFechaVencimiento = stmt.getResultSet();
 			_strDate = rsFechaNacimiento.getString("dFechaVencimiento");
 			day = Integer.parseInt(_strDate.substring(8,9));
 			month = Integer.parseInt(_strDate.substring(5,6));
@@ -251,10 +253,8 @@ public class Autor {
 			cal.set(Calendar.YEAR, year);
 			dFechaVencimiento = cal.getTime();
 
-			Autor auAutor = new Autor(iIDPersonaAux, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
-			
+			auAutor = new Autor(iIDPersonaAux, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
 		}catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
-	
 		return auAutor;
 	}
 }
