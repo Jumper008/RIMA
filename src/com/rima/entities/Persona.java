@@ -89,7 +89,6 @@ public class Persona {
 	    return bActivo;
 	}
 
-	public void mostrarTiempoRestanteSuscripcion( int iIDPersona ) {
 
 	}
 	
