@@ -21,6 +21,73 @@ public class Persona {
 	protected Date dFechaIngreso;
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
+	
+	public void setiIDPersona( int iID ) {
+	    if ( !corroborarExistencia( iID ) )
+	        iIDPersona = iID;
+        else
+            iIDPersona = -1;
+	}
+	
+	public int getiIDPersona() {
+	    return iIDPersona;
+	}
+	
+	public void setsNombre( String sNom ) {
+	    sNombre = sNom;
+	}
+	
+	public String getsNombre() {
+	    return sNombre;
+	}
+	
+	public void setsNombre( String sCor ) {
+	    sCorreo = sCor;;
+	}
+	
+	public String getsCorreo() {
+	    return sCorreo;
+	}
+	
+	public void setsContrasena( String sCont ) {
+	    sContrasena = sCont;
+	}
+	
+	public String getsContrasena() {
+	    return sContrasena;
+	}
+	
+	public void setdFechaDeNacimiento( Date dFecha ) {
+	    dFechaDeNacimiento = dFecha;
+	}
+	
+	public Date getFechaDeNacimiento() {
+	    return dFechaDeNacimiento; 
+	}
+	
+	public void setdFechaIngreso( Date dFecha ) {
+	    dFechaIngreso = dFecha;
+	}
+	
+	public Date getdFechaIngreso() {
+	    return dFechaIngreso;
+	}
+	
+	public void setdFechaVencimiento( Date dFecha ) {
+	    dFechaVencimiento = dFecha;
+	}
+	
+	public Date getdFechaVencimiento() {
+	    return dFechaVencimiento;
+	}
+	
+	public void setbActivo( boolean bAct ) {
+	    bActivo = bAct;
+	}
+	
+	public boolean getbActivo() {
+	    return bActivo;
+	}
 
 	public void mostrarTiempoRestanteSuscripcion( int iIDPersona ) {
 
