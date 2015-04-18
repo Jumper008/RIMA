@@ -13,80 +13,20 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class Administrador {
-	protected int iIDAdministrador;
-	protected String sNombreAdmi;
-	protected String sContrasena;
-	protected String sCorreo;
-
-	public boolean validarPago(){
-		return true;
-
-	}
-
-	public boolean RegistrarAutorArticulo(){
+	public boolean agregarAdministrador( Administrador administrador ) {
 		return true;
 	}
 
-	public void revisarVotacionPrevia(){
-	}
-
-	public int getArticulosVotados(){
-		return iIDAdministrador;
-	}
-
-	public boolean DardeAltaRevista(){
+	public boolean mostrarInformacionActual() {
 		return true;
 	}
 
-	public boolean ActualizarInformacionArticulos(){
+	public Administrador consultarInformacion( int iIDPersona ) {
+		Administrador adAdministrador = new Administrador();
+		return adAdministrador;
+	}
+
+	public boolean editarAdministrador( int iIDPersona ) {
 		return true;
-	}
-
-	public boolean ConsultarClientesRenovar(){
-		return true;
-	}
-
-	public boolean ConsultarClientesVigentes(){
-		return true;
-	}
-
-	public boolean agregarAutor(){
-		return true;
-	}
-
-	public boolean submitInformacion(){
-		return true;
-	}
-
-	public boolean revisarDuplicados(){
-		return true;
-	}
-
-	public boolean agregarJuez(){
-		return true;
-	}
-
-	public boolean desactivarJuez(){
-		return true;
-	}
-
-	public boolean desactivarAdministrador(){
-		return true;
-	}
-
-	public boolean agregarAdministrador(){
-		return true;
-	}
-
-	public boolean mostrarInformacionActual(){
-		return true;
-	}
-
-	public void submitNuevaInformacion(){
-
-	}
-
-	public void editarJuez(){
-
 	}
 }
