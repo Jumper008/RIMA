@@ -15,11 +15,8 @@ import java.util.Calendar;
 public class Juez {
 
 	public Juez consultarInformacion( int iIDPersona ) {
-		return true;
-	}
-
-	public void submitNuevaInformacion() {
-
+		Juez juJuez = new Juez();
+		return juJuez;
 	}
 
 	public boolean editarJuez( Juez juJuez ) {

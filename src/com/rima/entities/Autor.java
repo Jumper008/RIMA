@@ -14,27 +14,31 @@ import java.util.Calendar;
 
 public class Autor {
 
-	public vector < int > consultarPublicaciones( int iIDPersona ) {
-
+	public Vector <Integer> consultarPublicaciones( int iIDPersona ) {
+		Vector<Integer> vID = new Vector<Integer>();
+		return vID;
 	}
 	
-	public vector < int > consultarPublicacionesPropias( int iIDPersona ) {
-	    
+	public Vector <Integer> consultarPublicacionesPropias( int iIDPersona ) {
+		Vector<Integer> vID = new Vector<Integer>();
+		return vID;
 	} 
 	
-	public vector < String > mostrarNombreDeAutores() {
-	    
+	public Vector <String> mostrarNombreDeAutores() {
+		Vector<String> vNombres = new Vector<String>();
+		return vNombres;
 	}
 	
-	public Boolean agregarAutor( Autor autAutor ) {
-	    
+	public boolean agregarAutor( Autor autAutor ) {
+		return true;
 	}
 	
-	public Boolean eidtarAutor( Autor autAutor ) {
-	    
+	public boolean eidtarAutor( Autor autAutor ) {
+		return true;
 	}
 	
 	public Autor consultarInformacion( int iIDPersona ) {
-	    
+		Autor auAutor = new Autor();
+		return auAutor;
 	}
 }
