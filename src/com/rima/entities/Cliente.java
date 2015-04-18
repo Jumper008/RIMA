@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*
  *Author: Equipo 5
  *
@@ -183,16 +184,99 @@ public class Cliente {
 	}
 	
 	public boolean agregarCliente( Cliente clCliente ) {
+		Calendar cal = Calendar.getInstance();
+		int iIDCliente = clCliente.iIDAd;
+		String sNombre = clCliente.sNombre;
+		String sCorreo = clCliente.sCorreo;
+		Date dFechaNacimiento = clCliente.dFechaNacimiento;
+		cal.setTime(dFechaNacimiento);
+		int iday = cal.get(Calendar.DATE);
+		int imonth = cal.get(Calendar.MONTH);
+		int iyear = cal.get(Calendar.YEAR);
+		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+		String sContrasena = clCliente.sContrasena;
+		Date dFechaIngreso = clCliente.dFechaIngreso;
+		cal.setTime(dFechaNacimiento);
+		int iday = cal.get(Calendar.DATE);
+		int imonth = cal.get(Calendar.MONTH);
+		int iyear = cal.get(Calendar.YEAR);
+		String sDateNa = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+
+		try{
+			if(corroborarExistencia(iIDCliente)){
+				String s = "INSERT INTO Administrador (iIDAdministrador, sNombre, sCorreo, dFechaNacimiento, sContrasena, dFechaIngreso)"+
+			 	"VALUES ("+ iIDAutor + " , '" + sNombre + " , '"
+			 	+ sCorreo + " , '" + sDate + ",'" + sContrasena + ",'"
+				+ sDateNa+ " )";
+				conn.stmt.executeUpdate(s);
+				return true;
+			}
+			
+		} catch (SQLException e) {System.out.println ("Cannot execute agregarCliente()" + e);}
+
 		return true;
 	}
 	
 	public boolean editarCliente( Cliente clCliente ) {
+		try {
+			Calendar cal = Calendar.getInstance();
+			int iIDCliente = clCliente.iIDCliente;
+			String sNombre = clCliente.sNombre;
+			String sCorreo = clCliente.sCorreo;
+			Date dFechaNacimiento = clCliente.dFechaNacimiento;
+			cal.setTime(dFechaNacimiento);
+			int iday = cal.get(Calendar.DATE);
+			int imonth = cal.get(Calendar.MONTH);
+			int iyear = cal.get(Calendar.YEAR);
+			String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+			String sContrasena = clCliente.sContrasena;
+			Date dFechaIngreso = clCliente.dFechaIngreso;
+			cal.setTime(dFechaNacimiento);
+			int iday = cal.get(Calendar.DATE);
+			int imonth = cal.get(Calendar.MONTH);
+			int iyear = cal.get(Calendar.YEAR);
+			String sDateNa = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+
+
+			String sN = "UPDATE Autor SET sNombre = " + sNombre + " WHERE iIDCliente = " + iIDCliente;
+			conn.stmt.executeUpdate(sN);
+
+			String sC = "UPDATE Autor SET sCorreo = " + sCorreo + " WHERE iIDCliente =" + iIDCliente;
+			conn.stmt.executeUpdate(sC);
+
+			String sD = "UPDATE Autor SET dFechaNacimiento = " + sDate + " WHERE iIDCliente = " + iIDCliente;
+			conn.stmt.executeUpdate(sD);
+
+			String sCo = "UPDATE Autor SET sContrasena = " + sContrasena + " WHERE iIDCliente = " + iIDCliente;
+			conn.stmt.executeUpdate(sCo);
+
+			String sDI = "UPDATE Autor SET dFechaIngreso = " + sDateNa + " WHERE iIDCliente = " + iIDCliente;
+			conn.stmt.executeUpdate(sDI);
+
+		     } catch (SQLException e) {System.out.println ("Cannot execute editarCliente()" + e);}
 		return true;
 	}
 	
 	public Cliente consultarInformacion( int iIDPersona ) {
-		Cliente clCliente = new Cliente();
+		try{
+			stm.executeQuery("SELECT sNombre FROM Autor Where iIDCliente= " + iIDPersona);
+			ResultSet rsNombre = stmt.getResultSet();
+
+			stm.executeQuery("SELECT sCorreo FROM Autor Where iIDCliente= " + iIDPersona);
+			ResultSet rsCorreo = stmt.getResultSet();
+
+			stm.executeQuery("SELECT sFechaNacimiento FROM Autor Where iIDCliente= " + iIDPersona);
+			ResultSet rsFechaNacimiento = stmt.getResultSet();
+
+			stm.executeQuery("SELECT sContrasena FROM Autor Where iIDCliente= " + iIDPersona);
+			ResultSet rsContrasena = stmt.getResultSet();
+
+			stm.executeQuery("SELECT sFechaIngreso FROM Autor Where iIDCliente= " + iIDPersona);
+			ResultSet rsFechaIngreso = stmt.getResultSet();
+
+			Cliente clCliente = new Cliente(rsNombre, rsCorreo, rsFechaNacimiento, rsContrasena, rsFechaIngreso);
+		} catch (SQLException e) { return null;}
+	
 		return clCliente;
 	}
-
-}	
+}

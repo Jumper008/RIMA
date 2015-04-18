@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*
  *Author: Equipo 5
  *
@@ -12,6 +13,7 @@ import java.io.*;
 import java.util.Date;
 
 public class Articulo {
+	
 	protected int iIDArticulo;
 	protected String sNombre;
 	protected String sResumen;
