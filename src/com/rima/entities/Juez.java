@@ -19,10 +19,6 @@ public class Juez {
 		return juJuez;
 	}
 
-	public void submitNuevaInformacion() {
-
-	}
-
 	public boolean editarJuez( Juez juJuez ) {
 		return true;
 	}
