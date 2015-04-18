@@ -15,7 +15,8 @@ import java.util.Calendar;
 public class Juez {
 
 	public Juez consultarInformacion( int iIDPersona ) {
-		return true;
+		Juez juJuez = new Juez();
+		return juJuez;
 	}
 
 	public void submitNuevaInformacion() {

@@ -27,15 +27,15 @@ public class Persona {
 	}
 	
 	public boolean corroborarExistencia( int iIDPersona ) {
-		
+		return true;
 	}
 	
 	public boolean desactivarPersona( int iIDPersona ) {
-		
+		return true;
 	}
 	
 	public boolean activarPersona( int iIDPersona ) {
-		
+		return true;
 	}
 	
 }

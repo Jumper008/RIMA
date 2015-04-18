@@ -42,7 +42,7 @@ public class Cliente {
 	}
 	
 	public Cliente consultarInformacion( int iIDPersona ) {
-		Cliente clCliente = new Cliente;
+		Cliente clCliente = new Cliente();
 		return clCliente;
 	}
 

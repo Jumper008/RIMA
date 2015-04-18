@@ -23,6 +23,6 @@ public class Revista {
 	}
 	
 	public boolean agregaraRevista( Revista reRevista) {
-		
+		return true;
 	}
 }

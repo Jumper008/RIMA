@@ -27,7 +27,7 @@ public class Articulo {
 		return true;
 	}
 
-	public void consultarArticulosPropios( Vector<int> iIDArticulo ) {
+	public void consultarArticulosPropios( Vector<Integer> iIDArticulo ) {
 
 	}
 
@@ -35,8 +35,8 @@ public class Articulo {
 		return true;
 	}
 
-	public Vector<int> getArticulosVotados() {
-		Vector<int> vIDArticulos = new Vector<int>();
+	public Vector<Integer> getArticulosVotados() {
+		Vector<Integer> vIDArticulos = new Vector<Integer>();
 		return vIDArticulos;
 	}
 
