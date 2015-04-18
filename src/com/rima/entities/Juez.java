@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
-public class Juez{
+public class Juez {
 	
 	protected int iIDPersona;
 	protected String sNombre;
