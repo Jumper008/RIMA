@@ -63,7 +63,8 @@ public class Autor extends Persona{
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
+            int _iIDRevista = rs.getInt("iIDRevista");
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
 			vArticulo.add(arArticulo);
 		    }
 		}catch (SQLException e) {System.out.println ("Cannot execute consultarPublicaciones()" + e);}
@@ -82,7 +83,8 @@ public class Autor extends Persona{
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
+            int _iIDRevista = rs.getInt("iIDRevista");
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
 			vArticulo.add(arArticulo);
 		     }
 		  } catch (SQLException e) { return null;}

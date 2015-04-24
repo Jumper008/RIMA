@@ -18,6 +18,7 @@ public class Articulo {
 	protected String sResumen;
 	protected boolean bPublicado;
 	protected int iContador;
+    protected int iIDRevista;
 	private transient Conexion conn;
 	private Statement stmt;
 
@@ -31,15 +32,65 @@ public class Articulo {
 		sResumen = "";
 		bPublicado = false;
 		iContador = 0;
+        iIDRevista = 0;
 	}
 	
-	public Articulo(int iIDArticulo, String sNombre, String sResumen, boolean bPublicado, int iContador) {
+	public Articulo(int iIDArticulo, String sNombre, String sResumen, boolean bPublicado, int iContador, int iIDRevista) {
 		this.iIDArticulo = iIDArticulo;
 		this.sNombre = sNombre;
 		this.sResumen = sResumen;
 		this.bPublicado = bPublicado;
 		this.iContador = iContador;
+        this.iIDRevista = iIDRevista;
 	}
+    
+    public void setiIDArticulo( int iIDArticulo ) {
+        this.iIDArticulo = iIDArticulo;
+    }
+    
+    public int getiIDArticulo() {
+        return this.iIDArticulo;
+    }
+    
+    public void setsNombre( String sNombre ) {
+        this.sNombre = sNombre;
+    }
+    
+    public String getsNombre() {
+        return this.sNombre;
+    }
+    
+    public void setsResumen( String sResumen ) {
+        this.sResumen = sResumen;
+    }
+    
+    public String getsResumen() {
+        return this.sResumen;
+    }
+    
+    public void setbPublicado( boolean bPublicado ) {
+        this.bPublicado = bPublicado;
+    }
+    
+    public boolean getbPublicado() {
+        return this.bPublicado;
+    }
+    
+    public void setiContador( int iContador ) {
+        this.iContador = iContador;
+    }
+    
+    public int getiContador() {
+        return this.iContador;
+    }
+    
+    public void setiIDRevista( int iIDRevista ) {
+        this.iIDRevista = iIDRevista;
+    }
+    
+    public int getiIDRevista() {
+        return this.iIDRevista;
+    }
 
 	public Articulo consultarInformacion( int iIDArticulo ) {
 		Articulo arArticulo = new Articulo();
@@ -52,8 +103,9 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
-		     }
+            int _iIDRevista = rs.getInt("iIDRevista");
+			arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+            }
 		  } catch (SQLException e) { return null;}
 		  return arArticulo;
 	}
@@ -70,9 +122,10 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
+            int _iIDRevista = rs.getInt("iIDRevista");
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
 			vArticulos.add(arArticulo);
-		     }
+            }
 		  } catch (SQLException e) { return null;}
 		  return vArticulos;
 	}
@@ -89,28 +142,62 @@ public class Articulo {
 			String _strResumen = rs.getString("sResumen");
 			boolean _bPublicado = rs.getBoolean("bPublicado");
 			int _iContador = rs.getInt("iContador");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador);
+            int _iIDRevista = rs.getInt("iIDRevista");
+			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
 			vArticulos.add(arArticulo);
 		     }
 		  } catch (SQLException e) { return null;}
 		  return vArticulos;
 	}
 
-	// Métodos todavía no han sido implementados.
 	public boolean aumentarVotos( int iIDArticulo ) {
-		return true;
+        try {
+            stmt.executeQuery ("SELECT iContador FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
+            ResultSet rs = stmt.getResultSet();
+            if(rs.next()) {
+                int _iContador = rs.getInt("iContador");
+                _iContador++;
+                String s = "UPDATE Articulo SET iContador = " + _iContador + " WHERE iIDArticulo = " + iIDArticulo;
+                stmt.executeUpdate(s);
+            }
+            return true;
+        } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
 	public Vector<Integer> getArticulosVotados() {
-		Vector<Integer> vIDArticulos = new Vector<Integer>();
-		return vIDArticulos;
+        Vector<Integer> vIDArticulos = new Vector<Integer>();
+        try{
+            stmt.executeQuery ("SELECT iIDArticulo FROM Articulo WHERE iContador IS NOT NULL and iContador <> 0");
+            ResultSet rs = stmt.getResultSet();
+            while(rs.next()) {
+                int _iIDArticulo = rs.getInt("iIDArticulo");
+                vIDArticulos.add(_iIDArticulo);
+            }
+        } catch (SQLException e) { return null; }
+        return vIDArticulos;
 	}
 
-	public boolean agregarARevista( int iIDArticulo ) {
-		return true;
+	public boolean agregarARevista( int iIDArticulo, int iIDRevista ) {
+        try {
+            String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + " WHERE iIDArticulo = " + iIDArticulo;
+            stmt.executeUpdate(s);
+            return true;
+        } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
-	public boolean agregarArticulo( Articulo articulo ) {
-		return true;
+	public boolean agregarArticulo( Articulo arArticulo ) {
+        int iIDArticulo = arArticulo.iIDArticulo;
+        String sNombre = arArticulo.sNombre;
+        String sResumen = arArticulo.sResumen;
+        boolean bPublicado = arArticulo.bPublicado;
+        int iContador = arArticulo.iContador;
+        int iIDRevista = arArticulo.iIDRevista;
+        try {
+            String s = "INSERT INTO Articulo (iIDArticulo, sNombre, sResumen, bPublicado, iContador)" +
+            " VALUES ("+ iIDArticulo + " , '" + sNombre + " , '"
+            + sResumen + " , '" + bPublicado + " , '" + iContador + " , '" + iIDRevista + " )";
+            stmt.executeUpdate(s);
+            return true;
+        } catch (SQLException e) {System.out.println ("Cannot execute agregaraArticulo()" + e); return false; }
 	}
 }
