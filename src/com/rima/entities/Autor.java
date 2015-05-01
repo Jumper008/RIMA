@@ -14,42 +14,17 @@ import java.util.Calendar;
 
 public class Autor extends Persona{
 	
-	protected int iIDPersona;
-	protected String sNombre;
-	protected String sCorreo;
-	protected String sContrasena;
-	protected Date dFechaNacimiento;
-	protected Date dFechaIngreso;
-	protected Date dFechaVencimiento;
-	protected boolean bActivo;
-	private transient Conexion conn;
-	private Statement stmt;
-	
-        public Autor(Conexion conn) {
-		this.conn = conn;
-        }
+	public Autor(Conexion conn) {
+		super(conn);
+	}
 	
 	public Autor() {
-		iIDPersona = 0;
-		sNombre = "";
-		sCorreo = "";
-		sContrasena = "";
-		dFechaNacimiento = new Date();
-		dFechaIngreso = new Date();
-		dFechaVencimiento = new Date();
-		bActivo = false;
+		super();
 	}
 	
 	public Autor(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
 		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
-		this.iIDPersona = iIDPersona;
-		this.sNombre = sNombre;
-		this.sCorreo = sCorreo;
-		this.sContrasena = sContrasena;
-		this.dFechaNacimiento = dFechaNacimiento;
-		this.dFechaIngreso = dFechaIngreso;
-		this.dFechaVencimiento = dFechaVencimiento;
-		this.bActivo = bActivo;
+		super(iIDPersona, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
 	}
 
 	public Vector <Articulo> consultarPublicaciones( int iIDPersona ) {

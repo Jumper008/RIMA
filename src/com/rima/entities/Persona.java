@@ -41,7 +41,7 @@ public class Persona {
 	}
 	
 	public Persona(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
-		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+		Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
 		this.iIDPersona = iIDPersona;
 		this.sNombre = sNombre;
 		this.sCorreo = sCorreo;
