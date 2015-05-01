@@ -8,7 +8,6 @@ package com.rima.entities;
 
 import java.util.*;
 import java.sql.*;
-import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
@@ -33,15 +32,15 @@ public class Autor extends Persona{
 			stmt.executeQuery("SELECT * FROM Articulo WHERE iIDAutor = " + iIDPersona + "and bPublicado = " + true);
 			ResultSet rs = stmt.getResultSet();
 			while(rs.next()) {
-			int _iIDArticulo = rs.getInt("iIDArticulo");
-			String _strNombre = rs.getString("sNombre");
-			String _strResumen = rs.getString("sResumen");
-			boolean _bPublicado = rs.getBoolean("bPublicado");
-			int _iContador = rs.getInt("iContador");
-            int _iIDRevista = rs.getInt("iIDRevista");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
-			vArticulo.add(arArticulo);
-		    }
+                            int _iIDArticulo = rs.getInt("iIDArticulo");
+                            String _strNombre = rs.getString("sNombre");
+                            String _strResumen = rs.getString("sResumen");
+                            boolean _bPublicado = rs.getBoolean("bPublicado");
+                            int _iContador = rs.getInt("iContador");
+                            int _iIDRevista = rs.getInt("iIDRevista");
+                            Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+                            vArticulo.add(arArticulo);
+                        }
 		}catch (SQLException e) {System.out.println ("Cannot execute consultarPublicaciones()" + e);}
 		return vArticulo;
 	}
@@ -91,22 +90,22 @@ public class Autor extends Persona{
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
 		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		String sContrasena = autAutor.sContrasena;
+                String sContrasena = autAutor.sContrasena;
 		Date dFechaIngreso = autAutor.dFechaIngreso;
 		cal.setTime(dFechaIngreso);
-		int iday1 = cal.get(Calendar.DATE);
-		int imonth1 = cal.get(Calendar.MONTH);
-		int iyear1 = cal.get(Calendar.YEAR);
+		iday = cal.get(Calendar.DATE);
+		imonth = cal.get(Calendar.MONTH);
+		iyear = cal.get(Calendar.YEAR);
 		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 		Date dFechaVencimiento = autAutor.dFechaVencimiento;
 		cal.setTime(dFechaVencimiento);
-		int iday2 = cal.get(Calendar.DATE);
-		int imonth2 = cal.get(Calendar.MONTH);
-		int iyear2 = cal.get(Calendar.YEAR);
+		iday = cal.get(Calendar.DATE);
+		imonth = cal.get(Calendar.MONTH);
+		iyear = cal.get(Calendar.YEAR);
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
 		try{
-			if(corroborarExistencia(iIDAutor)){
+			if(!corroborarExistencia(iIDAutor)){
 				String s = "INSERT INTO Autor (iIDAutor, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaIngreso, dFechaVencimiento)"+
 			 	"VALUES ("+ iIDAutor + " , '" + sNombre + " , '"
 			 	+ sCorreo + " , '" + sContrasena + ",'" + sDate + ",'"
@@ -136,15 +135,15 @@ public class Autor extends Persona{
 			String sContrasena = autAutor.sContrasena;
 			Date dFechaIngreso = autAutor.dFechaIngreso;
 			cal.setTime(dFechaIngreso);
-			int iday1 = cal.get(Calendar.DATE);
-			int imonth1 = cal.get(Calendar.MONTH);
-			int iyear1 = cal.get(Calendar.YEAR);
+			iday = cal.get(Calendar.DATE);
+			imonth = cal.get(Calendar.MONTH);
+			iyear = cal.get(Calendar.YEAR);
 			String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 			Date dFechaVencimiento = autAutor.dFechaVencimiento;
 			cal.setTime(dFechaVencimiento);
-			int iday2 = cal.get(Calendar.DATE);
-			int imonth2 = cal.get(Calendar.MONTH);
-			int iyear2 = cal.get(Calendar.YEAR);
+			iday = cal.get(Calendar.DATE);
+			imonth = cal.get(Calendar.MONTH);
+			iyear = cal.get(Calendar.YEAR);
 			String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
 
