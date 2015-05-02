@@ -11,6 +11,8 @@ import java.sql.*;
 import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Persona {
 	
@@ -167,4 +169,13 @@ public class Persona {
                 return true;
 	}
 	
+        public int generarID() {
+            try {
+                stmt.executeQuery("SELECT COUNT(*) FROM Persona");
+                ResultSet rsiIDPersona = stmt.getResultSet();
+                return rsiIDPersona.getInt("COUNT(*)") + 1;
+            } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
+            
+            return -1;
+        }
 }
