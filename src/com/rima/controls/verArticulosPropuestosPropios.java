@@ -4,3 +4,22 @@
  *Version: 1.0.0
  *
  */
+ package com.rima.controls;
+ 
+ import java.util.*;
+ import java.io.*;
+ import com.rima.entities.*;
+ 
+ public class verArticulosPropuestosPropios {
+	 Articulo arArticulo;
+	 private transient Conexion conConexion;
+	 
+	 public verArticulosPropuestosPropios() {
+		 conConexion = new Conexion();
+		 arArticulo = new Articulo(conConexion);
+	 }
+	 
+	 public Vector<Articulo> obtenerArticulosPropios(int iIDPersona) {
+		 return arArticulo.consultarArticulosPropios(iIDPersona);
+	 }
+ }
