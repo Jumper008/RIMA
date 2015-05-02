@@ -51,8 +51,7 @@ public class Cliente extends Persona{
     }
 
     public Vector<Cliente> consultarClientesRenovar() {
-        Vector < Cliente > vecClientes = new Vector < Cliente >();
-        Vector < Date > vecDates = new Vector < Date > ();
+        Vector <Cliente> vecClientes = new Vector < Cliente >();
 
         Calendar cal = Calendar.getInstance();
 
@@ -70,9 +69,9 @@ public class Cliente extends Persona{
             while( rs.next() ) {
             	//dFechaVencimiento
                 String sFechaVencimiento = rs.getString("dFechaVencimiento");
-                iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
-                iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
-                iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
+                int iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
+                int iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
+                int iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
                 cal.set(Calendar.DATE, iDia);
                 cal.set(Calendar.MONTH, iMes);
                 cal.set(Calendar.YEAR, iAno);
