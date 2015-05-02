@@ -151,17 +151,21 @@ public class Articulo {
 	}
 
 	public boolean aumentarVotos( int iIDArticulo ) {
-        try {
-            stmt.executeQuery ("SELECT iContador FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
-            ResultSet rs = stmt.getResultSet();
-            if(rs.next()) {
-                int _iContador = rs.getInt("iContador");
-                _iContador++;
-                String s = "UPDATE Articulo SET iContador = " + _iContador + " WHERE iIDArticulo = " + iIDArticulo;
-                stmt.executeUpdate(s);
-            }
-            return true;
-        } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
+            try {
+                stmt.executeQuery ("SELECT iContador FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
+                ResultSet rs = stmt.getResultSet();
+                if(rs.next()) {
+                    int _iContador = rs.getInt("iContador");
+                    _iContador++;
+                    String s = "UPDATE Articulo SET iContador = " + _iContador + " WHERE iIDArticulo = " + iIDArticulo;
+                    stmt.executeUpdate(s);
+                    return true;
+                }
+                else {  // No se encontró el artículo del cual se desean aumentar los votos
+                    return false;
+                }
+
+            } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
 	public Vector<Integer> getArticulosVotados() {
