@@ -51,25 +51,36 @@ public class Cliente extends Persona{
     }
 
     public Vector<Cliente> consultarClientesRenovar() {
-            Vector < Cliente > vecClientes = new Vector < Cliente >();
+        Vector < Cliente > vecClientes = new Vector < Cliente >();
+        Vector < Date > vecDates = new Vector < Date > ();
 
-            Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
 
-            int iAno = cal.get(Calendar.YEAR);
-            int iMes = cal.get(Calendar.MONTH);
-            int iDia = cal.get(Calendar.DATE);
+       	int iday = cal.get(Calendar.DATE);
+		int imonth = cal.get(Calendar.MONTH);
+		int iyear = cal.get(Calendar.YEAR);
+		 //Fecha actual en formato 'aaaa/mm/dd'
+		String sCurrentDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
-            String sFechaActual = "'" + Integer.toString(iAno) + '-' + 
-                    Integer.toString(iMes) + '-' + 
-                    Integer.toString(iDia) + "'";   //Fecha actual en formato 'aaaa-mm-dd'
+        try {
+        	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
 
-            try {
-                stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per"
-                                        + " WHERE cli.dFechaVencimiento >= " + sFechaActual 
-                                        + "AND cli.iIDPersona = per.iIDPersona" );
-                ResultSet rs = stmt.getResultSet();    
+            ResultSet rs = stmt.getResultSet();    
 
-                while( rs.next() ) {
+            while( rs.next() ) {
+            	//dFechaVencimiento
+                String sFechaVencimiento = rs.getString("dFechaVencimiento");
+                iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
+                iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
+                iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
+                cal.set(Calendar.DATE, iDia);
+                cal.set(Calendar.MONTH, iMes);
+                cal.set(Calendar.YEAR, iAno);
+
+                Date dFechaVencimiento = cal.getTime();
+
+                if(dFechaVencimiento <= sCurrentDate) {
+
                     int iIDPersona = rs.getInt("iIDPersona");
                     String sNombre = rs.getString("sNombre");
                     String sCorreo = rs.getString("sCorreo");
@@ -97,17 +108,6 @@ public class Cliente extends Persona{
 
                     Date dFechaIngreso = cal.getTime();
 
-                    //dFechaVencimiento
-                    String sFechaVencimiento = rs.getString("dFechaVencimiento");
-                    iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
-                    iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
-                    iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
-                    cal.set(Calendar.DATE, iDia);
-                    cal.set(Calendar.MONTH, iMes);
-                    cal.set(Calendar.YEAR, iAno);
-
-                    Date dFechaVencimiento = cal.getTime();
-
                     boolean bActivo = rs.getBoolean("bActivo");
 
                     String sCuentaBancaria = rs.getString("sCuentaBancaria");
@@ -115,11 +115,11 @@ public class Cliente extends Persona{
                     vecClientes.add(new Cliente( iIDPersona, sNombre, sCorreo, 
                             sContrasena, dFechaNacimiento, dFechaIngreso, 
                             dFechaVencimiento, bActivo, sCuentaBancaria ));
-                }
-            
-            } catch (SQLException e) {System.out.println ("Cannot execute consultarClientesRenovar()" + e);}
+            	}
+        	}
+        } catch (SQLException e) {System.out.println ("Cannot execute consultarClientesRenovar()" + e);}
 
-            return vecClientes;
+        return vecClientes;
     }
 
     public Vector<Cliente> consultarClientesVigentes() {
