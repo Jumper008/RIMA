@@ -8,7 +8,6 @@
  
  import java.util.*;
  import java.io.*;
- import java.util.Date;
  import com.rima.entities.*;
  
  public class mostrarClientesRenovar {
@@ -20,7 +19,7 @@
 		 cliCliente = new Cliente(conConexion);
 	 }
 	 
-	 public Vector<Cliente> getClientesRenovar() {
+	 public Vector<Cliente> obtenerClientesRenovar() {
 		 return cliCliente.consultarClientesRenovar();
 	 }
 }

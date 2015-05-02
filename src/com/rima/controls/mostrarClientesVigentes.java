@@ -8,19 +8,18 @@
  
  import java.util.*;
  import java.io.*;
- import java.util.Date;
  import com.rima.entities.*;
  
  public class mostrarClientesVigentes {
 	 Cliente cliCliente;
 	 private transient Conexion conConexion;
 	 
-	 public mostrarClientesVigentesVigentes() {
+	 public mostrarClientesVigentes() {
 		 conConexion = new Conexion();
 		 cliCliente = new Cliente(conConexion);
 	 }
 	 
-	 public Vector<Cliente> getClientesVigentes() {
+	 public Vector<Cliente> obtenerClientesVigentes() {
 		 return cliCliente.consultarClientesRenovar();
 	 }
 }
