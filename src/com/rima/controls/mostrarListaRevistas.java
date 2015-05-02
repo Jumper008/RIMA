@@ -19,5 +19,7 @@
 		 reRevista = new Revista(conConexion);
 	 }
 	 
-	 
+	 public Vector<Revista> obtenerListaRevistas() {
+		 return reRevista.mostrarRevistasPublicadas();
+	 }
  }
