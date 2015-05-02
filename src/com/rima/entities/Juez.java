@@ -13,59 +13,84 @@ import java.util.Date;
 import java.util.Calendar;
 
 public class Juez extends Autor{
+    private boolean bJuezActivo;
 
 	public Juez(Conexion conn) {
 		super(conn);
+                bJuezActivo = true;
 	}
 	
 	public Juez() {
 		super();
+                bJuezActivo = true;
 	}
 	
 	public Juez(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
-		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+		       Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo, boolean bJuezActivo) {
 		super(iIDPersona, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
+                this.bJuezActivo = bJuezActivo;
 	}
+        
+        public boolean getbJuezActivo() {
+            return bJuezActivo;
+        }
+        
+        public void setbJuezActivo( boolean bJuezActivo ) {
+            this.bJuezActivo = bJuezActivo;
+        }
 
-	public boolean agregarJuez( Juez juJuez ) {
+	public boolean agregarJuezByAdmin( Juez juJuez ) {
 		Calendar cal = Calendar.getInstance();
 		int iIDJuez = juJuez.iIDPersona;
 		String sNombre = juJuez.sNombre;
 		String sCorreo = juJuez.sCorreo;
-		Date dFechaNacimiento = juJuez.dFechaNacimiento;
+		
+                Date dFechaNacimiento = juJuez.dFechaNacimiento;
 		cal.setTime(dFechaNacimiento);
 		int iday = cal.get(Calendar.DATE);
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
 		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		String sContrasena = juJuez.sContrasena;
-		Date dFechaIngreso = juJuez.dFechaIngreso;
+		
+                String sContrasena = juJuez.sContrasena;
+		
+                Date dFechaIngreso = juJuez.dFechaIngreso;
 		cal.setTime(dFechaIngreso);
-		int iday1 = cal.get(Calendar.DATE);
-		int imonth1 = cal.get(Calendar.MONTH);
-		int iyear1 = cal.get(Calendar.YEAR);
+		iday = cal.get(Calendar.DATE);
+		imonth = cal.get(Calendar.MONTH);
+		iyear = cal.get(Calendar.YEAR);
 		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		Date dFechaVencimiento = juJuez.dFechaVencimiento;
+		
+                Date dFechaVencimiento = juJuez.dFechaVencimiento;
 		cal.setTime(dFechaVencimiento);
-		int iday2 = cal.get(Calendar.DATE);
-		int imonth2 = cal.get(Calendar.MONTH);
-		int iyear2 = cal.get(Calendar.YEAR);
+		iday = cal.get(Calendar.DATE);
+		imonth = cal.get(Calendar.MONTH);
+		iyear = cal.get(Calendar.YEAR);
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
 		try{
-			if(corroborarExistencia(iIDJuez)){
-				String s = "INSERT INTO Juez (iIDJuez, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaIngreso, dFechaVencimiento)"+
-			 	"VALUES ("+ iIDJuez + " , '" + sNombre + " , '"
-			 	+ sCorreo + " , '" + sContrasena + ",'" + sDate + ",'"
-				+ sDateIn+ ",'" + sDateVen+ " )";
-				conn.stmt.executeUpdate(s);
-				return true;
-			}
-			else
-				return false;
+                    if( corroborarExistencia(iIDJuez) ) { //Si ya existía, entonces era un autor, por lo que hay que desactivarlo como autor y activarlo como Juez
+                        // Entrada en la tabla Juez
+                        String sQueryJuez = "INSERT INTO Juez (iIDJuez, bJuezActivo)"+
+                                "VALUES ("+ iIDJuez + " , " + true + ")";
+                        
+                        // Actualización en la tabla Persona (el autor pasa de ser autor a juez)
+                        String sQueryPersona = "UPDATE SET "
+                                + "bActivo = " + false
+                                + " WHERE iIDPersona = " + iIDJuez;
+                        
+                        conn.stmt.executeUpdate(sQueryJuez);
+                        conn.stmt.executeUpdate(sQueryPersona);
+                        
+                        return true;
+                    }
+                    else {  //Si no existía, no se agrega a la tabla ya que solo los autores pueden convertirse en juez
+                        return false;
+                    }
 			
 		} catch (SQLException e) {System.out.println ("Cannot execute agregarJuez()"+ e);}
-		return false;
+		
+                return false; // Si no se pudo agregar el Juez, regresar falso.
 	}
 	
 	public boolean editarJuez( Juez juJuez ) {
@@ -74,43 +99,52 @@ public class Juez extends Autor{
 			int iIDJuez = juJuez.iIDPersona;
 			String sNombre = juJuez.sNombre;
 			String sCorreo = juJuez.sCorreo;
-			Date dFechaNacimiento = juJuez.dFechaNacimiento;
+			
+                        Date dFechaNacimiento = juJuez.dFechaNacimiento;
 			cal.setTime(dFechaNacimiento);
 			int iday = cal.get(Calendar.DATE);
 			int imonth = cal.get(Calendar.MONTH);
 			int iyear = cal.get(Calendar.YEAR);
 			String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-			String sContrasena = juJuez.sContrasena;
-			Date dFechaIngreso = juJuez.dFechaIngreso;
+			
+                        String sContrasena = juJuez.sContrasena;
+			
+                        Date dFechaIngreso = juJuez.dFechaIngreso;
 			cal.setTime(dFechaIngreso);
-			int iday1 = cal.get(Calendar.DATE);
-			int imonth1 = cal.get(Calendar.MONTH);
-			int iyear1 = cal.get(Calendar.YEAR);
+			iday = cal.get(Calendar.DATE);
+			imonth = cal.get(Calendar.MONTH);
+			iyear = cal.get(Calendar.YEAR);
 			String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-			Date dFechaVencimiento = juJuez.dFechaVencimiento;
+			
+                        Date dFechaVencimiento = juJuez.dFechaVencimiento;
 			cal.setTime(dFechaVencimiento);
-			int iday2 = cal.get(Calendar.DATE);
-			int imonth2 = cal.get(Calendar.MONTH);
-			int iyear2 = cal.get(Calendar.YEAR);
+			iday = cal.get(Calendar.DATE);
+			imonth = cal.get(Calendar.MONTH);
+			iyear = cal.get(Calendar.YEAR);
 			String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
-
-			String sN = "UPDATE Juez SET sNombre = " + sNombre + " WHERE iIDJuez = " + iIDJuez;
-			conn.stmt.executeUpdate(sN);
-
-			String sC = "UPDATE Juez SET sCorreo = " + sCorreo + " WHERE iIDJuez = " + iIDJuez;
-			conn.stmt.executeUpdate(sC);
-
-			String sD = "UPDATE Juez SET dFechaNacimiento = " + sDate + " WHERE iIDJuez = " + iIDJuez;
-			conn.stmt.executeUpdate(sD);
-
-			String sCo = "UPDATE Juez SET sContrasena = " + sContrasena + " WHERE iIDJuez = " + iIDJuez;
-			conn.stmt.executeUpdate(sCo);
-
-			String sDI = "UPDATE Juez SET dFechaIngreso = " + sDateIn + " WHERE iIDJuez = " + iIDJuez;
-			conn.stmt.executeUpdate(sDI);
-
-			String sDV = "UPDATE Juez SET dFechaVencimiento =" + sDateVen + "WHERE iIDJuez = " + iIDJuez;
+                        boolean bActivo = !juJuez.bJuezActivo;
+                        
+                        // Actualización en la tabla Persona
+                        String sQueryPersona = "UPDATE Persona SET "
+                                + "sNombre = '" + sNombre + "',"
+                                + "sCorreo = '" + sCorreo + "',"
+                                + "dFechaNacimiento = '" + sDate + "',"
+                                + "sContrasena = '" + sContrasena + "', "
+                                + "dFechaIngreso = '" + sDateIn + "',"
+                                + "dFechaVencimiento = '" + sDateVen + "', "
+                                + "bActivo = " + bActivo + " "
+                                + " WHERE iIDPersona = " + iIDJuez;
+                        
+                        // No es necesario actualizar la tabla Autor
+                        
+                        // Actualización en la tabla Juez
+                        String sQueryJuez = "UPDATE Persona SET "
+                                + "bJuezActivo = " + juJuez.bJuezActivo + " "
+                                + " WHERE iIDPersona = " + iIDJuez;
+                        
+                        conn.stmt.executeUpdate(sQueryPersona);
+                        conn.stmt.executeUpdate(sQueryJuez);
 
 		     } catch (SQLException e) {System.out.println ("Cannot execute editarJuez()" + e);}
 		return true;
@@ -124,21 +158,16 @@ public class Juez extends Autor{
 		Juez juJuez = new Juez();
 		
 		try{
-			stmt.executeQuery("SELECT iIDJuez FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsiIDJuez = stmt.getResultSet();
-			int iIDPersonaAux = rsiIDJuez.getInt("iIDJuez");
-
-			stmt.executeQuery("SELECT sNombre FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsNombre = stmt.getResultSet();
-			String sNombre = rsNombre.getString("sNombre");
-
-			stmt.executeQuery("SELECT sCorreo FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsCorreo = stmt.getResultSet();
-			String sCorreo = rsCorreo.getString("sCorreo");
-
-			stmt.executeQuery("SELECT dFechaNacimiento FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsFechaNacimiento = stmt.getResultSet();
-			String _strDate = rsFechaNacimiento.getString("dFechaNacimiento");
+		
+                    stmt.executeQuery("SELECT * FROM Persona"
+                            + "WHERE iIDPersona = " + iIDPersona);
+                    ResultSet rsQuery = stmt.getResultSet();
+                    
+                    if ( rsQuery.next() ) {
+                        String sNombre = rsQuery.getString("sNombre");
+                        String sCorreo = rsQuery.getString("sCorreo");
+                        
+                        String _strDate = rsQuery.getString("dFechaNacimiento");
 			int day = Integer.parseInt(_strDate.substring(8,9));
 			int month = Integer.parseInt(_strDate.substring(5,6));
 			int year = Integer.parseInt(_strDate.substring(0,3));
@@ -146,40 +175,42 @@ public class Juez extends Autor{
 			cal.set(Calendar.MONTH, month);
 			cal.set(Calendar.YEAR, year);
 			dFechaNacimiento = cal.getTime();
-
-			stmt.executeQuery("SELECT sContrasena FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsContrasena = stmt.getResultSet();
-			String sContrasena = rsContrasena.getString("sContrasena");
-			
-			stmt.executeQuery("SELECT bActivo FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsActivo = stmt.getResultSet();
-			boolean bActivo = rsActivo.getBoolean("bActivo");
-
-			stmt.executeQuery("SELECT dFechaIngreso FROM Juez Where iIDJuez = " + iIDPersona);
-			ResultSet rsFechaIngreso = stmt.getResultSet();
-			_strDate = rsFechaIngreso.getString("dFechaIngreso");
-			day = Integer.parseInt(_strDate.substring(8,9));
-			month = Integer.parseInt(_strDate.substring(5,6));
-			year = Integer.parseInt(_strDate.substring(0,3));
+                        
+                        String sContrasena = rsQuery.getString("sContrasena");
+                        boolean bActivo = rsQuery.getBoolean("bActivo");
+                        
+                        String _strDate2 = rsQuery.getString("dFechaIngreso");
+			day = Integer.parseInt(_strDate2.substring(8,9));
+			month = Integer.parseInt(_strDate2.substring(5,6));
+			year = Integer.parseInt(_strDate2.substring(0,3));
 			cal.set(Calendar.DATE, day);
 			cal.set(Calendar.MONTH, month);
 			cal.set(Calendar.YEAR, year);
 			dFechaIngreso = cal.getTime();
-
-			stmt.executeQuery("SELECT dFechaVencimiento FROM Juez WHERE iIDJuez = "+ iIDPersona);
-			ResultSet rsFechaVencimiento = stmt.getResultSet();
-			_strDate = rsFechaNacimiento.getString("dFechaVencimiento");
-			day = Integer.parseInt(_strDate.substring(8,9));
-			month = Integer.parseInt(_strDate.substring(5,6));
-			year = Integer.parseInt(_strDate.substring(0,3));
+                        
+                        String _strDate3 = rsQuery.getString("dFechaVencimiento");
+			day = Integer.parseInt(_strDate3.substring(8,9));
+			month = Integer.parseInt(_strDate3.substring(5,6));
+			year = Integer.parseInt(_strDate3.substring(0,3));
 			cal.set(Calendar.DATE, day);
 			cal.set(Calendar.MONTH, month);
 			cal.set(Calendar.YEAR, year);
 			dFechaVencimiento = cal.getTime();
-
-			juJuez = new Juez(iIDPersonaAux, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
+                        
+                        stmt.executeQuery("SELECT * FROM Juez WHERE iIDPersona = " + iIDPersona);
+                        ResultSet rsQueryJuez = stmt.getResultSet();
+                        
+                        if ( rsQueryJuez.next() ) {
+                            boolean bJuezActivo = rsQueryJuez.getBoolean("bJuezActivo");
+                            
+                            juJuez = new Juez( iIDPersona, 
+                                sNombre, sCorreo, sContrasena, dFechaNacimiento, 
+                                dFechaIngreso, dFechaVencimiento, bActivo, bJuezActivo );
+                        }
+                    }
+                    
+		} catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
 		
-		}catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
-		return juJuez;
+                return juJuez;
 	}
 }

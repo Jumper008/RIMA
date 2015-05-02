@@ -121,7 +121,29 @@ public class Persona {
 	    return bActivo;
 	}
 	
-	public Date consultarFechaVencimiento( int iIDPersona ) {
+	public Date consultarFechaIngreso( int iIDPersona ) {
+            Date dFechaVencimiento = new Date();
+            Calendar cal = Calendar.getInstance();
+            
+            try{
+                stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
+                ResultSet rs = stmt.getResultSet();
+                if(rs.next()) {
+                   String _strDate = rs.getString("dFechaIngreso");
+                   int day = Integer.parseInt(_strDate.substring(8,9));
+                   int month = Integer.parseInt(_strDate.substring(5,6));
+                   int year = Integer.parseInt(_strDate.substring(0,3));
+                   cal.set(Calendar.DATE, day);
+                   cal.set(Calendar.MONTH, month);
+                   cal.set(Calendar.YEAR, year);
+                   dFechaVencimiento = cal.getTime();
+                   return dFechaVencimiento;
+                }
+                return null;
+            } catch (SQLException e) {return null;}
+        }
+        
+        public Date consultarFechaVencimiento( int iIDPersona ) {
 		Date dFechaVencimiento = new Date();
 		Calendar cal = Calendar.getInstance();
 		try{
@@ -144,13 +166,11 @@ public class Persona {
 	
 	public boolean corroborarExistencia( int iIDPersona ) {
 		try{
-		     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
-		     ResultSet rs = stmt.getResultSet();
-		     if(rs.next()) {
-			return true;
-		     }
-		     return false;
-		  } catch (SQLException e) {return false;}
+                    stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
+                    ResultSet rs = stmt.getResultSet();
+                    
+                    return rs.next();
+                } catch (SQLException e) {return false;}
 	}
 	
 	public boolean desactivarPersona( int iIDPersona ) {
@@ -171,11 +191,14 @@ public class Persona {
 	
         public int generarID() {
             try {
-                stmt.executeQuery("SELECT COUNT(*) FROM Persona");
+                stmt.executeQuery("SELECT COUNT(*) FROM Persona AS NewId");
                 ResultSet rsiIDPersona = stmt.getResultSet();
-                return rsiIDPersona.getInt("COUNT(*)") + 1;
+                
+                if ( rsiIDPersona.next() ) {
+                    return rsiIDPersona.getInt("NewId") + 1;
+                }
             } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
             
-            return -1;
+            return -1;  // Regresa
         }
 }

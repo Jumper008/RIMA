@@ -40,32 +40,42 @@ public class Administrador extends Persona{
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
 		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		String sContrasena = admAdministrador.sContrasena;
-		Date dFechaIngreso = admAdministrador.dFechaIngreso;
+		
+                String sContrasena = admAdministrador.sContrasena;
+		
+                Date dFechaIngreso = admAdministrador.dFechaIngreso;
 		cal.setTime(dFechaIngreso);
 		iday = cal.get(Calendar.DATE);
 		imonth = cal.get(Calendar.MONTH);
 		iyear = cal.get(Calendar.YEAR);
 		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
+		
+                Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
 		cal.setTime(dFechaVencimiento);
 		iday = cal.get(Calendar.DATE);
 		imonth = cal.get(Calendar.MONTH);
 		iyear = cal.get(Calendar.YEAR);
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+                
+                boolean bActivo = admAdministrador.bActivo;
 
 		try{
-			if(corroborarExistencia(iIDAdministrador)){
+			if(!corroborarExistencia(iIDAdministrador)){
                             // Agregar entrada en Persona
                             String sQueryPersona = "INSERT INTO Persona "
                                     + "(iIDAdministrador, sNombre, sCorreo, "
                                     + "sContrsena, dFechaNacimiento, "
                                     + "dFechaIngreso, dFechaIngreso, "
-                                    + "dFechaVencimiento)"
-                                    + "VALUES ("+ iIDAdministrador + " , '" 
-                                    + sNombre + " , '" + sCorreo + " , '" 
-                                    + sContrasena + ",'" + sDate + ",'" 
-                                    + sDateIn+ ",'" + sDateVen+ " )";
+                                    + "dFechaVencimiento, bActivo)"
+                                    + "VALUES ("
+                                    + iIDAdministrador + " , '" 
+                                    + sNombre + "', '" 
+                                    + sCorreo + "' , '" 
+                                    + sContrasena + "','" 
+                                    + sDate + "', '" 
+                                    + sDateIn+ "', '" 
+                                    + sDateVen + "', " 
+                                    + bActivo + " )";
                             
                             // Agregar entrada en Administrador
                             String sQueryAdministrador = "INSERT INTO Administrador "
@@ -89,36 +99,44 @@ public class Administrador extends Persona{
                 int iIDAdministrador = admAdministrador.iIDPersona;
                 String sNombre = admAdministrador.sNombre;
                 String sCorreo = admAdministrador.sCorreo;
+                
                 Date dFechaNacimiento = admAdministrador.dFechaNacimiento;
                 cal.setTime(dFechaNacimiento);
                 int iday = cal.get(Calendar.DATE);
                 int imonth = cal.get(Calendar.MONTH);
                 int iyear = cal.get(Calendar.YEAR);
                 String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+                
                 String sContrasena = admAdministrador.sContrasena;
-                Date dFechaIngreso = admAdministrador.dFechaIngreso;
-                cal.setTime(dFechaIngreso);
-                iday = cal.get(Calendar.DATE);
-                imonth = cal.get(Calendar.MONTH);
-                iyear = cal.get(Calendar.YEAR);
-                String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-                Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
-                cal.setTime(dFechaVencimiento);
-                iday = cal.get(Calendar.DATE);
-                imonth = cal.get(Calendar.MONTH);
-                iyear = cal.get(Calendar.YEAR);
-                String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+                
+                // No se pueden modificar fechas de ingreso, de vencimiento ni bActivo para administrador
+//                Date dFechaIngreso = admAdministrador.dFechaIngreso;
+//                cal.setTime(dFechaIngreso);
+//                iday = cal.get(Calendar.DATE);
+//                imonth = cal.get(Calendar.MONTH);
+//                iyear = cal.get(Calendar.YEAR);
+//                String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+//                
+//                Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
+//                cal.setTime(dFechaVencimiento);
+//                iday = cal.get(Calendar.DATE);
+//                imonth = cal.get(Calendar.MONTH);
+//                iyear = cal.get(Calendar.YEAR);
+//                String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+//                
+//                boolean bActivo = admAdministrador.bActivo;
                 
                 // Actualización en tabla Persona
                 String sQueryPersona;
                 sQueryPersona = "UPDATE Persona SET "
-                        + "sNombre = " + sNombre + ","
-                        + "sCorreo = " + sCorreo + ","
-                        + "dFechaNacimiento = " + sDate + ","
-                        + "sContrasena = " + sContrasena + ","
-                        + "dFechaIngreso = " + sDateIn + ","
-                        + "dFechaVencimiento = " + sDateVen + " "
-                        + " WHERE iIPersona = " + iIDAdministrador;
+                        + "sNombre = '" + sNombre + "',"
+                        + "sCorreo = '" + sCorreo + "',"
+                        + "dFechaNacimiento = '" + sDate + "',"
+                        + "sContrasena = '" + sContrasena + "' "
+//                        + "dFechaIngreso = " + sDateIn + ","
+//                        + "dFechaVencimiento = " + sDateVen + ", "
+//                        + "bActivo = " + bActivo + " "
+                        + " WHERE iIDPersona = " + iIDAdministrador;
                 conn.stmt.executeUpdate(sQueryPersona);
                 
                 // Actualización en tabla Administrador
@@ -139,7 +157,6 @@ public class Administrador extends Persona{
                             + "WHERE iIDPersona = " + iIDPersona);
                     ResultSet rsQuery = stmt.getResultSet();
                     if ( rsQuery.next() ) {
-                        int iIDPersonaAux = rsQuery.getInt("iIDAdministrador");
                         String sNombre = rsQuery.getString("sNombre");
                         String sCorreo = rsQuery.getString("sCorreo");
                         
@@ -173,15 +190,12 @@ public class Administrador extends Persona{
 			cal.set(Calendar.YEAR, year);
 			dFechaVencimiento = cal.getTime();
                         
-                        admAdministrador = new Administrador(iIDPersonaAux, 
+                        admAdministrador = new Administrador(iIDPersona, 
                                 sNombre, sCorreo, sContrasena, dFechaNacimiento, 
                                 dFechaIngreso, dFechaVencimiento, bActivo);
                     }
-                    else {  // No se encontró el administrador a modificar
-                        return admAdministrador;    // Regresa un objeto vacío
-                    }
 		} catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
 		
-                return admAdministrador;    // Regresar un objeto vacío si hubo un error en el query
+                return admAdministrador;
 	}
 }

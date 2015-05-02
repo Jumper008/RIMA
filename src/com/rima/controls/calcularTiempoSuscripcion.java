@@ -25,13 +25,17 @@
        return(pePersona.corroborarExistencia(iIDPersona));
      }
 
-	 public void getTiempoSuscripcion(int iIDPersona) {
+	 public long getTiempoSuscripcion(int iIDPersona) {
 
 		Date fechaIngreso = consultarFechaIngreso( iIDPersona );
 		Date fechaVencimiento = consultarFechaVencimiento( iIDPersona );
 
 		// dif en milisegundos
-		tiempo = fechaIngreso.getTime() - fechaVencimiento.getTime() 
+		long tiempoSuscripcion = fechaIngreso.getTime() - fechaVencimiento.getTime();
 
+		// calcular la diferencia en dias
+        tiempoSuscripcion = tiempoSuscripcion / (24 * 60 * 60 * 1000);
+
+        return tiempoSuscripcion;
 	}			
  }

@@ -114,7 +114,7 @@ public class Articulo {
 	public Vector<Articulo> consultarArticulosAutor( int iIDAutor ) {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
-		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor + "and bPublicado = " + true );
+		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor + "AND bPublicado = " + true );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
 			int _iIDArticulo = rs.getInt("iIDArticulo");
@@ -134,7 +134,7 @@ public class Articulo {
 	public Vector<Articulo> consultarArticulosPropios( int iIDAutor ) {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
-		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor + "and bPublicado = " + true );
+		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
 			int _iIDArticulo = rs.getInt("iIDArticulo");
@@ -168,25 +168,32 @@ public class Articulo {
             } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
-	public Vector<Integer> getArticulosVotados() {
-        Vector<Integer> vIDArticulos = new Vector<Integer>();
-        try{
-            stmt.executeQuery ("SELECT iIDArticulo FROM Articulo WHERE iContador IS NOT NULL and iContador <> 0");
-            ResultSet rs = stmt.getResultSet();
-            while(rs.next()) {
-                int _iIDArticulo = rs.getInt("iIDArticulo");
-                vIDArticulos.add(_iIDArticulo);
-            }
-        } catch (SQLException e) { return null; }
-        return vIDArticulos;
+	public Vector<Articulo> getArticulosVotados() {
+            Vector<Articulo> vArticulos = new Vector<Articulo>();
+            try{
+                stmt.executeQuery ("SELECT * FROM Articulo WHERE iContador IS NOT NULL and iContador <> 0");
+                ResultSet rs = stmt.getResultSet();
+                while(rs.next()) {
+                    boolean bPublicado = rs.getBoolean("bPublicado");
+                    int iContador = rs.getInt("iContador");
+                    String sNombre = rs.getString("sNombre");
+                    String sResumen = rs.getString("sResumen");
+                    int iIDArticulo = rs.getInt("iIDArticulo");
+                    int iIDRevista = rs.getInt("iIDRevista");
+
+                    vArticulos.add( new Articulo( iIDArticulo, sNombre, sResumen, 
+                            bPublicado, iContador, iIDRevista ) );
+                }
+            } catch (SQLException e) { return null; }
+            return vArticulos;
 	}
 
 	public boolean agregarARevista( int iIDArticulo, int iIDRevista ) {
-        try {
-            String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + " WHERE iIDArticulo = " + iIDArticulo;
-            stmt.executeUpdate(s);
-            return true;
-        } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
+            try {
+                String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + " WHERE iIDArticulo = " + iIDArticulo;
+                stmt.executeUpdate(s);
+                return true;
+            } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
 	public boolean agregarArticulo( Articulo arArticulo ) {
@@ -198,10 +205,37 @@ public class Articulo {
         int iIDRevista = arArticulo.iIDRevista;
         try {
             String s = "INSERT INTO Articulo (iIDArticulo, sNombre, sResumen, bPublicado, iContador)" +
-            " VALUES ("+ iIDArticulo + " , '" + sNombre + " , '"
-            + sResumen + " , '" + bPublicado + " , '" + iContador + " , '" + iIDRevista + " )";
+                    " VALUES ("+ iIDArticulo + " , '" 
+                    + sNombre + "', '"
+                    + sResumen + "', " 
+                    + bPublicado + ", '" 
+                    + iContador + ", " 
+                    + iIDRevista + " )";
             stmt.executeUpdate(s);
             return true;
         } catch (SQLException e) {System.out.println ("Cannot execute agregaraArticulo()" + e); return false; }
 	}
+        
+        public boolean corroborarExistencia( int iIDArticulo ) {
+            try{
+                    stmt.executeQuery ("SELECT * FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
+                    ResultSet rs = stmt.getResultSet();
+                    
+                    return rs.next();
+                } catch (SQLException e) {return false;}
+        }
+    
+        
+        public int generarID() {
+            try {
+                stmt.executeQuery("SELECT COUNT(*) FROM Articulo AS NewId");
+                ResultSet rs = stmt.getResultSet();
+                
+                if ( rs.next() ) {
+                    return rs.getInt("NewId") + 1;
+                }
+            } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
+            
+            return -1;  // Regresa -1 en caso de que haya habido un error
+        }
 }

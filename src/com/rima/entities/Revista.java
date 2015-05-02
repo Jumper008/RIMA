@@ -37,6 +37,43 @@ public class Revista {
 		this.iNumPaginas = iNumPaginas;
 		this.bPublicada = bPublicada;
 	}
+        
+        public boolean getbPublicada() {
+            return bPublicada;
+        }
+        
+        public void setbPublicada( boolean bPublicada ) {
+            this.bPublicada = bPublicada;
+        }
+        
+        public Date getdFechaPublicacion() {
+            return dFechaPublicacion;
+        }
+        
+        public void setdFechaPublicacion( Date dFechaPublicacion ) {
+            this.setdFechaPublicacion(dFechaPublicacion);
+        }
+        
+        public int getiIDRevista() {
+            return iIDRevista;
+        }
+        
+        public void setiIDRevista( int iIDRevista ) {
+            if ( !corroborarExistencia(iIDRevista) ) {
+                this.iIDRevista = iIDRevista;
+            }
+            else {
+                this.iIDRevista = -1;
+            }
+        }
+        
+        public int getiNumPaginas() {
+            return iNumPaginas;
+        }
+        
+        public void setiNumPaginas( int iNumPaginas ) {
+            this.iNumPaginas = iNumPaginas;
+        }
 
 	public Vector<Revista> mostrarRevistasPublicadas() {
 		Vector<Revista> vRevistas = new Vector<Revista>();
@@ -63,7 +100,7 @@ public class Revista {
 		  } catch (SQLException e) { return null;}
 	}
 	
-	public boolean agregaraRevista( Revista reRevista ) {
+	public boolean agregarRevista( Revista reRevista ) {
 		Calendar cal = Calendar.getInstance();
 		int iIDRevista = reRevista.iIDRevista;
 		Date dFechaPublicacion = reRevista.dFechaPublicacion;
@@ -83,4 +120,35 @@ public class Revista {
 		    } catch (SQLException e) {System.out.println ("Cannot execute agregaraRevista()" + e);}
 		return true;
 	}
+        
+        public boolean publicarRevista() {
+            try {
+                String sQuery = "UPDATE Revista SET bPublicada = " + true;
+                conn.stmt.executeUpdate(sQuery);
+            } catch (SQLException e) {System.out.println ("Cannot execute editarAutor()" + e); return false;}
+            
+            return true;
+        }
+        
+        public boolean corroborarExistencia( int iIDRevista ) {
+		try{
+                    stmt.executeQuery ("SELECT * FROM Revista WHERE iIDRevista = " + iIDRevista);
+                    ResultSet rs = stmt.getResultSet();
+                    
+                    return rs.next();
+                } catch (SQLException e) {return false;}
+	}
+        
+        public int generarID() {
+            try {
+                stmt.executeQuery("SELECT COUNT(*) FROM Revista AS NewId");
+                ResultSet rsiIDRevista = stmt.getResultSet();
+                
+                if ( rsiIDRevista.next() ) {
+                    return rsiIDRevista.getInt("NewId") + 1;
+                }
+            } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
+            
+            return -1;  // Regresa -1 en caso de que haya habido un error
+        }
 }
