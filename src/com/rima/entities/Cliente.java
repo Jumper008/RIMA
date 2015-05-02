@@ -29,6 +29,14 @@ public class Cliente extends Persona{
 		super(iIDPersona, sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo);
 		this.sCuentaBancaria = sCuentaBancaria;
 	}
+	
+	public void setsCuentaBancaria( String sCuentaBancaria ) {
+        this.sCuentaBancaria = sCuentaBancaria;
+    }
+    
+    public String getsCuentaBancaria() {
+        return sCuentaBancaria;
+    }
 
 	public boolean realizarPagoRenovacion( int iIDPersona ) {
 		return true;
@@ -339,12 +347,4 @@ public class Cliente extends Persona{
 		}catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
 	    return clCliente;
 	}
-        
-        void setsCuentaBancaria( String sCuentaBancaria ) {
-            this.sCuentaBancaria = sCuentaBancaria;
-        }
-        
-        String getsCuentaBancaria() {
-            return sCuentaBancaria;
-        }
 }
