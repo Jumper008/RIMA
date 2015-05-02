@@ -190,7 +190,7 @@ public class Articulo {
 
 	public boolean agregarARevista( int iIDArticulo, int iIDRevista ) {
             try {
-                String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + " WHERE iIDArticulo = " + iIDArticulo;
+                String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + ", bPublicado = " + true + " WHERE iIDArticulo = " + iIDArticulo;
                 stmt.executeUpdate(s);
                 return true;
             } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }

@@ -23,5 +23,7 @@
 		 return arArticulo.corroborarExistencia(iIDArticulo);
 	 }
 	 
-	 
+	 public boolean publicarEnRevista(int iIDArticulo, int iIDRevista) {
+		 return arArticulo.agregarARevista(iIDArticulo, iIDRevista);
+	 }
  }
