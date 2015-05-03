@@ -21,7 +21,7 @@
 	 }
 	 
 	 public void agregarAutor(String sNombre, String sCorreo, String sContrasena, 
-	 		Date dFechaNacimiento, Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+	 		Date dFechaNacimiento, Date dFechaIngreso, Date dFechaVencimiento) {
 		 int iIDPersona = auAutor.generarID();
 		 auAutor.setiIDPersona(iIDPersona);
 		 auAutor.setsNombre(sNombre);
@@ -30,7 +30,7 @@
 		 auAutor.setdFechaNacimiento(dFechaNacimiento);
 		 auAutor.setdFechaIngreso(dFechaIngreso);
 		 auAutor.setdFechaVencimiento(dFechaVencimiento);
-		 auAutor.setbActivo(bActivo);
+		 auAutor.setbActivo(true);
 		 auAutor.agregarAutor(auAutor);
 	 }
  }
