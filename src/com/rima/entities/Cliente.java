@@ -54,12 +54,7 @@ public class Cliente extends Persona{
         Vector <Cliente> vecClientes = new Vector < Cliente >();
 
         Calendar cal = Calendar.getInstance();
-
-       	int iday = cal.get(Calendar.DATE);
-		int imonth = cal.get(Calendar.MONTH);
-		int iyear = cal.get(Calendar.YEAR);
-		 //Fecha actual en formato 'aaaa/mm/dd'
-		String sCurrentDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+		Date sCurrentDate = cal.getTime();
 
         try {
         	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
@@ -122,75 +117,69 @@ public class Cliente extends Persona{
     }
 
     public Vector<Cliente> consultarClientesVigentes() {
-            Vector < Cliente > vecClientes = new Vector < Cliente >();
+        Vector <Cliente> vecClientes = new Vector < Cliente >();
 
-                Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
+		Date sCurrentDate = cal.getTime();
 
-                int iAno = cal.get(Calendar.YEAR);
-                int iMes = cal.get(Calendar.MONTH);
-                int iDia = cal.get(Calendar.DATE);
+        try {
+        	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
 
-                String sFechaActual = "'" + Integer.toString(iAno) + '-' + 
-                        Integer.toString(iMes) + '-' + 
-                        Integer.toString(iDia) + "'";   //Fecha actual en formato 'aaaa-mm-dd'
+            ResultSet rs = stmt.getResultSet();    
 
-                try {
-                    stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per"
-                                        + " WHERE cli.dFechaVencimiento < " + sFechaActual 
-                                        + "AND cli.iIDPersona = per.iIDPersona" );
-                    ResultSet rs = stmt.getResultSet();
+            while( rs.next() ) {
+            	//dFechaVencimiento
+                String sFechaVencimiento = rs.getString("dFechaVencimiento");
+                int iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
+                int iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
+                int iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
+                cal.set(Calendar.DATE, iDia);
+                cal.set(Calendar.MONTH, iMes);
+                cal.set(Calendar.YEAR, iAno);
 
-                    while( rs.next() ) {
-                        int iIDPersona = rs.getInt("iIDPersona");
-                        String sNombre = rs.getString("sNombre");
-                        String sCorreo = rs.getString("sCorreo");
-                        String sContrasena = rs.getString("sContrasena");
+                Date dFechaVencimiento = cal.getTime();
 
-                        //dFechaNacimiento
-                        String sFechaNacimiento = rs.getString("dFechaNacimiento");
-                        iDia = Integer.parseInt(sFechaNacimiento.substring(8,9));
-                        iMes = Integer.parseInt(sFechaNacimiento.substring(5,6));
-                        iAno = Integer.parseInt(sFechaNacimiento.substring(0,3));
-                        cal.set(Calendar.DATE, iDia);
-                        cal.set(Calendar.MONTH, iMes);
-                        cal.set(Calendar.YEAR, iAno);
+                if(dFechaVencimiento > sCurrentDate) {
 
-                        Date dFechaNacimiento = cal.getTime();
+                    int iIDPersona = rs.getInt("iIDPersona");
+                    String sNombre = rs.getString("sNombre");
+                    String sCorreo = rs.getString("sCorreo");
+                    String sContrasena = rs.getString("sContrasena");
 
-                        //dFechaIngreso
-                        String sFechaIngreso = rs.getString("dFechaIngreso");
-                        iDia = Integer.parseInt(sFechaIngreso.substring(8,9));
-                        iMes = Integer.parseInt(sFechaIngreso.substring(5,6));
-                        iAno = Integer.parseInt(sFechaIngreso.substring(0,3));
-                        cal.set(Calendar.DATE, iDia);
-                        cal.set(Calendar.MONTH, iMes);
-                        cal.set(Calendar.YEAR, iAno);
+                    //dFechaNacimiento
+                    String sFechaNacimiento = rs.getString("dFechaNacimiento");
+                    iDia = Integer.parseInt(sFechaNacimiento.substring(8,9));
+                    iMes = Integer.parseInt(sFechaNacimiento.substring(5,6));
+                    iAno = Integer.parseInt(sFechaNacimiento.substring(0,3));
+                    cal.set(Calendar.DATE, iDia);
+                    cal.set(Calendar.MONTH, iMes);
+                    cal.set(Calendar.YEAR, iAno);
 
-                        Date dFechaIngreso = cal.getTime();
+                    Date dFechaNacimiento = cal.getTime();
 
-                        //dFechaVencimiento
-                        String sFechaVencimiento = rs.getString("dFechaVencimiento");
-                        iDia = Integer.parseInt(sFechaVencimiento.substring(8,9));
-                        iMes = Integer.parseInt(sFechaVencimiento.substring(5,6));
-                        iAno = Integer.parseInt(sFechaVencimiento.substring(0,3));
-                        cal.set(Calendar.DATE, iDia);
-                        cal.set(Calendar.MONTH, iMes);
-                        cal.set(Calendar.YEAR, iAno);
+                    //dFechaIngreso
+                    String sFechaIngreso = rs.getString("dFechaIngreso");
+                    iDia = Integer.parseInt(sFechaIngreso.substring(8,9));
+                    iMes = Integer.parseInt(sFechaIngreso.substring(5,6));
+                    iAno = Integer.parseInt(sFechaIngreso.substring(0,3));
+                    cal.set(Calendar.DATE, iDia);
+                    cal.set(Calendar.MONTH, iMes);
+                    cal.set(Calendar.YEAR, iAno);
 
-                        Date dFechaVencimiento = cal.getTime();
+                    Date dFechaIngreso = cal.getTime();
 
-                        boolean bActivo = rs.getBoolean("bActivo");
+                    boolean bActivo = rs.getBoolean("bActivo");
 
-                        String sCuentaBancaria = rs.getString("sCuentaBancaria");
+                    String sCuentaBancaria = rs.getString("sCuentaBancaria");
 
-                        vecClientes.add(new Cliente( iIDPersona, sNombre, sCorreo, 
-                                sContrasena, dFechaNacimiento, dFechaIngreso, 
-                                dFechaVencimiento, bActivo, sCuentaBancaria ));
-                    }
-                    
-                } catch (SQLException e) {System.out.println ("Cannot execute consultarClientesVigentes()" + e);}
+                    vecClientes.add(new Cliente( iIDPersona, sNombre, sCorreo, 
+                            sContrasena, dFechaNacimiento, dFechaIngreso, 
+                            dFechaVencimiento, bActivo, sCuentaBancaria ));
+            	}
+        	}
+        } catch (SQLException e) {System.out.println ("Cannot execute consultarClientesRenovar()" + e);}
 
-                return vecClientes;
+        return vecClientes;
     }
 
     public boolean agregarCliente( Cliente clCliente ) {

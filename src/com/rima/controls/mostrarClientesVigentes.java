@@ -20,6 +20,6 @@
 	 }
 	 
 	 public Vector<Cliente> obtenerClientesVigentes() {
-		 return cliCliente.consultarClientesRenovar();
+		 return cliCliente.consultarClientesVigentes();
 	 }
 }
