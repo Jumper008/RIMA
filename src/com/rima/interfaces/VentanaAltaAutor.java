@@ -74,8 +74,8 @@
 	 public void agregarAutor() {
 	     aa = new altaAutor();
 		 Calendar cal = Calendar.getInstance();
-	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaIngreso = cal.getTime();
+	     //La funcion trim() elimina espacios antes y despues del valor
 		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();

@@ -160,20 +160,22 @@ public class Autor extends Persona{
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
                 boolean bActivo = autAutor.bActivo;
+                String sTipo = "Autor"
                 
 		try{
 			if(!corroborarExistencia(iIDAutor)){
                             // Entrada en la tabla Persona
                             String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo)"+
                                     "VALUES ("
-                                    + iIDAutor + " , '" 
-                                    + sNombre + "' , '"
-                                    + sCorreo + "' , '" 
-                                    + sContrasena + "', '" 
-                                    + sDate + "', '"
-                                    + sDateIn + "', '" 
-                                    + sDateVen + "' "  
-                                    + bActivo + " )";
+                                    + iIDAutor + " , " 
+                                    + sNombre + " , "
+                                    + sCorreo + " , " 
+                                    + sContrasena + ", " 
+                                    + sDate + ", "
+                                    + sDateIn + ", " 
+                                    + sDateVen + " , "  
+                                    + bActivo + ", " 
+                                    + sTipo + " )";
                             
                             // Entrada en la tabla Autor
                             String sQueryAutor = "INSERT INTO Autor (iIDAutor) VALUES " + "(" + iIDAutor + ")";
