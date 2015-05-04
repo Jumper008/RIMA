@@ -29,7 +29,7 @@
 	 public void updateJuezByJuez(int iIDJuez, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento) {
 	 	 
-	 	 juJuez = juJuez.consultarInformacion(IDJuez);
+	 	 juJuez = juJuez.consultarInformacion(iIDJuez);
 		 juJuez.setsNombre(sNombre);
 		 juJuez.setsCorreo(sCorreo);
 		 juJuez.setsContrasena(sContrasena);
@@ -41,7 +41,7 @@
 	  //El admin puede cambiar TODO menos el IDJuez
 	 public void updateJuezByAdmin(int iIDJuez, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento, Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo, boolean bJuezActivo) {
-	 	 juJuez.setiIDJuez();
+	 	 juJuez.setiIDJuez(iIDJuez);
 		 juJuez.setsNombre(sNombre);
 		 juJuez.setsCorreo(sCorreo);
 		 juJuez.setsContrasena(sContrasena);

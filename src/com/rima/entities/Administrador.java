@@ -58,7 +58,7 @@ public class Administrador extends Persona{
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
                 
                 boolean bActivo = admAdministrador.bActivo;
-                String sTipo = "Administrador"
+                String sTipo = "Administrador";
 
 		try{
 			if(!corroborarExistencia(iIDAdministrador)){

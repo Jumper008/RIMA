@@ -160,7 +160,7 @@ public class Autor extends Persona{
 		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
                 boolean bActivo = autAutor.bActivo;
-                String sTipo = "Autor"
+                String sTipo = "Autor";
                 
 		try{
 			if(!corroborarExistencia(iIDAutor)){

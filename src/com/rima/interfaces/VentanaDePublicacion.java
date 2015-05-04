@@ -71,8 +71,7 @@
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaPublicacion = cal.getTime();
 		 iNumPaginas = thisRequest.getParameter("NumPaginas");
-	     boolean existe = cc.validarCuenta(idcuenta);
-	     aa.agregarAutor(dFechaPublicacion, iNumPaginas, true);
+	     aa.agregarRevista(dFechaPublicacion, iNumPaginas, true);
 		 desplegarFeedback();
 	 }
 
