@@ -9,9 +9,8 @@
  import javax.servlet.http.*;
  import java.io.*;
  import java.util.*;
- import java.util.Calendar;
 
- public class VentanaAltaAdministrador extends HttpServlet {	 	 
+ public class VentanaBajaAdministrador extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
@@ -83,7 +82,6 @@
 	    }
      }
 	 public void eliminarAdministrador() {
-	     ba = new bajaAdministrador();
 	     ba.eliminarAdministrador(iIDAdministrador);
 		 desplegarFeedback();
 	 }
