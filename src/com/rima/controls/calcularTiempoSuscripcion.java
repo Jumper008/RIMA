@@ -27,8 +27,8 @@
 
 	 public long getTiempoSuscripcion(int iIDPersona) {
 
-		Date fechaIngreso = consultarFechaIngreso( iIDPersona );
-		Date fechaVencimiento = consultarFechaVencimiento( iIDPersona );
+		Date fechaIngreso = pePersona.consultarFechaIngreso( iIDPersona );
+		Date fechaVencimiento = pePersona.consultarFechaVencimiento( iIDPersona );
 
 		// dif en milisegundos
 		long tiempoSuscripcion = fechaIngreso.getTime() - fechaVencimiento.getTime();
