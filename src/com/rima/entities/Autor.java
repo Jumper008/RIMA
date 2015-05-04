@@ -57,24 +57,24 @@ public class Autor extends Persona{
 	public Vector <Articulo> consultarPublicacionesPropias( int iIDPersona ) {
 		Vector<Articulo> vArticulo = new Vector<Articulo>();
 		try{
-                    stmt.executeQuery(
-                            "SELECT * FROM Articulos" +
-                            "	WHERE iIDArticulo IN ( SELECT iIDArticulo FROM AutorArticulo" +
-                            "						WHERE iIDAutor =" + iIDPersona + ")" );
-                    
-                    ResultSet rsQuery = stmt.getResultSet();
-                    while ( rsQuery.next() ) {
-                        int _iIDArticulo = rsQuery.getInt("iIDArticulo");
-                        String _strNombre = rsQuery.getString("sNombre");
-                        String _strResumen = rsQuery.getString("sResumen");
-                        boolean _bPublicado = rsQuery.getBoolean("bPublicado");
-                        int _iContador = rsQuery.getInt("iContador");
-                        int _iIDRevista = rsQuery.getInt("iIDRevista");
-                        
-                        Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
-                        
-                        vArticulo.add(arArticulo);
-                    } 
+            stmt.executeQuery(
+                    "SELECT * FROM Articulos" +
+                    "	WHERE iIDArticulo IN ( SELECT iIDArticulo FROM AutorArticulo" +
+                    "						WHERE iIDAutor =" + iIDPersona + ")" );
+            
+            ResultSet rsQuery = stmt.getResultSet();
+            while ( rsQuery.next() ) {
+                int _iIDArticulo = rsQuery.getInt("iIDArticulo");
+                String _strNombre = rsQuery.getString("sNombre");
+                String _strResumen = rsQuery.getString("sResumen");
+                boolean _bPublicado = rsQuery.getBoolean("bPublicado");
+                int _iContador = rsQuery.getInt("iContador");
+                int _iIDRevista = rsQuery.getInt("iIDRevista");
+                
+                Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+                
+                vArticulo.add(arArticulo);
+         	} 
 		}catch (SQLException e) {System.out.println ("Cannot execute consultarPublicaciones()" + e);}
 		
                 return vArticulo;
