@@ -76,7 +76,7 @@
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaIngreso = cal.getTime();
-		 sNombre = thisRequest.getParameter("Nombre");
+		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
 		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
