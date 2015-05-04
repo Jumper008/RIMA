@@ -15,7 +15,7 @@
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
-     editarAdministrador;
+     editarAdministrador ea;
      int iIDAdministrador;
      String sNombre;
 	 String sCorreo;

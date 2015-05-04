@@ -73,8 +73,8 @@
 	     out.println("</HTML>");    
 	 }
   
-	 public void editarAdministrador() {
-	     ea = new editarJuez();
+	 public void editarJuez() {
+	     ej = new editarJuez();
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 sNombre = thisRequest.getParameter("Nombre");
@@ -89,9 +89,9 @@
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
-	     boolean existe = ea.validarJuez(iIDAdministrador);
+	     boolean existe = ej.validarJuez(iIDJuez);
 	     if (existe) {
-	     	ea.updateJuezByJuez(sNombre, sCorreo, sContrasena, dFechaNacimiento);
+	     	ej.updateJuezByJuez(iIDJuez, sNombre, sCorreo, sContrasena, dFechaNacimiento);
 		 	desplegarFeedback();
 	     }
 	     else

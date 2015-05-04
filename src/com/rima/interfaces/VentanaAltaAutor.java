@@ -87,6 +87,10 @@
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
+         long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
+         long lano = 31536000000l;
+         lFechaVencimiento = lFechaVencimiento + lano;
+         Date dFechaVencimiento = new Date(lFechaVencimiento);
 	     aa.agregarAutor(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento);
 		 desplegarFeedback();
 	 }
