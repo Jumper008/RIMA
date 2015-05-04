@@ -16,10 +16,7 @@
      HttpServletRequest thisRequest;
      PrintWriter out;
      mostrarClientesRenovar mcr;
-     String sNombre;
-	 String sCorreo;
-	 String sContrasena;
-	 String sFechaNacimiento;
+     Vector vCliente = new Vector();
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -40,29 +37,20 @@
 	     String operacion = request.getParameter("operacion");
 	    
 	     if(operacion == null) { // El menú nos envia un parametro para indicar el inicio de una transaccion
-	         iniciarAlta();  
+	         iniciarMostrar();  
 	     }
 	    
-	     else if(operacion.equals("agregar")) {
-	         agregarAutor();
-	     }
-	    
-	     else if (operacion.equals("feedback")) {			     
-	         desplegarFeedback();
+	     else if(operacion.equals("MostrarClientes")) {
+	         mostrarClientesRenovar();
 	     }
   	 }
   
-	 public void iniciarAlta() {
+	 public void iniciarMostrar() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"agregarAutor\">");
-	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
-	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
-		 out.println("<p> Correo  <input type=\"text\" name=\"Correo\" size=\"20\"></p>");
-		 out.println("<p> Contrasena  <input type=\"text\" name=\"Contrasena\" size=\"15\"></p>");
-		 out.println("<p> Fecha de Nacimiento (aaaa/mm/dd) <input type=\"text\" name=\"FechaNacimiento\" size=\"10\"></p>");
-	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
-	     out.println("</form>");
-	 
+	     out.println("<form method=\"GET\" action=\"mostrarClientesRenovar\">");
+	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"MostrarClientes\"/>");
+	     out.println("<p><input type=\"submit\" value=\"MostrarClientes\"></p>");
+	     out.println("</form>"); 
 	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Cancelar\"></p>");
 	     out.println("</form>");
@@ -71,33 +59,12 @@
 	     out.println("</HTML>");    
 	 }
   
-	 public void agregarAutor() {
-	     aa = new altaAutor();
-		 Calendar cal = Calendar.getInstance();
+	 public void mostrarClientesRenovar() {
+	     mcr = new mostrarClientesRenovar();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 Date dFechaIngreso = cal.getTime();
-		 sNombre = thisRequest.getParameter("Nombre").trim();
-		 sCorreo = thisRequest.getParameter("Correo").trim();
-		 sContrasena = thisRequest.getParameter("Contrasena").trim();
-		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
-		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
-         int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
-         int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
-         cal.set(Calendar.DATE, day);
-         cal.set(Calendar.MONTH, month);
-         cal.set(Calendar.YEAR, year);
-         Date dFechaNacimiento = cal.getTime();
-	     aa.agregarAutor(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento);
-		 desplegarFeedback();
-	 }
-
-	 public void desplegarFeedback() {
-	     out.println("<p>El autor ha sido agregado exitosamente.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
-	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
-	     out.println("</form>");
-	     out.println("</BODY>");
-	     out.println("</HTML>");   
+		vCliente = mcr.obtenerClientesRenovar();
+		for (int iI = 0; iI < vCliente.size(); iI++) {
+			out.println("<p>vCliente.elementAt(iI)<p>");
+		}
 	 }
  }
