@@ -15,7 +15,7 @@
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
-     altaCliente aa;
+     altaCliente ac;
      String sNombre;
 	 String sCorreo;
 	 String sContrasena;
@@ -72,8 +72,8 @@
 	     out.println("</HTML>");    
 	 }
   
-	 public void agregarJuez() {
-	     aa = new altaJuez();
+	 public void agregarCliente() {
+	     ac = new altaCliente();
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaIngreso = cal.getTime();
@@ -89,8 +89,7 @@
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
-	     boolean existe = cc.validarCuenta(idcuenta);
-	     aa.agregarJuez(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, true, sCuentaBancaria);
+	     ac.agregarCliente(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, true, sCuentaBancaria);
 		 desplegarFeedback();
 	 }
 

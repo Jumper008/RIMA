@@ -87,7 +87,6 @@
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
-	     boolean existe = cc.validarCuenta(idcuenta);
 	     aa.agregarAdministrador(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, true);
 		 desplegarFeedback();
 	 }
