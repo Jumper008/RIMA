@@ -9,14 +9,13 @@
  import javax.servlet.http.*;
  import java.io.*;
  import java.util.*;
- import java.util.Calendar;
 
  public class VentanaClientesRenovar extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
      mostrarClientesRenovar mcr;
-     Vector vCliente = new Vector();
+     Vector vCliente = new Vector(); 
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -32,39 +31,30 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Dar de alta un autor</h3>");
+	     out.println("<h3>Clientes a renovar</h3>");
     
-	     String operacion = request.getParameter("operacion");
-	    
-	     if(operacion == null) { // El menú nos envia un parametro para indicar el inicio de una transaccion
-	         iniciarMostrar();  
-	     }
-	    
-	     else if(operacion.equals("MostrarClientes")) {
-	         mostrarClientesRenovar();
-	     }
+	     mostrarClientesRenovar(); 	      
   	 }
   
-	 public void iniciarMostrar() {
-	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"mostrarClientesRenovar\">");
-	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"MostrarClientes\"/>");
-	     out.println("<p><input type=\"submit\" value=\"MostrarClientes\"></p>");
-	     out.println("</form>"); 
-	     out.println("<form method=\"GET\" action=\"menu.html\">");
-	     out.println("<p><input type=\"submit\" value=\"Cancelar\"></p>");
-	     out.println("</form>");
-	
-	     out.println("</BODY>");
-	     out.println("</HTML>");    
-	 }
-  
 	 public void mostrarClientesRenovar() {
-	     mcr = new mostrarClientesRenovar();
-	     //La funcion trim() elimina espacios antes y despues del valor
+	    mcr = new mostrarClientesRenovar();
+
 		vCliente = mcr.obtenerClientesRenovar();
-		for (int iI = 0; iI < vCliente.size(); iI++) {
-			out.println("<p>vCliente.elementAt(iI)<p>");
+		if (vCliente.size() == 0)
+			out.println("<h3>No hay clienes a renovar</h3>");
+
+		else {
+			 
+			for (int iI = 0; iI < vCliente.size(); iI++) {
+				out.println("<p>vCliente.elementAt(iI)<p>");
+			}
 		}
+
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"index.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+	     out.println("</form>");
+	     out.println("</BODY>");
+	     out.println("</HTML>"); 	
 	 }
  }
