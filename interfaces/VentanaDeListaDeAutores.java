@@ -3,9 +3,9 @@
  *Version: 1.0.0
  *
  */
- package com.rima.interfaces;
- import com.rima.controls.*;
- import com.rima.entities.Autor;
+ package interfaces;
+ import controls.*;
+ import entities.Autor;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;

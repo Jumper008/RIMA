@@ -3,8 +3,8 @@
  *Version: 1.0.0
  *
  */
- package com.rima.interfaces;
- import com.rima.controls.*;
+ package interfaces;
+ import controls.*;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;
