@@ -173,6 +173,15 @@ public class Persona {
                 } catch (SQLException e) {return false;}
 	}
 	
+	public boolean corroborarInformacion( String sCorreo, String sContrasena) {
+		try{
+					stmt.executeQuery ("SELECT * FROM Persona WHERE sCorreo = " + sCorreo + " AND sContrasena = " + sContrasena);
+					ResultSet rs = stmt.getResultSet();
+					
+					return rs.next();
+		   } catch (SQL Exception e) {return false;}
+	}
+	
 	public boolean desactivarPersona( int iIDPersona ) {
 		try {
 			String s = "UPDATE Persona SET bActivo = " + false + " WHERE iIDPersona = " + iIDPersona;

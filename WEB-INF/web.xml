@@ -11,13 +11,218 @@
      -->
 
     <servlet>
-      <servlet-name>Extraer</servlet-name>
-      <servlet-class>interfaces.InterfazExtraccion</servlet-class>
+      <servlet-name>VentanaAltaAdministrador</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaAltaAdministrador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Extraer</servlet-name>
-        <url-pattern>/Extraer</url-pattern>
+        <servlet-name>VentanaAltaAdministrador</servlet-name>
+        <url-pattern>/VentanaAltaAdministrador</url-pattern>
     </servlet-mapping>
-
-
+    
+    <servlet>
+      <servlet-name>VentanaAltaAutor</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaAltaAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaAltaAutor</servlet-name>
+        <url-pattern>/VentanaAltaAutor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaAltaJuez</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaAltaJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaAltaJuez</servlet-name>
+        <url-pattern>/VentanaAltaJuez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaBajaAdministrador</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaBajaAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaBajaAdministrador</servlet-name>
+        <url-pattern>/VentanaBajaAdministrador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaBajaJuez</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaBajaJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaBajaJuez</servlet-name>
+        <url-pattern>/VentanaBajaJuez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaClientesRenovar</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaClientesRenovar</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaClientesRenovar</servlet-name>
+        <url-pattern>/VentanaClientesRenovar</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaClientesVigentes</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaClientesVigentes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaClientesVigentes</servlet-name>
+        <url-pattern>/VentanaClientesVigentes</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaConsultarArticulosAutor</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaConsultarArticulosAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaConsultarArticulosAutor</servlet-name>
+        <url-pattern>/VentanaConsultarArticulosAutor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeCatalogoDeRevistas</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeCatalogoDeRevistas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeCatalogoDeRevistas</servlet-name>
+        <url-pattern>/VentanaDeCatalogoDeRevistas</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeEnvioDeArticulo</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeEnvioDeArticulo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeEnvioDeArticulo</servlet-name>
+        <url-pattern>/VentanaDeEnvioDeArticulo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeInforme</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeInforme</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeInforme</servlet-name>
+        <url-pattern>/VentanaDeInforme</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeLecturaDeArticulos</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeLecturaDeArticulos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeLecturaDeArticulos</servlet-name>
+        <url-pattern>/VentanaDeLecturaDeArticulos</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeLecturaDeArticulosPublicados</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeLecturaDeArticulosPublicados</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeLecturaDeArticulosPublicados</servlet-name>
+        <url-pattern>/VentanaDeLecturaDeArticulosPublicados</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeListaDeArticulosPropios</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeListaDeArticulosPropios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeListaDeArticulosPropios</servlet-name>
+        <url-pattern>/VentanaDeListaDeArticulosPropios</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeListaDeArticulosPublicadosPorAutor</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeListaDeArticulosPublicadosPorAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeListaDeArticulosPublicadosPorAutor</servlet-name>
+        <url-pattern>/VentanaDeListaDeArticulosPublicadosPorAutor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeListaDeAutores</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeListaDeAutores</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeListaDeAutores</servlet-name>
+        <url-pattern>/VentanaDeListaDeAutores</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDePago</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDePago</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDePago</servlet-name>
+        <url-pattern>/VentanaDePago</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDePublicacion</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDePublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDePublicacion</servlet-name>
+        <url-pattern>/VentanaDePublicacion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeRegistro</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeRegistro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeRegistro</servlet-name>
+        <url-pattern>/VentanaDeRegistro</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaDeVotacion</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaDeVotacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaDeVotacion</servlet-name>
+        <url-pattern>/VentanaDeVotacion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaEdicionAdministrador</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaEdicionAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaEdicionAdministrador</servlet-name>
+        <url-pattern>/VentanaEdicionAdministrador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaEdicionJuez</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaEdicionJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaEdicionJuez</servlet-name>
+        <url-pattern>/VentanaEdicionJuez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>VentanaSeleccionArticuloPublicacion</servlet-name>
+      <servlet-class>com.rima.interfaces.VentanaSeleccionArticuloPublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VentanaSeleccionArticuloPublicacion</servlet-name>
+        <url-pattern>/VentanaSeleccionArticuloPublicacion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>Login</servlet-name>
+      <servlet-class>com.rima.interfaces.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
 </web-app>
