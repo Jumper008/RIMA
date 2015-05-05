@@ -32,7 +32,7 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Ver articulos publicados</h3>");
+	     out.println("<h3>Publicar articulo</h3>");
     
 	     String operacion = request.getParameter("operacion");
 	    
