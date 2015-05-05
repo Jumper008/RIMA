@@ -11,11 +11,11 @@
  import java.util.Date;
  import com.rima.entities.*;
  
- public class Login {
+ public class login {
 	 Persona pePersona;
 	 private transient Conexion conConexion;
 	 
-	 public Login() {
+	 public login() {
 		 conConexion = new Conexion();
 		 pePersona = new Persona(conConexion);
 	 }

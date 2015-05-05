@@ -169,7 +169,12 @@ public class Persona {
                     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                     ResultSet rs = stmt.getResultSet();
                     
-                    return rs.next();
+                    if (rs.next()) {
+						return true;
+					}
+					else {
+						return false;
+					}
                 } catch (SQLException e) {return false;}
 	}
 	
@@ -178,8 +183,13 @@ public class Persona {
 					stmt.executeQuery ("SELECT * FROM Persona WHERE sCorreo = " + sCorreo + " AND sContrasena = " + sContrasena);
 					ResultSet rs = stmt.getResultSet();
 					
-					return rs.next();
-		   } catch (SQL Exception e) {return false;}
+					if (rs.next()) {
+						return true;
+					}
+					else {
+						return false;
+					}
+		   } catch (SQLException e) {return false;}
 	}
 	
 	public boolean desactivarPersona( int iIDPersona ) {
