@@ -4,12 +4,12 @@
  *Version: 1.0.0
  *
  */
- package com.rima.controls;
+ package controls;
  
  import java.util.*;
  import java.io.*;
  import java.util.Date;
- import com.rima.entities.*;
+ import entities.*;
  
  public class login {
 	 Persona pePersona;

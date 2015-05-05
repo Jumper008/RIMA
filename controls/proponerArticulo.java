@@ -4,11 +4,11 @@
  *Version: 1.0.0
  *
  */
- package com.rima.controls;
+ package controls;
  
  import java.util.*;
  import java.io.*;
- import com.rima.entities.*;
+ import entities.*;
  
  public class proponerArticulo {
 	 Articulo arArticulo;
