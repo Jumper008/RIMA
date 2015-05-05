@@ -5,6 +5,7 @@
  */
  package com.rima.interfaces;
  import com.rima.controls.*;
+ import com.rima.entities.Cliente;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;
@@ -15,7 +16,7 @@
      HttpServletRequest thisRequest;
      PrintWriter out;
      mostrarClientesRenovar mcr;
-     Vector vCliente = new Vector(); 
+     Vector<Cliente> vCliente = new Vector<Cliente>(); 
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -41,18 +42,25 @@
 
 		vCliente = mcr.obtenerClientesRenovar();
 		if (vCliente.size() == 0)
-			out.println("<h3>No hay clienes a renovar</h3>");
+			out.println("<h3>No hay clientes a renovar.</h3>");
 
 		else {
-			 
+			out.println("<table width=\"75%\" border=\"0\">");
 			for (int iI = 0; iI < vCliente.size(); iI++) {
-				out.println("<p>vCliente.elementAt(iI)<p>");
+				out.println("<td align=\"center\">");
+				out.println("<table width=\"99%\" border=\"4\">");
+				out.println("<td align=\"center\">");
+				out.println(vCliente.at(iI).getsNombre() + " | " + vCliente.at(iI).getsCorreo());
+				out.println("</td> ");
+				out.println("</table> ");
+				out.println("</td>");
 			}
+			out.println("</table>");
 		}
 
-		 out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
-	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+		 out.println("<p>Presione el boton para regresar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");
 	     out.println("</HTML>"); 	
