@@ -5,17 +5,18 @@
  */
  package com.rima.interfaces;
  import com.rima.controls.*;
+ import com.rima.entities.Cliente;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;
  import java.util.*;
 
- public class VentanaDeCatalogoDeRevistas extends HttpServlet {	 	 
+ public class VentanaCatalogoDeRevistas extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
      mostrarListaRevistas mlr;
-     Vector vRevista = new Vector(); 
+     Vector<Revista> vRevistas = new Vector<Revista>(); 
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -31,28 +32,35 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Catalogo de Revistas</h3>");
+	     out.println("<h3>Catatalogo de Revistas</h3>");
     
-	     mostrarRevistas(); 	       
+	     mostrarListaRevistas(); 	      
   	 }
   
-	 public void mostrarRevistas() {
+	 public void mostrarListaRevistas() {
 	    mlr = new mostrarListaRevistas();
 
-		vRevista = mlr.obtenerListaRevistas();
-		if (vRevista.size() == 0)
-			out.println("<h3>No hay Revistas</h3>");
+		vRevistas = mlr.obtenerListaRevistas();
+		if (vRevistas.size() == 0)
+			out.println("<h3>No hay revistas que mostrar.</h3>");
 
 		else {
-			 
-			for (int iI = 0; iI < vRevista.size(); iI++) {
-				out.println("<p>vRevista.elementAt(iI)<p>");
+			out.println("<table width=\"75%\" border=\"0\">");
+			for (int iI = 0; iI < vRevistas.size(); iI++) {
+				out.println("<td align=\"center\">");
+				out.println("<table width=\"99%\" border=\"4\">");
+				out.println("<td align=\"center\">");
+				out.println(vRevistas.at(iI).getdFechaPublicacion() + " | " + vRevistas.at(iI).getiNumPaginas());
+				out.println("</td> ");
+				out.println("</table> ");
+				out.println("</td>");
 			}
+			out.println("</table>");
 		}
 
-		 out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
-	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+		 out.println("<p>Presione el boton para regresar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");
 	     out.println("</HTML>"); 	

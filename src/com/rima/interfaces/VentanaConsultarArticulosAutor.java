@@ -5,19 +5,19 @@
  */
  package com.rima.interfaces;
  import com.rima.controls.*;
+ import com.rima.entities.Cliente;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;
  import java.util.*;
- import java.util.Calendar;
 
  public class VentanaConsultarArticulosAutor extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;
      mostrarListaArticulosAutor mlaa;
-     Vector vArticulo = new Vector(); 
-     int iIDAutor;
+     int iIDPersona;
+     Vector<Articulo> vArticulos = new Vector<Articulo>(); 
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -33,29 +33,24 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Consulta de Artículos por Autor</h3>");
-    
-	     String operacion = request.getParameter("operacion");
-	    
-	     if(operacion == null || operacion.equals("iniciar")) { // El menú nos envia un parametro para indicar el inicio de una transaccion
-	         iniciarConsulta();  
-	     }
-	    
-	     else if(operacion.equals("validar")) {
-	         validarAutor();
-	     }
+	     out.println("<h3>Consultar artitulos autor</h3>");
 
-	      else if(operacion.equals("mostrarArticulos")) {
-	         mostrarArticulos();
+	     String operacion = request.getParameter("operacion");
+
+	     if (operacion == null) {// menu manda aprametro para inciiar transicion
+	     	iniciarConsulta();
 	     }
+	     else if (operacion.equals("mostrar")) {
+	     	mostrarListaArticulosAutor(); 
+	     }    	      
   	 }
-  
-	 public void iniciarConsulta() {
-	     out.println("<p>Indique la matrícula del Autor</p>");
-	     out.println("<form method=\"GET\" action=\"consultarArticulosAutor\">");
-	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"validar\"/>");
-	     out.println("<p> Matrícula  <input type=\"text\" name=\"Matrícula\" size=\"8\"></p>");;
-	     out.println("<p><input type=\"submit\" value=\"Consultar\"></p>");
+
+  	  public void iniciarConsulta() {
+	     out.println("<p>Complete los valores indicados.</p>");
+	     out.println("<form method=\"GET\" action=\"mostrarListaArticulosAutor\">");
+	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"mostrar\"/>");
+		 out.println("<p> IDPersona <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
+	     out.println("<p><input type=\"submit\" value=\"Mostrar\"></p>");
 	     out.println("</form>");
 	 
 	     out.println("<form method=\"GET\" action=\"menu.html\">");
@@ -66,43 +61,34 @@
 	     out.println("</HTML>");    
 	 }
   
-	 public void validarAutor() {
-	     mlaa = new mostrarListaArticulosAutor();
-	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDAutor = Integer.parseInt(thisRequest.getParameter("Matrícula").trim());
-	     boolean existe = mlaa.validarAutor(iIDAutor);
-		 if (existe) {
-	        mostrarArticulos();
-	    }
-	    else {
-	    	out.println("<p>No existe autor con esa matrícula, intente de nuevo</p>");
-	        iniciarConsulta();
-	    }
-	 }
+	 public void mostrarListaArticulosAutor() {
+	    mlaa = new mostrarListaArticulosAutor();
 
-	 public void mostrarArticulos() {
-		vArticulo = mLAA.obtenerListaArticulosAutor(iIDAutor);
-		if (vArticulo.size() == 0)
-			out.println("<h3>No hay articulos escritos por este autor</h3>");
+	  	iIDPersona = thisRequest.getParameter("IDPersona").trim();
+
+		vArticulos = mlaa.obtenerListaArticulosAutor(iIDPersona);
+		if (vArticulos.size() == 0)
+			out.println("<h3>No hay articulos de este autor.</h3>");
 
 		else {
-			 
-			for (int iI = 0; iI < vArticulo.size(); iI++) {
-				out.println("<p>vArticulo.elementAt(iI)<p>");
+			out.println("<table width=\"75%\" border=\"0\">");
+			for (int iI = 0; iI < vArticulos.size(); iI++) {
+				out.println("<td align=\"center\">");
+				out.println("<table width=\"99%\" border=\"4\">");
+				out.println("<td align=\"center\">");
+				out.println(vArticulos.at(iI).getsNombre() + " | " + vArticulos.at(iI).getsResumen());
+				out.println("</td> ");
+				out.println("</table> ");
+				out.println("</td>");
 			}
+			out.println("</table>");
 		}
 
-		 out.println("<p>Consultar articulos por otro autor.</p>");
-	     out.println("<form method=\"GET\" action=\"consultarArticulosAutor\">");
-	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"iniciar\"/>");
-	     out.println("<p><input type=\"submit\" value=\"Consultar\"></p>");
-	     out.println("</form>");
-
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
-	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+		 out.println("<p>Presione el boton para regresar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Regresar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");
-	     out.println("</HTML>"); 
+	     out.println("</HTML>"); 	
 	 }
  }
