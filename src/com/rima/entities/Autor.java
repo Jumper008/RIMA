@@ -84,7 +84,7 @@ public class Autor extends Persona{
         public Vector <Autor> mostrarNombreDeAutores() {
 		Vector<Autor> vAutores = new Vector<Autor>();
 		try{
-			stmt.executeQuery("SELECT * FROM Persona");
+			stmt.executeQuery("SELECT * FROM Persona WHERE Tipo = Autor");
 			ResultSet rsQuery = stmt.getResultSet();
                         Calendar cal = Calendar.getInstance();
                         
