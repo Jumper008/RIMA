@@ -24,7 +24,7 @@
 	 }
 	 
 	 public boolean realizarPagoSuscripcion(int iIDPersona, String sCuentaBancaria, int iAnos) {
-		 return clCliente.pagarSuscripcion(iIDPersona, sCuentaBancaria, iAnos);
+		 return clCliente.realizarPagoSuscripcion(iIDPersona, sCuentaBancaria, iAnos);
 	 }
 	 
 	 public boolean realizarPagoRenovacion(int iIDPersona, int iAnos) {

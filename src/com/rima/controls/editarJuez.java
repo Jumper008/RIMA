@@ -41,7 +41,7 @@
 	  //El admin puede cambiar TODO menos el IDJuez
 	 public void updateJuezByAdmin(int iIDJuez, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento, Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo, boolean bJuezActivo) {
-	 	 juJuez.setiIDJuez(iIDJuez);
+	 	 juJuez.setiIDPersona(iIDJuez);
 		 juJuez.setsNombre(sNombre);
 		 juJuez.setsCorreo(sCorreo);
 		 juJuez.setsContrasena(sContrasena);
@@ -51,6 +51,6 @@
 		 juJuez.setbActivo(bActivo);
 		 juJuez.setbJuezActivo(bJuezActivo);
 
-		 juJuez.editarJuezByAdmin(juJuez);
+		 juJuez.editarJuez(juJuez);
 	 }
  }

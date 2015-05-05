@@ -25,7 +25,7 @@
 	 
 	 public Articulo obtenerArticuloPublicado(int iIDArticulo) {
 		 arArticulo = arArticulo.consultarInformacion(iIDArticulo);
-		 if (!arArticulo.getbPublicado) {
+		 if (!arArticulo.getbPublicado()) {
 			 arArticulo = null;
 		 }
 		 return arArticulo;

@@ -11,7 +11,7 @@
  import java.io.*;
  import java.util.*;
 
- public class VentanaClientesRenovar extends HttpServlet {	 	 
+ public class VentanaDeListaDeAutores extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;

@@ -32,6 +32,6 @@
 		 juJuez.setdFechaIngreso(dFechaIngreso);
 		 juJuez.setdFechaVencimiento(dFechaVencimiento);
 		 juJuez.setbActivo(bActivo);
-		 juJuez.agregarJuez(juJuez);			
+		 juJuez.agregarJuezByAdmin(juJuez);			
 	 }
  }

@@ -11,7 +11,7 @@
  import java.io.*;
  import java.util.*;
 
- public class VentanaConsultarArticulosPublicadosAutor extends HttpServlet {	 	 
+ public class VentanaDeListaDeArticulosPublicadosPorAutor extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;

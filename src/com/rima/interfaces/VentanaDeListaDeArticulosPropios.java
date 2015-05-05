@@ -11,7 +11,7 @@
  import java.io.*;
  import java.util.*;
 
- public class VentanaDeListaArticulosPropios extends HttpServlet {	 	 
+ public class VentanaDeListaDeArticulosPropios extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
      HttpServletRequest thisRequest;
      PrintWriter out;

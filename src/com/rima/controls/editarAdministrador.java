@@ -28,7 +28,7 @@
      //El iIDAdministrador no fue información metida por el usuario
 	 public void updateAdministrador(int iIDAdministrador, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento) {
-	 	 adAdministrador.setiIDAdministrador(iIDAdministrador);
+	 	 adAdministrador.setiIDPersona(iIDAdministrador);
 		 adAdministrador.setsNombre(sNombre);
 		 adAdministrador.setsCorreo(sCorreo);
 		 adAdministrador.setsContrasena(sContrasena);

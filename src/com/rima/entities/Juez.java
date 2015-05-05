@@ -31,13 +31,13 @@ public class Juez extends Autor{
                 this.bJuezActivo = bJuezActivo;
 	}
         
-        public boolean getbJuezActivo() {
-            return bJuezActivo;
-        }
-        
-        public void setbJuezActivo( boolean bJuezActivo ) {
-            this.bJuezActivo = bJuezActivo;
-        }
+    public boolean getbJuezActivo() {
+        return bJuezActivo;
+    }
+    
+    public void setbJuezActivo( boolean bJuezActivo ) {
+        this.bJuezActivo = bJuezActivo;
+    }
 
 	public boolean agregarJuezByAdmin( Juez juJuez ) {
 		Calendar cal = Calendar.getInstance();

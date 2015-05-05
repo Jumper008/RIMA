@@ -38,15 +38,11 @@ public class Cliente extends Persona{
         return sCuentaBancaria;
     }
 
-    public boolean realizarPagoRenovacion( int iIDPersona ) {
-            return true;
+    public boolean realizarPagoSuscripcion( int iIDPersona, String sCuentaBancaria, int iAnos ) {
+        return true;
     }
 
-    public boolean pagarSuscripcion( int iIDPersona ) {
-        /*
-            NO IMPLEMENTADO
-            Se paga la suscripción en Paypal usando la cuenta bancaria del cliente
-        */    
+    public boolean realizarPagoRenovacion( int iIDPersona, int iAnos ) {  
         return true;
     }
 
@@ -73,7 +69,7 @@ public class Cliente extends Persona{
 
                 Date dFechaVencimiento = cal.getTime();
 
-                if(dFechaVencimiento <= sCurrentDate) {
+                if(dFechaVencimiento.getTime() <= sCurrentDate.getTime()) {
 
                     int iIDPersona = rs.getInt("iIDPersona");
                     String sNombre = rs.getString("sNombre");
@@ -120,7 +116,7 @@ public class Cliente extends Persona{
         Vector <Cliente> vecClientes = new Vector < Cliente >();
 
         Calendar cal = Calendar.getInstance();
-		Date sCurrentDate = cal.getTime();
+		Date dCurrentDate = cal.getTime();
 
         try {
         	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
@@ -139,7 +135,7 @@ public class Cliente extends Persona{
 
                 Date dFechaVencimiento = cal.getTime();
 
-                if(dFechaVencimiento > sCurrentDate) {
+                if(dFechaVencimiento.getTime() > dCurrentDate.getTime()) {
 
                     int iIDPersona = rs.getInt("iIDPersona");
                     String sNombre = rs.getString("sNombre");
