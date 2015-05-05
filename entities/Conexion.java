@@ -4,7 +4,7 @@
  *Version: 1.0.0
  *
  */
-package com.rima.entities;
+package entities;
 
 import java.sql.*;
 import java.io.*;
