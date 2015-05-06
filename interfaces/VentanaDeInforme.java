@@ -65,7 +65,7 @@
 		 Calendar cal = Calendar.getInstance();
 		 Date dFechaIngreso = cal.getTime();
 	     //La funcion trim() elimina espacios antes y despues del valor
-	     iIDPersona = thisRequest.getParameter("IDPersona").trim();
+	     iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 		 boolean existe = cts.validarPersona(iIDPersona);
 		 if (existe) {
 		 	long tiempo = cts.getTiempoSuscripcion(iIDPersona);

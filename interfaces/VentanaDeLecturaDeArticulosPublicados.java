@@ -64,7 +64,7 @@
 	 public void obtenerArticuloPublicado() {
 	     vap = new verArticulo();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDArticulo = thisRequest.getParameter("IDArticulo").trim();
+		 iIDArticulo = Integer.parseInt(thisRequest.getParameter("IDArticulo").trim());
 		 boolean existe = vap.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	vap.obtenerArticuloPublicado(iIDArticulo);

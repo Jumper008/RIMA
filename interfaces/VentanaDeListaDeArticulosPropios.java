@@ -64,7 +64,7 @@
 	 public void verArticulosPropuestosPropios() {
 	    vapp = new verArticulosPropuestosPropios();
 
-	  	iIDPersona = thisRequest.getParameter("IDPersona").trim();
+	  	iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 
 		vArticulos = vapp.obtenerArticulosPropios(iIDPersona);
 		if (vArticulos.size() == 0)

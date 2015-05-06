@@ -64,7 +64,7 @@
 	 public void mostrarListaArticulosAutor() {
 	    mlaa = new mostrarListaArticulosAutor();
 
-	  	iIDPersona = thisRequest.getParameter("IDPersona").trim();
+	  	iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 
 		vArticulos = mlaa.obtenerListaArticulosAutor(iIDPersona);
 		if (vArticulos.size() == 0)

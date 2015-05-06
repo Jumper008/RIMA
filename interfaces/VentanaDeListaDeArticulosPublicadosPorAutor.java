@@ -64,7 +64,7 @@
 	 public void mostrarListaArticulosPublicadosAutor() {
 	    mlapa = new mostrarListaArticulosPublicadosAutor();
 
-	  	iIDPersona = thisRequest.getParameter("IDPersona").trim();
+	  	iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 
 		vArticulos = mlapa.obtenerListaArticulosPublicadosAutor(iIDPersona);
 		if (vArticulos.size() == 0)
