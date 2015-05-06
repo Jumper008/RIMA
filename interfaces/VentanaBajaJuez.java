@@ -54,7 +54,7 @@
   
 	 public void iniciarBaja() {
 	     out.println("<p>Indique la matrícula del Juez a dar de baja</p>");
-	     out.println("<form method=\"GET\" action=\"eliminarJuez\">");
+	     out.println("<form method=\"GET\" action=\"baja_juez\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"validar\"/>");
 	     out.println("<p> Matrícula  <input type=\"text\" name=\"Matrícula\" size=\"8\"></p>");;
 	     out.println("<p><input type=\"submit\" value=\"Dar de baja\"></p>");

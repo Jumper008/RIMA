@@ -47,7 +47,7 @@
   
 	 public void iniciarVotacion() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"votarArticulo\">");
+	     out.println("<form method=\"GET\" action=\"votacion\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"votar\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Votar\"></p>");

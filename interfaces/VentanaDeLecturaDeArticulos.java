@@ -48,7 +48,7 @@
   
 	 public void iniciarConsulta() {
 	     out.println("<p>Ingrese el ID del articulo.</p>");
-	     out.println("<form method=\"GET\" action=\"obtenerArticulo\">");
+	     out.println("<form method=\"GET\" action=\"articulos\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"ver\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Ver\"></p>");
@@ -76,7 +76,7 @@
 	     	out.println("<p>El Articulo no existe.</p>");
 	     }
 	     out.println("<p>Pulse el boton para buscar otro articulo.</p>");
-	     out.println("<form method=\"GET\" action=\"obtenerArticulo\">");
+	     out.println("<form method=\"GET\" action=\"articulos\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value= null/>");
 	     out.println("<p><input type=\"submit\" value=\"Intentar de nuevo\"></p>");
 	     out.println("</form>");

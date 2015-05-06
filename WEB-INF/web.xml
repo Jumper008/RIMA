@@ -128,12 +128,12 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>articulos_propios</servlet-name>
+      <servlet-name>articulos_propuestos_propios</servlet-name>
       <servlet-class>interfaces.VentanaDeListaDeArticulosPropios</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>articulos_propios</servlet-name>
-        <url-pattern>/articulos_propios</url-pattern>
+        <servlet-name>articulos_propuestos_propios</servlet-name>
+        <url-pattern>/articulos_propuestos_propios</url-pattern>
     </servlet-mapping>
     
     <servlet>

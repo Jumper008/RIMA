@@ -47,7 +47,7 @@
   
 	 public void iniciarConsulta() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"obtenerArticuloPublicado\">");
+	     out.println("<form method=\"GET\" action=\"articulos_publicados\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"ver\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Ver\"></p>");

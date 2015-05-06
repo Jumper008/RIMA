@@ -48,7 +48,7 @@
   
 	 public void iniciarPublicacion() {
 	     out.println("<p>Ingrese el ID del articulo y el ID de la revista donde se publicara.</p>");
-	     out.println("<form method=\"GET\" action=\"publicarEnRevista\">");
+	     out.println("<form method=\"GET\" action=\"publicar_articulo\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"publicar\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
 	   	 out.println("<p>  IDRevista <input type=\"int\" name=\"IDRevista\" size=\"8\"></p>");

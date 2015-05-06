@@ -54,7 +54,7 @@
   
 	 public void iniciarAlta() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"agregarAutor\">");
+	     out.println("<form method=\"GET\" action=\"alta_autor\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
 	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
 		 out.println("<p> Correo  <input type=\"text\" name=\"Correo\" size=\"20\"></p>");

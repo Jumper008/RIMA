@@ -51,7 +51,7 @@
   
 	 public void iniciarAlta() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"agregarRevista\">");
+	     out.println("<form method=\"GET\" action=\"publicacion\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
 	     out.println("<p> Numero Paginas  <input type=\"int\" name=\"NumPaginas\" size=\"34\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");

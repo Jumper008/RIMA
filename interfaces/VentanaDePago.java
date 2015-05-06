@@ -52,7 +52,7 @@
   
 	 public void iniciarPagoSubscrion() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"realizarPagoSuscripcion\">");
+	     out.println("<form method=\"GET\" action=\"pago\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"subscripcion\"/>");
 	     out.println("<p>  IDPersona <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
 	     out.println("<p> Cuenta Bancaria <input type=\"text\" name=\"CuentaBancaria\" size=\"18\"></p>");
@@ -70,7 +70,7 @@
 
 	 public void iniciarPagoRenovacion() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"realizarPagoRenovacion\">");
+	     out.println("<form method=\"GET\" action=\"pago\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"renovacion\"/>");
 	     out.println("<p>  IDPersona <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
 	     out.println("<p>  Anios <input type=\"int\" name=\"Anios\" size=\"8\"></p>");

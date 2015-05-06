@@ -55,7 +55,7 @@
   
 	 public void iniciarEdicion() {
 	     out.println("<p>Complete los valores indicados.</p>");
-	     out.println("<form method=\"GET\" action=\"editarJuez\">");
+	     out.println("<form method=\"GET\" action=\"edicion_juez\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"editar\"/>");
 	     out.println("<p> IDJuez  <input type=\"int\" name=\"IDJuez\" size=\"8\"></p>");
 	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
