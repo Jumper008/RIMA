@@ -69,6 +69,10 @@
 		 boolean existe = va.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	articulo = va.obtenerArticulo(iIDArticulo);
+	     	if (articulo.getbPublicado) {
+	     		out.println(articulo.getsNombre() + " | "+ articulo.getsResumen() + "Articulo publicado");
+	     	}
+	     	out.println(articulo.getsNombre() + " | "+ articulo.getsResumen()+ "No se pudo publicar el articulo");
 	     	
 	     }
 	     else
