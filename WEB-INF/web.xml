@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?> 
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
+           http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"  
+         version="2.5">
+
+    <!-- A continuacion deben declararse todas las Interfaces que se implementan como
+         Servlets en el sistema. Para cada Interfaz deben declararse los tags
+         <servlet> y <servlet-mapping>  
+     -->
+
+    <servlet>
+      <servlet-name>alta_administrador</servlet-name>
+      <servlet-class>interfaces.VentanaAltaAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alta_administradorr</servlet-name>
+        <url-pattern>/alta_administrador</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>alta_autor</servlet-name>
+      <servlet-class>interfaces.VentanaAltaAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alta_autor</servlet-name>
+        <url-pattern>/alta_autor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>alta_juez</servlet-name>
+      <servlet-class>interfaces.VentanaAltaJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>alta_juez</servlet-name>
+        <url-pattern>/alta_juez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>baja_admin</servlet-name>
+      <servlet-class>interfaces.VentanaBajaAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>baja_admin</servlet-name>
+        <url-pattern>/baja_admin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>baja_juez</servlet-name>
+      <servlet-class>interfaces.VentanaBajaJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>baja_juez</servlet-name>
+        <url-pattern>/baja_juez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>clientes_renovar</servlet-name>
+      <servlet-class>interfaces.VentanaClientesRenovar</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clientes_renovar</servlet-name>
+        <url-pattern>/clientes_renovar</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>clientes_vigentes</servlet-name>
+      <servlet-class>interfaces.VentanaClientesVigentes</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clientes_vigentes</servlet-name>
+        <url-pattern>/clientes_vigentes</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>buscar_articulos_autor</servlet-name>
+      <servlet-class>interfaces.VentanaConsultarArticulosAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>buscar_articulos_autor</servlet-name>
+        <url-pattern>/buscar_articulos_autor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>catalogo_revistas</servlet-name>
+      <servlet-class>interfaces.VentanaDeCatalogoDeRevistas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>catalogo_revistas</servlet-name>
+        <url-pattern>/catalogo_revistas</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>envio_de_articulo</servlet-name>
+      <servlet-class>interfaces.VentanaDeEnvioDeArticulo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>envio_de_articulo</servlet-name>
+        <url-pattern>/envio_de_articulo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>informe</servlet-name>
+      <servlet-class>interfaces.VentanaDeInforme</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>informe</servlet-name>
+        <url-pattern>/informe</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>articulos</servlet-name>
+      <servlet-class>interfaces.VentanaDeLecturaDeArticulos</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>articulos</servlet-name>
+        <url-pattern>/articulos</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>articulos_publicados</servlet-name>
+      <servlet-class>interfaces.VentanaDeLecturaDeArticulosPublicados</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>articulos_publicados</servlet-name>
+        <url-pattern>/articulos_publicados</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>articulos_propuestos_propios</servlet-name>
+      <servlet-class>interfaces.VentanaDeListaDeArticulosPropios</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>articulos_propuestos_propios</servlet-name>
+        <url-pattern>/articulos_propuestos_propios</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>articulos_publicados_por_autor</servlet-name>
+      <servlet-class>interfaces.VentanaDeListaDeArticulosPublicadosPorAutor</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>articulos_publicados_por_autor</servlet-name>
+        <url-pattern>/articulos_publicados_por_autor</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>autores</servlet-name>
+      <servlet-class>interfaces.VentanaDeListaDeAutores</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>autores</servlet-name>
+        <url-pattern>/autores</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>pago</servlet-name>
+      <servlet-class>interfaces.VentanaDePago</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pago</servlet-name>
+        <url-pattern>/pago</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>publicacion</servlet-name>
+      <servlet-class>interfaces.VentanaDePublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publicacion</servlet-name>
+        <url-pattern>/publicacion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>registro</servlet-name>
+      <servlet-class>interfaces.VentanaDeRegistro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registro</servlet-name>
+        <url-pattern>/registro</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>votacion</servlet-name>
+      <servlet-class>interfaces.VentanaDeVotacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>votacion</servlet-name>
+        <url-pattern>/votacion</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>edicion_admin</servlet-name>
+      <servlet-class>interfaces.VentanaEdicionAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>edicion_admin</servlet-name>
+        <url-pattern>/edicion_admin</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>edicion_juez</servlet-name>
+      <servlet-class>interfaces.VentanaEdicionJuez</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>edicion_juez</servlet-name>
+        <url-pattern>/edicion_juez</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>publicar_articulo</servlet-name>
+      <servlet-class>interfaces.VentanaSeleccionArticuloPublicacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publicar_articulo</servlet-name>
+        <url-pattern>/publicar_articulo</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+      <servlet-name>Login</servlet-name>
+      <servlet-class>interfaces.Login</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+</web-app>
