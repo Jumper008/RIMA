@@ -204,7 +204,7 @@ public class Articulo {
         int iContador = arArticulo.iContador;
         int iIDRevista = arArticulo.iIDRevista;
         try {
-            String s = "INSERT INTO Articulo (iIDArticulo, sNombre, sResumen, bPublicado, iContador)" +
+            String s = "INSERT INTO Articulo (iIDArticulo, sNombre, sResumen, bPublicado, iContador, iIDRevista)" +
                     " VALUES ("+ iIDArticulo + " , '" 
                     + sNombre + "', '"
                     + sResumen + "', " 
