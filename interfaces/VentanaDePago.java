@@ -18,7 +18,7 @@
      realizarPago rp;
      int iIDPersona;
      String sCuentaBancaria;
-     int iAnos;
+     int iAnios;
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -56,7 +56,7 @@
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"subscripcion\"/>");
 	     out.println("<p>  IDPersona <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
 	     out.println("<p> Cuenta Bancaria <input type=\"text\" name=\"CuentaBancaria\" size=\"18\"></p>");
-	     out.println("<p>  Años <input type=\"int\" name=\"Años\" size=\"8\"></p>");
+	     out.println("<p>  Anios <input type=\"int\" name=\"Anios\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Subscripcion\"></p>");
 	     out.println("</form>");
 	 
@@ -73,7 +73,7 @@
 	     out.println("<form method=\"GET\" action=\"realizarPagoRenovacion\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"renovacion\"/>");
 	     out.println("<p>  IDPersona <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
-	     out.println("<p>  Años <input type=\"int\" name=\"Años\" size=\"8\"></p>");
+	     out.println("<p>  Anios <input type=\"int\" name=\"Anios\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Subscripcion\"></p>");
 	     out.println("</form>");
 	 
@@ -88,12 +88,12 @@
 	 public void realizarPagoSuscripcion() {
 	     rp = new realizarPago();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDPersona = thisRequest.getParameter("IDPersona").trim();
+		 iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 		 sCuentaBancaria = thisRequest.getParameter("CuentaBancaria").trim();
-		 iAnos = thisRequest.getParameter("Años").trim();
+		 iAnios = Integer.parseInt(thisRequest.getParameter("Anios").trim());
 		 boolean existe = rp.validarCliente(iIDPersona);
 	     if (existe) {
-	     	rp.realizarPagoSuscripcion(iIDPersona, sCuentaBancaria, iAnos);
+	     	rp.realizarPagoSuscripcion(iIDPersona, sCuentaBancaria, iAnios);
 	     }
 	     else
 	     {
@@ -104,11 +104,11 @@
 	 public void realizarPagoRenovacion() {
 	     rp = new realizarPago();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDPersona = thisRequest.getParameter("IDPersona").trim();
-		 iAnos = thisRequest.getParameter("Años").trim();
-		 boolean existe = rp.validarCliente(iIDPersona);
+		 iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());;
+		 iAnios = Integer.parseInt(thisRequest.getParameter("Anios").trim());
+ 		 boolean existe = rp.validarCliente(iIDPersona);
 	     if (existe) {
-	     	rp.realizarPagoRenovacion(iIDPersona, iAnos);
+	     	rp.realizarPagoRenovacion(iIDPersona, iAnios);
 	     }
 	     else
 	     {

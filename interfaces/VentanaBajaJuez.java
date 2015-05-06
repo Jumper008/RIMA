@@ -69,10 +69,10 @@
 	 }
   
   	 public void validarJuez() {
-	    ba = new bajaJuez();
+	    bj = new bajaJuez();
 	    //La funcion trim() elimina espacios antes y despues del valor
 	    iIDJuez = Integer.parseInt(thisRequest.getParameter("Matrícula").trim());
-	    boolean existe = ba.validarJuez(iIDJuez);
+	    boolean existe = bj.validarJuez(iIDJuez);
 	    if (existe) {
 	        eliminarJuez();
 	    }
@@ -82,7 +82,7 @@
 	    }
      }
 	 public void eliminarJuez() {
-	     ba.eliminarJuez(iIDJuez);
+	     bj.eliminarJuez(iIDJuez);
 		 desplegarFeedback();
 	 }
 

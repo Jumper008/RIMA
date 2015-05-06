@@ -80,7 +80,7 @@
 		 sNombre = thisRequest.getParameter("Nombre");
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
-		 iIDJuez = thisRequest.getParameter("IDJuez").trim();
+		 iIDJuez = Integer.parseInt(thisRequest.getParameter("IDJuez").trim());
 		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
 		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
          int month = Integer.parseInt(sFechaNacimiento.substring(5,6));

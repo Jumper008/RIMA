@@ -11,210 +11,210 @@
      -->
 
     <servlet>
-      <servlet-name>VentanaAltaAdministrador</servlet-name>
+      <servlet-name>alta_administrador</servlet-name>
       <servlet-class>interfaces.VentanaAltaAdministrador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaAltaAdministrador</servlet-name>
-        <url-pattern>/VentanaAltaAdministrador</url-pattern>
+        <servlet-name>alta_administradorr</servlet-name>
+        <url-pattern>/alta_administrador</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaAltaAutor</servlet-name>
+      <servlet-name>alta_autor</servlet-name>
       <servlet-class>interfaces.VentanaAltaAutor</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaAltaAutor</servlet-name>
-        <url-pattern>/VentanaAltaAutor</url-pattern>
+        <servlet-name>alta_autor</servlet-name>
+        <url-pattern>/alta_autor</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaAltaJuez</servlet-name>
+      <servlet-name>alta_juez</servlet-name>
       <servlet-class>interfaces.VentanaAltaJuez</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaAltaJuez</servlet-name>
-        <url-pattern>/VentanaAltaJuez</url-pattern>
+        <servlet-name>alta_juez</servlet-name>
+        <url-pattern>/alta_juez</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaBajaAdministrador</servlet-name>
+      <servlet-name>baja_admin</servlet-name>
       <servlet-class>interfaces.VentanaBajaAdministrador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaBajaAdministrador</servlet-name>
-        <url-pattern>/VentanaBajaAdministrador</url-pattern>
+        <servlet-name>baja_admin</servlet-name>
+        <url-pattern>/baja_admin</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaBajaJuez</servlet-name>
+      <servlet-name>baja_juez</servlet-name>
       <servlet-class>interfaces.VentanaBajaJuez</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaBajaJuez</servlet-name>
-        <url-pattern>/VentanaBajaJuez</url-pattern>
+        <servlet-name>baja_juez</servlet-name>
+        <url-pattern>/baja_juez</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaClientesRenovar</servlet-name>
+      <servlet-name>clientes_renovar</servlet-name>
       <servlet-class>interfaces.VentanaClientesRenovar</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaClientesRenovar</servlet-name>
-        <url-pattern>/VentanaClientesRenovar</url-pattern>
+        <servlet-name>clientes_renovar</servlet-name>
+        <url-pattern>/clientes_renovar</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaClientesVigentes</servlet-name>
+      <servlet-name>clientes_vigentes</servlet-name>
       <servlet-class>interfaces.VentanaClientesVigentes</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaClientesVigentes</servlet-name>
-        <url-pattern>/VentanaClientesVigentes</url-pattern>
+        <servlet-name>clientes_vigentes</servlet-name>
+        <url-pattern>/clientes_vigentes</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaConsultarArticulosAutor</servlet-name>
+      <servlet-name>buscar_articulos_autor</servlet-name>
       <servlet-class>interfaces.VentanaConsultarArticulosAutor</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaConsultarArticulosAutor</servlet-name>
-        <url-pattern>/VentanaConsultarArticulosAutor</url-pattern>
+        <servlet-name>buscar_articulos_autor</servlet-name>
+        <url-pattern>/buscar_articulos_autor</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeCatalogoDeRevistas</servlet-name>
+      <servlet-name>catalogo_revistas</servlet-name>
       <servlet-class>interfaces.VentanaDeCatalogoDeRevistas</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeCatalogoDeRevistas</servlet-name>
-        <url-pattern>/VentanaDeCatalogoDeRevistas</url-pattern>
+        <servlet-name>catalogo_revistas</servlet-name>
+        <url-pattern>/catalogo_revistas</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeEnvioDeArticulo</servlet-name>
+      <servlet-name>envio_de_articulo</servlet-name>
       <servlet-class>interfaces.VentanaDeEnvioDeArticulo</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeEnvioDeArticulo</servlet-name>
-        <url-pattern>/VentanaDeEnvioDeArticulo</url-pattern>
+        <servlet-name>envio_de_articulo</servlet-name>
+        <url-pattern>/envio_de_articulo</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeInforme</servlet-name>
+      <servlet-name>informe</servlet-name>
       <servlet-class>interfaces.VentanaDeInforme</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeInforme</servlet-name>
-        <url-pattern>/VentanaDeInforme</url-pattern>
+        <servlet-name>informe</servlet-name>
+        <url-pattern>/informe</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeLecturaDeArticulos</servlet-name>
+      <servlet-name>articulos</servlet-name>
       <servlet-class>interfaces.VentanaDeLecturaDeArticulos</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeLecturaDeArticulos</servlet-name>
-        <url-pattern>/VentanaDeLecturaDeArticulos</url-pattern>
+        <servlet-name>articulos</servlet-name>
+        <url-pattern>/articulos</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeLecturaDeArticulosPublicados</servlet-name>
+      <servlet-name>articulos_publicados</servlet-name>
       <servlet-class>interfaces.VentanaDeLecturaDeArticulosPublicados</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeLecturaDeArticulosPublicados</servlet-name>
-        <url-pattern>/VentanaDeLecturaDeArticulosPublicados</url-pattern>
+        <servlet-name>articulos_publicados</servlet-name>
+        <url-pattern>/articulos_publicados</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeListaDeArticulosPropios</servlet-name>
+      <servlet-name>articulos_propios</servlet-name>
       <servlet-class>interfaces.VentanaDeListaDeArticulosPropios</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeListaDeArticulosPropios</servlet-name>
-        <url-pattern>/VentanaDeListaDeArticulosPropios</url-pattern>
+        <servlet-name>articulos_propios</servlet-name>
+        <url-pattern>/articulos_propios</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeListaDeArticulosPublicadosPorAutor</servlet-name>
+      <servlet-name>articulos_publicados_por_autor</servlet-name>
       <servlet-class>interfaces.VentanaDeListaDeArticulosPublicadosPorAutor</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeListaDeArticulosPublicadosPorAutor</servlet-name>
-        <url-pattern>/VentanaDeListaDeArticulosPublicadosPorAutor</url-pattern>
+        <servlet-name>articulos_publicados_por_autor</servlet-name>
+        <url-pattern>/articulos_publicados_por_autor</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeListaDeAutores</servlet-name>
+      <servlet-name>autores</servlet-name>
       <servlet-class>interfaces.VentanaDeListaDeAutores</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeListaDeAutores</servlet-name>
-        <url-pattern>/VentanaDeListaDeAutores</url-pattern>
+        <servlet-name>autores</servlet-name>
+        <url-pattern>/autores</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDePago</servlet-name>
+      <servlet-name>pago</servlet-name>
       <servlet-class>interfaces.VentanaDePago</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDePago</servlet-name>
-        <url-pattern>/VentanaDePago</url-pattern>
+        <servlet-name>pago</servlet-name>
+        <url-pattern>/pago</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDePublicacion</servlet-name>
+      <servlet-name>publicacion</servlet-name>
       <servlet-class>interfaces.VentanaDePublicacion</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDePublicacion</servlet-name>
-        <url-pattern>/VentanaDePublicacion</url-pattern>
+        <servlet-name>publicacion</servlet-name>
+        <url-pattern>/publicacion</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeRegistro</servlet-name>
+      <servlet-name>registro</servlet-name>
       <servlet-class>interfaces.VentanaDeRegistro</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeRegistro</servlet-name>
-        <url-pattern>/VentanaDeRegistro</url-pattern>
+        <servlet-name>registro</servlet-name>
+        <url-pattern>/registro</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaDeVotacion</servlet-name>
+      <servlet-name>votacion</servlet-name>
       <servlet-class>interfaces.VentanaDeVotacion</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaDeVotacion</servlet-name>
-        <url-pattern>/VentanaDeVotacion</url-pattern>
+        <servlet-name>votacion</servlet-name>
+        <url-pattern>/votacion</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaEdicionAdministrador</servlet-name>
+      <servlet-name>edicion_admin</servlet-name>
       <servlet-class>interfaces.VentanaEdicionAdministrador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaEdicionAdministrador</servlet-name>
-        <url-pattern>/VentanaEdicionAdministrador</url-pattern>
+        <servlet-name>edicion_admin</servlet-name>
+        <url-pattern>/edicion_admin</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaEdicionJuez</servlet-name>
+      <servlet-name>edicion_juez</servlet-name>
       <servlet-class>interfaces.VentanaEdicionJuez</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaEdicionJuez</servlet-name>
-        <url-pattern>/VentanaEdicionJuez</url-pattern>
+        <servlet-name>edicion_juez</servlet-name>
+        <url-pattern>/edicion_juez</url-pattern>
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>VentanaSeleccionArticuloPublicacion</servlet-name>
+      <servlet-name>publicar_articulo</servlet-name>
       <servlet-class>interfaces.VentanaSeleccionArticuloPublicacion</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>VentanaSeleccionArticuloPublicacion</servlet-name>
-        <url-pattern>/VentanaSeleccionArticuloPublicacion</url-pattern>
+        <servlet-name>publicar_articulo</servlet-name>
+        <url-pattern>/publicar_articulo</url-pattern>
     </servlet-mapping>
     
     <servlet>

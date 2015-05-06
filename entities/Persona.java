@@ -24,15 +24,19 @@ public class Persona {
 	protected Date dFechaIngreso;
 	protected Date dFechaVencimiento;
 	protected boolean bActivo;
-	protected transient Conexion conn;
-	protected Statement stmt;
+	protected transient Connection conn;
+	protected Statement stmt, stmt2;
 	
-        public Persona(Conexion conn) {
-		this.conn = conn;
-        }
-	
-	public Persona() {
-		iIDPersona = 0;
+	public Persona(){
+      try {
+        String userName = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost/rima";
+        Class.forName ("com.mysql.jdbc.Driver").newInstance();
+        conn = DriverManager.getConnection (url, userName, password);
+        stmt = conn.createStatement();
+        stmt2 = conn.createStatement();
+        iIDPersona = 0;
 		sNombre = "";
 		sCorreo = "";
 		sContrasena = "";
@@ -40,7 +44,13 @@ public class Persona {
 		dFechaIngreso = new Date();
 		dFechaVencimiento = new Date();
 		bActivo = false;
-	}
+      }catch (Exception e) { System.out.println ("Cannot connect to database server"); }
+   }
+
+	/*
+    public Persona(Conexion conn) {
+	this.conn = conn;
+    }*/
 	
 	public Persona(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
 		Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
@@ -180,6 +190,7 @@ public class Persona {
 	
 	public boolean corroborarInformacion( String sCorreo, String sContrasena) {
 		try{
+					System.out.println("Llego");
 					stmt.executeQuery ("SELECT * FROM Persona WHERE sCorreo = " + sCorreo + " AND sContrasena = " + sContrasena);
 					ResultSet rs = stmt.getResultSet();
 					
@@ -195,7 +206,7 @@ public class Persona {
 	public boolean desactivarPersona( int iIDPersona ) {
 		try {
 			String s = "UPDATE Persona SET bActivo = " + false + " WHERE iIDPersona = " + iIDPersona;
-			conn.stmt.executeUpdate(s);
+			stmt.executeUpdate(s);
 		     } catch (SQLException e) {System.out.println ("Cannot execute desactivarPersona()" + e);}
 		return true;
 	}
@@ -203,7 +214,7 @@ public class Persona {
 	public boolean activarPersona( int iIDPersona ) {
                 try {
                         String s = "UPDATE Persona SET bActivo = " + true + " WHERE iIDPersona = " + iIDPersona;
-                        conn.stmt.executeUpdate(s);
+                        stmt.executeUpdate(s);
                     } catch (SQLException e) {System.out.println ("Cannot execute activarPersona()" + e);}
                 return true;
 	}

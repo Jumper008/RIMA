@@ -17,6 +17,7 @@
      PrintWriter out;
      verArticulo va;
      int iIDArticulo;
+     Articulo articulo;
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -46,7 +47,7 @@
   	 }
   
 	 public void iniciarConsulta() {
-	     out.println("<p>Complete los valores indicados.</p>");
+	     out.println("<p>Ingrese el ID del articulo.</p>");
 	     out.println("<form method=\"GET\" action=\"obtenerArticulo\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"ver\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
@@ -64,15 +65,28 @@
 	 public void obtenerArticulo() {
 	     va = new verArticulo();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDArticulo = thisRequest.getParameter("IDArticulo").trim();
+		 iIDArticulo = Integer.parseInt(thisRequest.getParameter("IDArticulo").trim());
 		 boolean existe = va.validarArticulo(iIDArticulo);
 	     if (existe) {
-	     	va.obtenerArticulo(iIDArticulo);
+	     	articulo = va.obtenerArticulo(iIDArticulo);
+	     	
 	     }
 	     else
 	     {
 	     	out.println("<p>El Articulo no existe.</p>");
 	     }
+	     out.println("<p>Pulse el boton para buscar otro articulo.</p>");
+	     out.println("<form method=\"GET\" action=\"obtenerArticulo\">");
+	     out.println("<input type=\"hidden\" name=\"operacion\" value= null/>");
+	     out.println("<p><input type=\"submit\" value=\"Intentar de nuevo\"></p>");
+	     out.println("</form>");
+	 
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Terminar\"></p>");
+	     out.println("</form>");
+
+	     out.println("</BODY>");
+	     out.println("</HTML>"); 
 	 }
 
  }

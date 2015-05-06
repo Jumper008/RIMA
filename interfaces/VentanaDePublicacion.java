@@ -70,7 +70,7 @@
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaPublicacion = cal.getTime();
-		 iNumPaginas = thisRequest.getParameter("NumPaginas");
+		 iNumPaginas = Integer.parseInt(thisRequest.getParameter("NumPaginas").trim());
 	     aa.agregarRevista(dFechaPublicacion, iNumPaginas, true);
 		 desplegarFeedback();
 	 }

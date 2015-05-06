@@ -33,7 +33,7 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Ver seleccion de articulos</h3>");
+	     out.println("<h3>Publicar articulo</h3>");
     
 	     String operacion = request.getParameter("operacion");
 	    
@@ -47,7 +47,7 @@
   	 }
   
 	 public void iniciarPublicacion() {
-	     out.println("<p>Complete los valores indicados.</p>");
+	     out.println("<p>Ingrese el ID del articulo y el ID de la revista donde se publicara.</p>");
 	     out.println("<form method=\"GET\" action=\"publicarEnRevista\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"publicar\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
@@ -66,8 +66,8 @@
 	 public void publicarEnRevista() {
 	     se = new seleccionar();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDArticulo = thisRequest.getParameter("IDArticulo").trim();
-		 iIDRevista = thisRequest.getParameter("IDRevista").trim();
+		 iIDArticulo = Integer.parseInt(thisRequest.getParameter("IDArticulo").trim());
+		 iIDRevista = Integer.parseInt(thisRequest.getParameter("IDRevista").trim());
 		 boolean existe = se.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	boolean publicado = se.publicarEnRevista(iIDArticulo, iIDRevista);
@@ -80,7 +80,7 @@
 	     }
 	     else
 	     {
-	     	out.println("<p>El Articulo no existe.</p>");
+	     	out.println("<p>El ID de Articulo no existe.</p>");
 	     }
 	 }
 

@@ -64,7 +64,7 @@
 	 public void votarArticulo() {
 	     vo = new votar();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 iIDArticulo = thisRequest.getParameter("IDArticulo").trim();
+		 iIDArticulo = Integer.parseInt(thisRequest.getParameter("IDArticulo").trim());
 		 boolean existe = vo.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	vo.votarArticulo(iIDArticulo);

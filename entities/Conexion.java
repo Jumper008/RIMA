@@ -17,7 +17,7 @@ public class Conexion {
       try {
         String userName = "root";
         String password = "";
-        String url = "jdbc:mysql://localhost/RIMA";
+        String url = "jdbc:mysql://localhost/rima";
         Class.forName ("com.mysql.jdbc.Driver").newInstance();
         conn = DriverManager.getConnection (url, userName, password);
         stmt = conn.createStatement();

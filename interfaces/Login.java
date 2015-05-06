@@ -85,7 +85,7 @@
 	 }
 
 	 public void aceptar() {
-	     out.println("<p><a href=\"menu.html\"></a></p>");
+	     out.println("<p><a href=\"menu.html\">Menu</a></p>");
 	     out.println("</BODY>");
 	     out.println("</HTML>");   
 	 }

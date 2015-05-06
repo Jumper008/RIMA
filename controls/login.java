@@ -13,11 +13,9 @@
  
  public class login {
 	 Persona pePersona;
-	 private transient Conexion conConexion;
 	 
 	 public login() {
-		 conConexion = new Conexion();
-		 pePersona = new Persona(conConexion);
+		 pePersona = new Persona();
 	 }
 	 
 	 //Valida si la información introducida por el usuario en el login es valida
