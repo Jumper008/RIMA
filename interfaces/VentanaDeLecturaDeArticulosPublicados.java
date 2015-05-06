@@ -17,6 +17,7 @@
      PrintWriter out;
      verArticuloPublicado vap;
      int iIDArticulo;
+     Articulo articulo;
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -67,7 +68,10 @@
 		 iIDArticulo = Integer.parseInt(thisRequest.getParameter("IDArticulo").trim());
 		 boolean existe = vap.validarArticulo(iIDArticulo);
 	     if (existe) {
-	     	vap.obtenerArticuloPublicado(iIDArticulo);
+	     	articulo = vap.obtenerArticuloPublicado(iIDArticulo);
+	     	if (articulo.getbPublicado) {
+	     		out.println(articulo.getsNombre() + " | "+ articulo.getsResumen() + "Articulo publicado");
+	     	}
 	     }
 	     else
 	     {
