@@ -13,10 +13,6 @@ import java.util.Calendar;
 
 public class Autor extends Persona{
 	
-	public Autor(Conexion conn) {
-		super(conn);
-	}
-	
 	public Autor() {
 		super();
 	}
@@ -30,6 +26,7 @@ public class Autor extends Persona{
         public Vector <Articulo> consultarPublicaciones( int iIDPersona ) {
 		Vector<Articulo> vArticulo = new Vector<Articulo>();
 		try{
+                    System.out.println("Llego");
                     stmt.executeQuery(
                             "SELECT * FROM Articulos" +
                             "	WHERE iIDArticulo IN ( SELECT iIDArticulo FROM AutorArticulo" +
@@ -57,6 +54,7 @@ public class Autor extends Persona{
 	public Vector <Articulo> consultarPublicacionesPropias( int iIDPersona ) {
 		Vector<Articulo> vArticulo = new Vector<Articulo>();
 		try{
+            System.out.println("Llego");
             stmt.executeQuery(
                     "SELECT * FROM Articulos" +
                     "	WHERE iIDArticulo IN ( SELECT iIDArticulo FROM AutorArticulo" +
@@ -84,6 +82,7 @@ public class Autor extends Persona{
         public Vector <Autor> mostrarNombreDeAutores() {
 		Vector<Autor> vAutores = new Vector<Autor>();
 		try{
+            System.out.println("Llego");
 			stmt.executeQuery("SELECT * FROM Persona WHERE Tipo = Autor");
 			ResultSet rsQuery = stmt.getResultSet();
                         Calendar cal = Calendar.getInstance();
@@ -165,6 +164,7 @@ public class Autor extends Persona{
 		try{
 			if(!corroborarExistencia(iIDAutor)){
                             // Entrada en la tabla Persona
+                            System.out.println("Llego");
                             String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo)"+
                                     "VALUES ("
                                     + iIDAutor + " , " 
@@ -180,8 +180,8 @@ public class Autor extends Persona{
                             // Entrada en la tabla Autor
                             String sQueryAutor = "INSERT INTO Autor (iIDAutor) VALUES " + "(" + iIDAutor + ")";
 
-                            conn.stmt.executeUpdate(sQueryPersona);
-                            conn.stmt.executeUpdate(sQueryAutor);
+                            stmt.executeUpdate(sQueryPersona);
+                            stmt.executeUpdate(sQueryAutor);
                                 
 				return true;
 			}
@@ -220,6 +220,7 @@ public class Autor extends Persona{
                         
                         boolean bActivo = autAutor.bActivo;
                         
+                        System.out.println("Llego");
                         String sQuery = "UPDATE Persona SET "
                                 + "sNombre = '" + sNombre + "',"
                                 + "sCorreo = '" + sCorreo + "',"
@@ -229,7 +230,7 @@ public class Autor extends Persona{
                                 + "dFechaVencimiento = '" + sDateVen + "', "
                                 + "bActivo = " + bActivo
                                 + " WHERE iIDPersona = " + iIDAutor;
-			conn.stmt.executeUpdate(sQuery);
+			stmt.executeUpdate(sQuery);
                         
                     } catch (SQLException e) {System.out.println ("Cannot execute editarAutor()" + e);}
 		return true;
@@ -240,6 +241,7 @@ public class Autor extends Persona{
 		Autor auAutor = new Autor();
 		
 		try{
+                    System.out.println("Llego");
                     stmt.executeQuery("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                     ResultSet rsQuery = stmt.getResultSet();
                     

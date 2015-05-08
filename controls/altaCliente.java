@@ -13,11 +13,9 @@
  
  public class altaCliente {
 	 Cliente cliCliente;
-	 private transient Conexion conConexion;
 	 
 	 public altaCliente() {
-		 conConexion = new Conexion();
-		 cliCliente = new Cliente(conConexion);
+		 cliCliente = new Cliente();
 	 }
 	 
 	 public void agregarCliente(String sNombre, String sCorreo, String sContrasena, 

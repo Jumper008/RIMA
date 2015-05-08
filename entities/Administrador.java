@@ -14,10 +14,6 @@ import java.util.Calendar;
 
 public class Administrador extends Persona{
 	
-	public Administrador(Conexion conn) {
-		super(conn);
-	}
-	
 	public Administrador() {
 		super();
 	}
@@ -63,6 +59,7 @@ public class Administrador extends Persona{
 		try{
 			if(!corroborarExistencia(iIDAdministrador)){
                             // Agregar entrada en Persona
+                            System.out.println("Llego");
                             String sQueryPersona = "INSERT INTO Persona "
                                     + "(iIDAdministrador, sNombre, sCorreo, "
                                     + "sContrsena, dFechaNacimiento, "
@@ -84,8 +81,8 @@ public class Administrador extends Persona{
                                     + "(iIDPersona) VALUES (" 
                                     + iIDAdministrador + ")";
                             
-                            conn.stmt.executeUpdate(sQueryPersona);
-                            conn.stmt.executeUpdate(sQueryAdministrador);
+                            stmt.executeUpdate(sQueryPersona);
+                            stmt.executeUpdate(sQueryAdministrador);
                             return true;
 			}
 			else
@@ -130,6 +127,7 @@ public class Administrador extends Persona{
                 
                 // Actualización en tabla Persona
                 String sQueryPersona;
+                System.out.println("Llego");
                 sQueryPersona = "UPDATE Persona SET "
                         + "sNombre = '" + sNombre + "',"
                         + "sCorreo = '" + sCorreo + "',"
@@ -139,7 +137,7 @@ public class Administrador extends Persona{
 //                        + "dFechaVencimiento = " + sDateVen + ", "
 //                        + "bActivo = " + bActivo + " "
                         + " WHERE iIDPersona = " + iIDAdministrador;
-                conn.stmt.executeUpdate(sQueryPersona);
+                stmt.executeUpdate(sQueryPersona);
                 
                 // Actualización en tabla Administrador
                     // (no es necesaria)
@@ -155,6 +153,7 @@ public class Administrador extends Persona{
 		Administrador admAdministrador = new Administrador();
 		
 		try{
+                    System.out.println("Llego");
                     stmt.executeQuery("SELECT * FROM Persona "
                             + "WHERE iIDPersona = " + iIDPersona);
                     ResultSet rsQuery = stmt.getResultSet();

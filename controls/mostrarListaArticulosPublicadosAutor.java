@@ -12,11 +12,9 @@
  
  public class mostrarListaArticulosPublicadosAutor {
 	 Articulo arArticulo;
-	 private transient Conexion conConexion;
 	 
 	 public mostrarListaArticulosPublicadosAutor() {
-		 conConexion = new Conexion();
-		 arArticulo = new Articulo(conConexion);
+		 arArticulo = new Articulo();
 	 }
 	 
 	 public Vector<Articulo> obtenerListaArticulosPublicadosAutor(int iIDPersona) {

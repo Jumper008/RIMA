@@ -12,11 +12,9 @@
  
  public class mostrarClientesRenovar {
 	 Cliente cliCliente;
-	 private transient Conexion conConexion;
 	 
 	 public mostrarClientesRenovar() {
-		 conConexion = new Conexion();
-		 cliCliente = new Cliente(conConexion);
+		 cliCliente = new Cliente();
 	 }
 	 
 	 public Vector<Cliente> obtenerClientesRenovar() {

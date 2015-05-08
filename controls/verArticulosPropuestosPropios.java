@@ -12,11 +12,9 @@
  
  public class verArticulosPropuestosPropios {
 	 Articulo arArticulo;
-	 private transient Conexion conConexion;
 	 
 	 public verArticulosPropuestosPropios() {
-		 conConexion = new Conexion();
-		 arArticulo = new Articulo(conConexion);
+		 arArticulo = new Articulo();
 	 }
 	 
 	 public Vector<Articulo> obtenerArticulosPropios(int iIDPersona) {

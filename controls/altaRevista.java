@@ -13,11 +13,9 @@
  
  public class altaRevista {
 	 Revista reRevista;
-	 private transient Conexion conConexion;
 
 	 public altaRevista() {
-		 conConexion = new Conexion();
-		 reRevista = new Revista(conConexion);
+		 reRevista = new Revista();
 	 }
 	 
 	 public void agregarRevista(Date dFechaPublicacion, int iNumPaginas, boolean bPublicada) {

@@ -18,18 +18,23 @@ public class Revista {
 	protected int iNumPaginas;
 	protected boolean bPublicada;
 	private transient Conexion conn;
-	private Statement stmt;
+	private Statement stmt, stmt2;
 	
-        public Revista(Conexion conn) {
-		this.conn = conn;
-        }
-	
-	public Revista() {
-		iIDRevista = 0;
+    public Revista(){
+      try {
+        String userName = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost/rima";
+        Class.forName ("com.mysql.jdbc.Driver").newInstance();
+        conn = DriverManager.getConnection (url, userName, password);
+        stmt = conn.createStatement();
+        stmt2 = conn.createStatement();
+        iIDRevista = 0;
 		dFechaPublicacion = new Date();
 		iNumPaginas = 0;
 		bPublicada = false;
-	}
+      }catch (Exception e) { System.out.println ("Cannot connect to database server"); }
+   }
 	
 	public Revista(int iIDRevista, Date dFechaPublicacion, int iNumPaginas, boolean bPublicada) {
 		this.iIDRevista = iIDRevista;
@@ -79,6 +84,7 @@ public class Revista {
 		Vector<Revista> vRevistas = new Vector<Revista>();
 		Calendar cal = Calendar.getInstance();
 		try{
+            System.out.println("Llego");
 		     stmt.executeQuery ("SELECT * FROM Revista WHERE bPublicada = " + true);
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
@@ -112,10 +118,11 @@ public class Revista {
 		int iNumPaginas = reRevista.iNumPaginas;
 		boolean bPublicada = reRevista.bPublicada;
 		try {
+            System.out.println("Llego");
 			String s = "INSERT INTO Revista (iIDRevista, dFechaPublicacion, iNumPaginas, bPublicada)" +
 			 " VALUES ("+ iIDRevista + " , '" + sDate + " , '"
 			 + iNumPaginas + " , '" + bPublicada + " )"; 
-			conn.stmt.executeUpdate(s);
+			stmt.executeUpdate(s);
 			
 		    } catch (SQLException e) {System.out.println ("Cannot execute agregaraRevista()" + e);}
 		return true;
@@ -123,8 +130,9 @@ public class Revista {
         
         public boolean publicarRevista() {
             try {
+                System.out.println("Llego");
                 String sQuery = "UPDATE Revista SET bPublicada = " + true;
-                conn.stmt.executeUpdate(sQuery);
+                stmt.executeUpdate(sQuery);
             } catch (SQLException e) {System.out.println ("Cannot execute editarAutor()" + e); return false;}
             
             return true;
@@ -132,6 +140,7 @@ public class Revista {
         
         public boolean corroborarExistencia( int iIDRevista ) {
 		try{
+                    System.out.println("Llego");
                     stmt.executeQuery ("SELECT * FROM Revista WHERE iIDRevista = " + iIDRevista);
                     ResultSet rs = stmt.getResultSet();
                     
@@ -141,6 +150,7 @@ public class Revista {
         
         public int generarID() {
             try {
+                System.out.println("Llego");
                 stmt.executeQuery("SELECT COUNT(*) FROM Revista AS NewId");
                 ResultSet rsiIDRevista = stmt.getResultSet();
                 

@@ -12,11 +12,9 @@
  
  public class verArticuloPublicado {
 	 Articulo arArticulo;
-	 private transient Conexion conConexion;
 	 
 	 public verArticuloPublicado() {
-		 conConexion = new Conexion();
-		 arArticulo = new Articulo(conConexion);
+		 arArticulo = new Articulo();
 	 }
 	 
 	 public boolean validarArticulo(int iIDArticulo) {

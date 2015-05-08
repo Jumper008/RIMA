@@ -46,11 +46,6 @@ public class Persona {
 		bActivo = false;
       }catch (Exception e) { System.out.println ("Cannot connect to database server"); }
    }
-
-	/*
-    public Persona(Conexion conn) {
-	this.conn = conn;
-    }*/
 	
 	public Persona(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
 		Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
@@ -136,6 +131,7 @@ public class Persona {
             Calendar cal = Calendar.getInstance();
             
             try{
+				System.out.println("Llego");
                 stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                 ResultSet rs = stmt.getResultSet();
                 if(rs.next()) {
@@ -157,6 +153,7 @@ public class Persona {
 		Date dFechaVencimiento = new Date();
 		Calendar cal = Calendar.getInstance();
 		try{
+					System.out.println("Llego");
                     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                     ResultSet rs = stmt.getResultSet();
                     if(rs.next()) {
@@ -176,6 +173,7 @@ public class Persona {
 	
 	public boolean corroborarExistencia( int iIDPersona ) {
 		try{
+					System.out.println("Llego");
                     stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                     ResultSet rs = stmt.getResultSet();
                     
@@ -205,6 +203,7 @@ public class Persona {
 	
 	public boolean desactivarPersona( int iIDPersona ) {
 		try {
+			System.out.println("Llego");
 			String s = "UPDATE Persona SET bActivo = " + false + " WHERE iIDPersona = " + iIDPersona;
 			stmt.executeUpdate(s);
 		     } catch (SQLException e) {System.out.println ("Cannot execute desactivarPersona()" + e);}
@@ -213,6 +212,7 @@ public class Persona {
 	
 	public boolean activarPersona( int iIDPersona ) {
                 try {
+						System.out.println("Llego");
                         String s = "UPDATE Persona SET bActivo = " + true + " WHERE iIDPersona = " + iIDPersona;
                         stmt.executeUpdate(s);
                     } catch (SQLException e) {System.out.println ("Cannot execute activarPersona()" + e);}
@@ -221,6 +221,7 @@ public class Persona {
 	
         public int generarID() {
             try {
+				System.out.println("Llego");
                 stmt.executeQuery("SELECT COUNT(*) FROM Persona AS NewId");
                 ResultSet rsiIDPersona = stmt.getResultSet();
                 

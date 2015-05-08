@@ -13,11 +13,9 @@
  
  public class altaAdministrador {
 	 Administrador adAdministrador;
-	 private transient Conexion conConexion;
 	 
 	 public altaAdministrador() {
-		 conConexion = new Conexion();
-		 adAdministrador = new Administrador(conConexion);
+		 adAdministrador = new Administrador();
 	 }
 	 
 	 public void agregarAdministrador(String sNombre, String sCorreo, String sContrasena, 

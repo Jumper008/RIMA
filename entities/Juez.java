@@ -14,15 +14,10 @@ import java.util.Calendar;
 
 public class Juez extends Autor{
     private boolean bJuezActivo;
-
-	public Juez(Conexion conn) {
-		super(conn);
-                bJuezActivo = true;
-	}
 	
 	public Juez() {
 		super();
-                bJuezActivo = true;
+        bJuezActivo = true;
 	}
 	
 	public Juez(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
@@ -71,6 +66,7 @@ public class Juez extends Autor{
 		try{
                     if( corroborarExistencia(iIDJuez) ) { //Si ya existía, entonces era un autor, por lo que hay que desactivarlo como autor y activarlo como Juez
                         // Entrada en la tabla Juez
+						System.out.println("Llego");
                         String sQueryJuez = "INSERT INTO Juez (iIDJuez, bJuezActivo)"+
                                 "VALUES ("+ iIDJuez + " , " + true + ")";
                         
@@ -79,8 +75,8 @@ public class Juez extends Autor{
                                 + "bActivo = " + false
                                 + " WHERE iIDPersona = " + iIDJuez;
                         
-                        conn.stmt.executeUpdate(sQueryJuez);
-                        conn.stmt.executeUpdate(sQueryPersona);
+                        stmt.executeUpdate(sQueryJuez);
+                        stmt.executeUpdate(sQueryPersona);
                         
                         return true;
                     }
@@ -126,6 +122,7 @@ public class Juez extends Autor{
                         boolean bActivo = !juJuez.bJuezActivo;
                         
                         // Actualización en la tabla Persona
+						System.out.println("Llego");
                         String sQueryPersona = "UPDATE Persona SET "
                                 + "sNombre = '" + sNombre + "',"
                                 + "sCorreo = '" + sCorreo + "',"
@@ -143,8 +140,8 @@ public class Juez extends Autor{
                                 + "bJuezActivo = " + juJuez.bJuezActivo + " "
                                 + " WHERE iIDPersona = " + iIDJuez;
                         
-                        conn.stmt.executeUpdate(sQueryPersona);
-                        conn.stmt.executeUpdate(sQueryJuez);
+                        stmt.executeUpdate(sQueryPersona);
+                        stmt.executeUpdate(sQueryJuez);
 
 		     } catch (SQLException e) {System.out.println ("Cannot execute editarJuez()" + e);}
 		return true;
@@ -158,7 +155,7 @@ public class Juez extends Autor{
 		Juez juJuez = new Juez();
 		
 		try{
-		
+					System.out.println("Llego");
                     stmt.executeQuery("SELECT * FROM Persona"
                             + "WHERE iIDPersona = " + iIDPersona);
                     ResultSet rsQuery = stmt.getResultSet();
@@ -197,6 +194,7 @@ public class Juez extends Autor{
 			cal.set(Calendar.YEAR, year);
 			dFechaVencimiento = cal.getTime();
                         
+						System.out.println("Llego");
                         stmt.executeQuery("SELECT * FROM Juez WHERE iIDPersona = " + iIDPersona);
                         ResultSet rsQueryJuez = stmt.getResultSet();
                         

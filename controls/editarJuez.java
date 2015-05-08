@@ -13,11 +13,9 @@
  
  public class editarJuez {
 	 Juez juJuez;
-	 private transient Conexion conConexion;
 	 
 	 public editarJuez() {
-		 conConexion = new Conexion();
-		 juJuez = new Juez(conConexion);
+		 juJuez = new Juez();
 	 }
 	 
 	 //Valida si el Juez existe en la base de datos

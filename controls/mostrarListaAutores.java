@@ -12,11 +12,9 @@
  
  public class mostrarListaAutores {
 	 Autor auAutor;
-	 private transient Conexion conConexion;
 	 
 	 public mostrarListaAutores() {
-		 conConexion = new Conexion();
-		 auAutor = new Autor(conConexion);
+		 auAutor = new Autor();
 	 }
 	 
 	 public Vector<Autor> obtenerListaAutores() {

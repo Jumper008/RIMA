@@ -12,11 +12,9 @@
  
  public class mostrarClientesVigentes {
 	 Cliente cliCliente;
-	 private transient Conexion conConexion;
 	 
 	 public mostrarClientesVigentes() {
-		 conConexion = new Conexion();
-		 cliCliente = new Cliente(conConexion);
+		 cliCliente = new Cliente();
 	 }
 	 
 	 public Vector<Cliente> obtenerClientesVigentes() {

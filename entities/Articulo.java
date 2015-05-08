@@ -20,20 +20,25 @@ public class Articulo {
 	protected int iContador;
     protected int iIDRevista;
 	private transient Conexion conn;
-	private Statement stmt;
+	private Statement stmt, stmt2;
 
-	public Articulo(Conexion conn) {
-		this.conn = conn;
-        }
-	
-	public Articulo() {
-		iIDArticulo = 0;
+	public Articulo(){
+      try {
+        String userName = "root";
+        String password = "";
+        String url = "jdbc:mysql://localhost/rima";
+        Class.forName ("com.mysql.jdbc.Driver").newInstance();
+        conn = DriverManager.getConnection (url, userName, password);
+        stmt = conn.createStatement();
+        stmt2 = conn.createStatement();
+        iIDArticulo = 0;
 		sNombre = "";
 		sResumen = "";
 		bPublicado = false;
 		iContador = 0;
         iIDRevista = 0;
-	}
+      }catch (Exception e) { System.out.println ("Cannot connect to database server"); }
+   }
 	
 	public Articulo(int iIDArticulo, String sNombre, String sResumen, boolean bPublicado, int iContador, int iIDRevista) {
 		this.iIDArticulo = iIDArticulo;
@@ -95,16 +100,17 @@ public class Articulo {
 	public Articulo consultarInformacion( int iIDArticulo ) {
 		Articulo arArticulo = new Articulo();
 		try{
+            System.out.println("Llego");
 		     stmt.executeQuery ("SELECT * FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
-			int _iIDArticulo = rs.getInt("iIDArticulo");
-			String _strNombre = rs.getString("sNombre");
-			String _strResumen = rs.getString("sResumen");
-			boolean _bPublicado = rs.getBoolean("bPublicado");
-			int _iContador = rs.getInt("iContador");
-            int _iIDRevista = rs.getInt("iIDRevista");
-			arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+    			int _iIDArticulo = rs.getInt("iIDArticulo");
+    			String _strNombre = rs.getString("sNombre");
+    			String _strResumen = rs.getString("sResumen");
+    			boolean _bPublicado = rs.getBoolean("bPublicado");
+    			int _iContador = rs.getInt("iContador");
+                int _iIDRevista = rs.getInt("iIDRevista");
+    			arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
             }
 		  } catch (SQLException e) { return null;}
 		  return arArticulo;
@@ -114,17 +120,18 @@ public class Articulo {
 	public Vector<Articulo> consultarArticulosAutor( int iIDAutor ) {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
+            System.out.println("Llego");
 		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor + "AND bPublicado = " + true );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
-			int _iIDArticulo = rs.getInt("iIDArticulo");
-			String _strNombre = rs.getString("sNombre");
-			String _strResumen = rs.getString("sResumen");
-			boolean _bPublicado = rs.getBoolean("bPublicado");
-			int _iContador = rs.getInt("iContador");
-            int _iIDRevista = rs.getInt("iIDRevista");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
-			vArticulos.add(arArticulo);
+    			int _iIDArticulo = rs.getInt("iIDArticulo");
+    			String _strNombre = rs.getString("sNombre");
+    			String _strResumen = rs.getString("sResumen");
+    			boolean _bPublicado = rs.getBoolean("bPublicado");
+    			int _iContador = rs.getInt("iContador");
+                int _iIDRevista = rs.getInt("iIDRevista");
+    			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+    			vArticulos.add(arArticulo);
             }
 		  } catch (SQLException e) { return null;}
 		  return vArticulos;
@@ -134,17 +141,18 @@ public class Articulo {
 	public Vector<Articulo> consultarArticulosPropios( int iIDAutor ) {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
+            System.out.println("Llego");
 		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
-			int _iIDArticulo = rs.getInt("iIDArticulo");
-			String _strNombre = rs.getString("sNombre");
-			String _strResumen = rs.getString("sResumen");
-			boolean _bPublicado = rs.getBoolean("bPublicado");
-			int _iContador = rs.getInt("iContador");
-            int _iIDRevista = rs.getInt("iIDRevista");
-			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
-			vArticulos.add(arArticulo);
+    			int _iIDArticulo = rs.getInt("iIDArticulo");
+    			String _strNombre = rs.getString("sNombre");
+    			String _strResumen = rs.getString("sResumen");
+    			boolean _bPublicado = rs.getBoolean("bPublicado");
+    			int _iContador = rs.getInt("iContador");
+                int _iIDRevista = rs.getInt("iIDRevista");
+    			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
+    			vArticulos.add(arArticulo);
 		     }
 		  } catch (SQLException e) { return null;}
 		  return vArticulos;
@@ -152,6 +160,7 @@ public class Articulo {
 
 	public boolean aumentarVotos( int iIDArticulo ) {
             try {
+                System.out.println("Llego");
                 stmt.executeQuery ("SELECT iContador FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
                 ResultSet rs = stmt.getResultSet();
                 if(rs.next()) {
@@ -171,6 +180,7 @@ public class Articulo {
 	public Vector<Articulo> getArticulosVotados() {
             Vector<Articulo> vArticulos = new Vector<Articulo>();
             try{
+                System.out.println("Llego");
                 stmt.executeQuery ("SELECT * FROM Articulo WHERE iContador IS NOT NULL and iContador <> 0");
                 ResultSet rs = stmt.getResultSet();
                 while(rs.next()) {
@@ -190,6 +200,7 @@ public class Articulo {
 
 	public boolean agregarARevista( int iIDArticulo, int iIDRevista ) {
             try {
+                System.out.println("Llego");
                 String s = "UPDATE Articulo SET iIDRevista = " + iIDRevista + ", bPublicado = " + true + " WHERE iIDArticulo = " + iIDArticulo;
                 stmt.executeUpdate(s);
                 return true;
@@ -204,6 +215,7 @@ public class Articulo {
         int iContador = arArticulo.iContador;
         int iIDRevista = arArticulo.iIDRevista;
         try {
+            System.out.println("Llego");
             String s = "INSERT INTO Articulo (iIDArticulo, sNombre, sResumen, bPublicado, iContador, iIDRevista)" +
                     " VALUES ("+ iIDArticulo + " , '" 
                     + sNombre + "', '"
@@ -218,6 +230,7 @@ public class Articulo {
         
         public boolean corroborarExistencia( int iIDArticulo ) {
             try{
+                    System.out.println("Llego");
                     stmt.executeQuery ("SELECT * FROM Articulo WHERE iIDArticulo = " + iIDArticulo);
                     ResultSet rs = stmt.getResultSet();
                     
@@ -228,6 +241,7 @@ public class Articulo {
         
         public int generarID() {
             try {
+                System.out.println("Llego");
                 stmt.executeQuery("SELECT COUNT(*) FROM Articulo AS NewId");
                 ResultSet rs = stmt.getResultSet();
                 

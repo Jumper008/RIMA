@@ -13,11 +13,9 @@
  
  public class bajaAdministrador {
 	 Administrador adAdministrador;
-	 private transient Conexion conConexion;
 
 	 public bajaAdministrador() {
-		 conConexion = new Conexion();
-		 adAdministrador = new Administrador(conConexion);
+		 adAdministrador = new Administrador();
 	 }
 
 	 //Valida si el administrador existe en la base de datos

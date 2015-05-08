@@ -13,11 +13,9 @@
  
  public class altaJuez {
 	 Juez juJuez;
-	 private transient Conexion conConexion;
 
 	 public altaJuez() {
-		 conConexion = new Conexion();
-		 juJuez = new Juez(conConexion);
+		 juJuez = new Juez();
 	 }
 	 
 	 public void agregarJuez(String sNombre, String sCorreo, String sContrasena, 

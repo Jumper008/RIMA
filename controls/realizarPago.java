@@ -12,11 +12,9 @@
  
  public class realizarPago {
 	 Cliente clCliente;
-	 private transient Conexion conConexion;
 	 
 	 public realizarPago() {
-		 conConexion = new Conexion();
-		 clCliente = new Cliente(conConexion);
+		 clCliente = new Cliente();
 	 }
 	 
 	 public boolean validarCliente(int iIDPersona) {

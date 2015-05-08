@@ -13,11 +13,9 @@
  
  public class calcularTiempoSuscripcion {
 	 Persona pePersona;
-	 private transient Conexion conConexion;
 
 	 public calcularTiempoSuscripcion() {
-		 conConexion = new Conexion();
-		 pePersona = new Persona(conConexion);
+		 pePersona = new Persona();
 	 }
 	 
 	 //Valida si la Persona existe en la base de datos

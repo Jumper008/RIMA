@@ -13,11 +13,9 @@
  
  public class bajaJuez {
 	 Juez juJuez;
-	 private transient Conexion conConexion;
 
 	 public bajaJuez() {
-		 conConexion = new Conexion();
-		 juJuez = new Juez(conConexion);
+		 juJuez = new Juez();
 	 }
 
 	 //Valida si el Juez existe en la base de datos

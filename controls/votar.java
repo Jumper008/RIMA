@@ -12,11 +12,9 @@
  
  public class votar {
 	 Articulo arArticulo;
-	 private transient Conexion conConexion;
 	 
 	 public votar() {
-		 conConexion = new Conexion();
-		 arArticulo = new Articulo(conConexion);
+		 arArticulo = new Articulo();
 	 }
 	 
 	 public boolean validarArticulo(int iIDArticulo) {

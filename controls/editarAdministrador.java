@@ -13,11 +13,9 @@
  
  public class editarAdministrador {
 	 Administrador adAdministrador;
-	 private transient Conexion conConexion;
 	 
 	 public editarAdministrador() {
-		 conConexion = new Conexion();
-		 adAdministrador = new Administrador(conConexion);
+		 adAdministrador = new Administrador();
 	 }
 	 
 	 //Valida si el Administrador existe en la base de datos

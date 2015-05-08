@@ -12,11 +12,9 @@
  
  public class proponerArticulo {
 	 Articulo arArticulo;
-	 private transient Conexion conConexion;
 	 
 	 public proponerArticulo() {
-		 conConexion = new Conexion();
-		 arArticulo = new Articulo(conConexion);
+		 arArticulo = new Articulo();
 	 }
 	 
 	 public boolean agregarArticulo(String sNombre, String sResumen) {

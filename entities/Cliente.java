@@ -15,10 +15,6 @@ import java.util.Calendar;
 public class Cliente extends Persona{
     protected String sCuentaBancaria;
 
-    public Cliente(Conexion conn) {
-            super(conn);
-    }
-
     public Cliente() {
             super();
             this.sCuentaBancaria = "";
@@ -53,6 +49,7 @@ public class Cliente extends Persona{
 		Date sCurrentDate = cal.getTime();
 
         try {
+            System.out.println("Llego");
         	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
 
             ResultSet rs = stmt.getResultSet();    
@@ -119,6 +116,7 @@ public class Cliente extends Persona{
 		Date dCurrentDate = cal.getTime();
 
         try {
+            System.out.println("Llego");
         	stmt.executeQuery ("SELECT * FROM Cliente cli, Persona per WHERE cli.iIDPersona = per.iIDPersona" );
 
             ResultSet rs = stmt.getResultSet();    
@@ -212,6 +210,7 @@ public class Cliente extends Persona{
             try{
                 if(!corroborarExistencia(iIDCliente)){
                     // Etrada en tabla Persona
+                    System.out.println("Llego");
                     String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo)"+
                             "VALUES (" + iIDCliente + " , '" 
                             + sNombre + "', '"
@@ -223,11 +222,12 @@ public class Cliente extends Persona{
                             + bActivo + ")";
                     
                     // Entrada en tabla Cliente
+                    System.out.println("Llego");
                     String sQueryCliente = "INSERT INTO Cliente (iIDPersona, sCuentaBancaria) "
                             + "VALUES ( " + iIDCliente + ", '" + sCuentaBancaria + "' )";
                     
-                    conn.stmt.executeUpdate(sQueryPersona);
-                    conn.stmt.executeUpdate(sQueryCliente);
+                    stmt.executeUpdate(sQueryPersona);
+                    stmt.executeUpdate(sQueryCliente);
                     return true;
                 }
                 else
@@ -269,6 +269,7 @@ public class Cliente extends Persona{
                 
                 boolean bActivo = clCliente.bActivo;
                 
+                System.out.println("Llego");
                 String sQueryPersona = "UPDATE Persona SET "
                         + "sNombre = '" + sNombre + "',"
                         + "sCorreo = '" + sCorreo + "',"
@@ -282,8 +283,8 @@ public class Cliente extends Persona{
                 String sQueryCliente = "UPDATE Cliente SET "
                         + "sCuentaBancaria WHERE iIDPersona = " + iIDCliente;
 
-                conn.stmt.executeUpdate(sQueryPersona);
-                conn.stmt.executeUpdate(sQueryCliente);
+                stmt.executeUpdate(sQueryPersona);
+                stmt.executeUpdate(sQueryCliente);
 
             } catch (SQLException e) {System.out.println ("Cannot execute editarCliente()" + e);}
             return true;
@@ -297,6 +298,7 @@ public class Cliente extends Persona{
             Cliente cliCliente = new Cliente();
 
             try{
+                System.out.println("Llego");
                 stmt.executeQuery("SELECT * Persona WHERE iIDPersona = " + iIDPersona);
                 ResultSet rsQueryPersona = stmt.getResultSet();
                 
@@ -342,6 +344,7 @@ public class Cliente extends Persona{
                     return null;
                 }
                 
+                System.out.println("Llego");
                 stmt.executeQuery("SELECT * Cliente WHERE iIDPersona = " + iIDPersona);
                 ResultSet rsQueryCliente = stmt.getResultSet();
                 

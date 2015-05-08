@@ -13,11 +13,9 @@
  
  public class altaAutor {
 	 Autor auAutor;
-	 private transient Conexion conConexion;
 	 
 	 public altaAutor() {
-		 conConexion = new Conexion();
-		 auAutor = new Autor(conConexion);
+		 auAutor = new Autor();
 	 }
 	 
 	 public void agregarAutor(String sNombre, String sCorreo, String sContrasena, 

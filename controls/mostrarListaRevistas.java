@@ -12,11 +12,9 @@
  
  public class mostrarListaRevistas {
 	 Revista reRevista;
-	 private transient Conexion conConexion;
 	 
 	 public mostrarListaRevistas() {
-		 conConexion = new Conexion();
-		 reRevista = new Revista(conConexion);
+		 reRevista = new Revista();
 	 }
 	 
 	 public Vector<Revista> obtenerListaRevistas() {
