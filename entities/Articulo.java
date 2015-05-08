@@ -19,7 +19,7 @@ public class Articulo {
 	protected boolean bPublicado;
 	protected int iContador;
     protected int iIDRevista;
-	private transient Conexion conn;
+	private transient Connection conn;
 	private Statement stmt, stmt2;
 
 	public Articulo(){

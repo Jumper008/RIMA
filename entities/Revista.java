@@ -17,7 +17,7 @@ public class Revista {
 	protected Date dFechaPublicacion;
 	protected int iNumPaginas;
 	protected boolean bPublicada;
-	private transient Conexion conn;
+	private transient Connection conn;
 	private Statement stmt, stmt2;
 	
     public Revista(){
