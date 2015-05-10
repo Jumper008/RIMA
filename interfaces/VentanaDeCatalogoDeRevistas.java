@@ -5,7 +5,7 @@
  */
  package interfaces;
  import controls.*;
- import entities.Cliente;
+ import entities.Revista;
  import javax.servlet.*;
  import javax.servlet.http.*;
  import java.io.*;

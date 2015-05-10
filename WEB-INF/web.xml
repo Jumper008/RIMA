@@ -15,7 +15,7 @@
       <servlet-class>interfaces.VentanaAltaAdministrador</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>alta_administradorr</servlet-name>
+        <servlet-name>alta_administrador</servlet-name>
         <url-pattern>/alta_administrador</url-pattern>
     </servlet-mapping>
     
