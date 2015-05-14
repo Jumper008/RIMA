@@ -242,11 +242,11 @@ public class Articulo {
         public int generarID() {
             try {
                 System.out.println("Llego");
-                stmt.executeQuery("SELECT COUNT(*) FROM Articulo AS NewId");
+                stmt.executeQuery("SELECT COUNT(*) FROM Articulo");
                 ResultSet rs = stmt.getResultSet();
                 
                 if ( rs.next() ) {
-                    return rs.getInt("NewId") + 1;
+                    return rs.getInt("COUNT(*)") + 1;
                 }
             } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
             

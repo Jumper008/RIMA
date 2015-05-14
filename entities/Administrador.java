@@ -61,20 +61,20 @@ public class Administrador extends Persona{
                             // Agregar entrada en Persona
                             System.out.println("Llego");
                             String sQueryPersona = "INSERT INTO Persona "
-                                    + "(iIDAdministrador, sNombre, sCorreo, "
-                                    + "sContrsena, dFechaNacimiento, "
-                                    + "dFechaIngreso, dFechaIngreso, "
-                                    + "dFechaVencimiento, bActivo)"
+                                    + "(iIDPersona, sNombre, sCorreo, "
+                                    + "sContrasena, sFechaNacimiento, "
+                                    + "sFechaIngreso, "
+                                    + "sFechaVencimiento, bActivo, sTipo)"
                                     + "VALUES ("
-                                    + iIDAdministrador + " , '" 
+                                    + iIDAdministrador + ", '" 
                                     + sNombre + "', '" 
                                     + sCorreo + "' , '" 
-                                    + sContrasena + "','" 
+                                    + sContrasena + "', '" 
                                     + sDate + "', '" 
                                     + sDateIn+ "', '" 
                                     + sDateVen + "', " 
-                                    + bActivo + ", " 
-                                    + sTipo + " )";
+                                    + bActivo + ", '" 
+                                    + sTipo + "' )";
                             
                             // Agregar entrada en Administrador
                             String sQueryAdministrador = "INSERT INTO Administrador "
@@ -82,6 +82,7 @@ public class Administrador extends Persona{
                                     + iIDAdministrador + ")";
                             
                             stmt.executeUpdate(sQueryPersona);
+                            System.out.println("Se inserto la persoa en la base de datos");
                             stmt.executeUpdate(sQueryAdministrador);
                             return true;
 			}

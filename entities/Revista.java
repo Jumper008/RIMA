@@ -151,11 +151,11 @@ public class Revista {
         public int generarID() {
             try {
                 System.out.println("Llego");
-                stmt.executeQuery("SELECT COUNT(*) FROM Revista AS NewId");
+                stmt.executeQuery("SELECT COUNT(*) FROM Revista");
                 ResultSet rsiIDRevista = stmt.getResultSet();
                 
                 if ( rsiIDRevista.next() ) {
-                    return rsiIDRevista.getInt("NewId") + 1;
+                    return rsiIDRevista.getInt("COUNT(*)") + 1;
                 }
             } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
             

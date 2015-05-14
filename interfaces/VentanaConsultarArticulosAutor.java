@@ -76,7 +76,7 @@
 				out.println("<td align=\"center\">");
 				out.println("<table width=\"99%\" border=\"4\">");
 				out.println("<td align=\"center\">");
-				out.println(vArticulos.at(iI).getsNombre() + " | " + vArticulos.at(iI).getsResumen());
+				out.println(vArticulos.get(iI).getsNombre() + " | " + vArticulos.get(iI).getsResumen());
 				out.println("</td> ");
 				out.println("</table> ");
 				out.println("</td>");

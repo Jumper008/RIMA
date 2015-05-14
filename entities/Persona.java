@@ -189,22 +189,27 @@ public class Persona {
 	public boolean corroborarInformacion( String sCorreo, String sContrasena) {
 		try{
 					System.out.println("Llego");
-					stmt.executeQuery ("SELECT * FROM Persona WHERE sCorreo = " + sCorreo + " AND sContrasena = " + sContrasena);
+					stmt.executeQuery ("SELECT * FROM Persona WHERE sCorreo = '" + sCorreo + "' AND sContrasena = '" + sContrasena + "'");
 					ResultSet rs = stmt.getResultSet();
 					
 					if (rs.next()) {
+						System.out.println("Usuario localizado.");
 						return true;
 					}
 					else {
+						System.out.println("Usuario no encontrado.");
 						return false;
 					}
-		   } catch (SQLException e) {return false;}
+		   } catch (SQLException e) {
+			   System.out.println("Error: " + e);
+			   return false;
+			}
 	}
 	
 	public boolean desactivarPersona( int iIDPersona ) {
 		try {
-			System.out.println("Llego");
-			String s = "UPDATE Persona SET bActivo = " + false + " WHERE iIDPersona = " + iIDPersona;
+			System.out.println("Se desactivara persona.");
+			String s = "UPDATE Persona SET bActivo = " + "false" + " WHERE iIDPersona = " + iIDPersona;
 			stmt.executeUpdate(s);
 		     } catch (SQLException e) {System.out.println ("Cannot execute desactivarPersona()" + e);}
 		return true;
@@ -222,11 +227,11 @@ public class Persona {
         public int generarID() {
             try {
 				System.out.println("Llego");
-                stmt.executeQuery("SELECT COUNT(*) FROM Persona AS NewId");
+                stmt.executeQuery("SELECT COUNT(*) FROM Persona");
                 ResultSet rsiIDPersona = stmt.getResultSet();
                 
                 if ( rsiIDPersona.next() ) {
-                    return rsiIDPersona.getInt("NewId") + 1;
+                    return rsiIDPersona.getInt("COUNT(*)") + 1;
                 }
             } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }
             

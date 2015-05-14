@@ -73,7 +73,7 @@
 		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sResumen = thisRequest.getParameter("Resumen").trim();
 	     boolean agregado = pa.agregarArticulo(sNombre, sResumen);
-	      if (agregar) {
+	      if (agregado) {
 		 	out.println("<p>El Articulo ha sido agregado exitosamente.<p>");
 		 }
 		 else{

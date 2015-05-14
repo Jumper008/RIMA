@@ -39,7 +39,7 @@
 	     String operacion = request.getParameter("operacion");
 	    
 	     if(operacion == null) { // El menú nos envia un parametro para indicar el inicio de una transaccion
-	         iniciarPago();  
+	         iniciarPagoSubscrion();  
 	     }
 	    
 	     else if(operacion.equals("subscripcion")) {

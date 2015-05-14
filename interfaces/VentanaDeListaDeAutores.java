@@ -50,7 +50,7 @@
 				out.println("<td align=\"center\">");
 				out.println("<table width=\"99%\" border=\"4\">");
 				out.println("<td align=\"center\">");
-				out.println(vAutor.at(iI).getsNombre() + " | " + vAutor.at(iI).getsCorreo());
+				out.println(vAutor.get(iI).getsNombre() + " | " + vAutor.get(iI).getsCorreo());
 				out.println("</td> ");
 				out.println("</table> ");
 				out.println("</td>");

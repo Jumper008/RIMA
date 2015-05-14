@@ -32,7 +32,7 @@
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
 	     out.println("<h3>Dar de baja un administrador</h3>");
-    
+          
 	     String operacion = request.getParameter("operacion");
 	    
 	     if(operacion == null) { // El menú nos envia un parametro para indicar el inicio de una transaccion
@@ -40,6 +40,7 @@
 	     }
 
 	     else if(operacion.equals("validar")) {
+              System.out.println("Validando existencia de administrador");
 	         validarAdministrador();
 	     }
 
@@ -56,7 +57,7 @@
 	     out.println("<p>Indique la matrícula del Administrador a dar de baja</p>");
 	     out.println("<form method=\"GET\" action=\"baja_admin\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"validar\"/>");
-	     out.println("<p> Matrícula  <input type=\"text\" name=\"Matrícula\" size=\"8\"></p>");;
+	     out.println("<p> Matrícula  <input type=\"text\" name=\"Matricula\" size=\"8\"></p>");;
 	     out.println("<p><input type=\"submit\" value=\"Dar de baja\"></p>");
 	     out.println("</form>");
 	 
@@ -71,7 +72,8 @@
   	 public void validarAdministrador() {
 	    ba = new bajaAdministrador();
 	    //La funcion trim() elimina espacios antes y despues del valor
-	    iIDAdministrador = Integer.parseInt(thisRequest.getParameter("Matrícula").trim());
+	    iIDAdministrador = Integer.parseInt(thisRequest.getParameter("Matricula").trim());
+         System.out.println(iIDAdministrador);
 	    boolean existe = ba.validarAdministrador(iIDAdministrador);
 	    if (existe) {
 	        eliminarAdministrador();

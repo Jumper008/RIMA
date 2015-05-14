@@ -50,7 +50,7 @@
 				out.println("<td align=\"center\">");
 				out.println("<table width=\"99%\" border=\"4\">");
 				out.println("<td align=\"center\">");
-				out.println(vCliente.at(iI).getsNombre() + " | " + vCliente.at(iI).getsCorreo());
+				out.println(vCliente.get(iI).getsNombre() + " | " + vCliente.get(iI).getsCorreo());
 				out.println("</td> ");
 				out.println("</table> ");
 				out.println("</td>");

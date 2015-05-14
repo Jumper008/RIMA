@@ -50,7 +50,7 @@
 				out.println("<td align=\"center\">");
 				out.println("<table width=\"99%\" border=\"4\">");
 				out.println("<td align=\"center\">");
-				out.println(vRevistas.at(iI).getdFechaPublicacion() + " | " + vRevistas.at(iI).getiNumPaginas());
+				out.println(vRevistas.get(iI).getdFechaPublicacion() + " | " + vRevistas.get(iI).getiNumPaginas());
 				out.println("</td> ");
 				out.println("</table> ");
 				out.println("</td>");
