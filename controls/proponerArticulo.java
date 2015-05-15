@@ -17,13 +17,13 @@
 		 arArticulo = new Articulo();
 	 }
 	 
-	 public boolean agregarArticulo(String sNombre, String sResumen) {
+	 public boolean agregarArticulo(String sNombre, String sResumen, int iIDAutor) {
 		 arArticulo.setiIDArticulo(arArticulo.generarID());
 		 arArticulo.setsNombre(sNombre);
 		 arArticulo.setsResumen(sResumen);
 		 arArticulo.setbPublicado(false);
 		 arArticulo.setiContador(0);
 		 arArticulo.setiIDRevista(-1);
-		 return arArticulo.agregarArticulo(arArticulo);
+		 return arArticulo.agregarArticulo(arArticulo, iIDAutor);
 	 }
  }

@@ -121,7 +121,7 @@ public class Articulo {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
             System.out.println("Llego");
-		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor + "AND bPublicado = " + true );
+		     stmt.executeQuery ("SELECT * FROM Articulo A, AutorArticulo aa WHERE A.iIDArticulo=aa.iIDArticulo AND iIDAutor = " + iIDAutor + "AND bPublicado = true" );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
     			int _iIDArticulo = rs.getInt("iIDArticulo");
@@ -135,7 +135,7 @@ public class Articulo {
             }
 		  } catch (SQLException e) { 
               System.out.println ("Cannot execute consultarArticulosAutor()"+ e);
-              return null;}
+          }
 		  return vArticulos;
 	}
 
@@ -211,7 +211,7 @@ public class Articulo {
             } catch (SQLException e) {System.out.println ("Cannot execute aumentarVotos()" + e); return false; }
 	}
 
-	public boolean agregarArticulo( Articulo arArticulo ) {
+	public boolean agregarArticulo( Articulo arArticulo, int iIDAutor ) {
         int iIDArticulo = arArticulo.iIDArticulo;
         String sNombre = arArticulo.sNombre;
         String sResumen = arArticulo.sResumen;
@@ -228,6 +228,9 @@ public class Articulo {
                     + iContador + ", " 
                     + iIDRevista + " )";
             stmt.executeUpdate(s);
+
+            String query2 = "INSERT INTO AutorArticulo VALUES (" + iIDAutor + ", " + iIDArticulo + ")";
+            stmt.executeUpdate(query2);
             return true;
         } catch (SQLException e) {System.out.println ("Cannot execute agregaraArticulo()" + e); return false; }
 	}

@@ -54,8 +54,9 @@
 	     out.println("<p>Complete los valores indicados.</p>");
 	     out.println("<form method=\"GET\" action=\"envio_de_articulo\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
+	     out.println("<p> Id del Autor  <input type=\"text\" name=\"idAutor\" size=\"20\"></p>");
 	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
-		 out.println("<p> Resumen  <textarea name=\"Resumen\" rows=\"4\" cols=\"50\"></textarea></p>");
+		 	 out.println("<p> Resumen  <textarea name=\"Resumen\" rows=\"4\" cols=\"50\"></textarea></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
 	     out.println("</form>");
 	 
@@ -75,8 +76,10 @@
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sResumen = thisRequest.getParameter("Resumen").trim();
-	     boolean agregado = pa.agregarArticulo(sNombre, sResumen);
-	      if (agregado) {
+		 int iID = Integer.parseInt(thisRequest.getParameter("idAutor").trim());
+	   boolean agregado = pa.agregarArticulo(sNombre, sResumen, iID);
+	   
+	   if (agregado) {
 		 	out.println("<p>El Articulo ha sido agregado exitosamente.<p>");
 		 }
 		 else{

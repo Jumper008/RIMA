@@ -67,7 +67,7 @@
 	  	iIDPersona = Integer.parseInt(thisRequest.getParameter("IDPersona").trim());
 
 		vArticulos = mlapa.obtenerListaArticulosPublicadosAutor(iIDPersona);
-		if (vArticulos.size() == 0)
+		if (vArticulos == null || vArticulos.size() == 0)
 			out.println("<h3>No hay articulos de este autor.</h3>");
 
 		else {
