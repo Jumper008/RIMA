@@ -218,7 +218,6 @@ public class Cliente extends Persona{
             } else {
                 sDay = Integer.toString(iday);
             }
-            
             String sDateIn = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
             
             Date dFechaVencimiento = clCliente.dFechaIngreso;

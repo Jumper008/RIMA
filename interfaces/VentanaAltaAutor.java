@@ -72,6 +72,7 @@
 	 }
   
 	 public void agregarAutor() {
+           System.out.println("Inicia preparacion de datos para agregar autor.");
 	     aa = new altaAutor();
 		 Calendar cal = Calendar.getInstance();
 		 Date dFechaIngreso = cal.getTime();
@@ -79,7 +80,9 @@
 		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
-		 
+           sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
+	    
+         System.out.println("Preparando fecha de nacimiento.");
          int day = Integer.parseInt(sFechaNacimiento.substring(8,10));
          int month = Integer.parseInt(sFechaNacimiento.substring(5,7));
          int year = Integer.parseInt(sFechaNacimiento.substring(0,4));
@@ -87,12 +90,15 @@
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
+         System.out.println("Lista la fecha de nacimiento");
          
          long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
          long lano = 31536000000l;
          lFechaVencimiento = lFechaVencimiento + lano;
          Date dFechaVencimiento = new Date(lFechaVencimiento);
+         System.out.println("Se comienza a agregar al autor.");
 	     aa.agregarAutor(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento);
+          System.out.println("Se ha agregado el autor exitosamente.");
 		 desplegarFeedback();
 	 }
 

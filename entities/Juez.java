@@ -66,19 +66,24 @@ public class Juez extends Autor{
 		try{
                     if( corroborarExistencia(iIDJuez) ) { //Si ya existía, entonces era un autor, por lo que hay que desactivarlo como autor y activarlo como Juez
                         // Entrada en la tabla Juez
-						System.out.println("Llego");
+						System.out.println("Existe persona, agregando juez con ID: "+ Integer.toString(iIDJuez) + ".");
                         String sQueryJuez = "INSERT INTO Juez"
 							+ "(iIDPersona, bJuezActivo) VALUES ("
-							+ iIDJuez + " , '" 
-							+ true + "' )";
+							+ iIDJuez + " , " 
+							+ "true" + " )";
                         
                         // Actualización en la tabla Persona (el autor pasa de ser autor a juez)
-                        String sQueryPersona = "UPDATE SET "
-                                + "bActivo = " + false
+                        String sQueryPersona = "UPDATE Persona SET "
+                                + "bActivo = " + "false"
                                 + " WHERE iIDPersona = " + iIDJuez;
                         
-                        stmt.executeUpdate(sQueryJuez);
+                        System.out.println("Comenzando queries.");
+						System.out.println(sQueryJuez);
+						System.out.println(sQueryPersona);
+						stmt.executeUpdate(sQueryJuez);
+						System.out.println("Juez agregado exitosamente.");
                         stmt.executeUpdate(sQueryPersona);
+						System.out.println("Persona actualizada exitosamente.");
                         
                         return true;
                     }
@@ -139,7 +144,7 @@ public class Juez extends Autor{
                         
                         // Actualización en la tabla Juez
                         String sQueryJuez = "UPDATE Persona SET "
-                                + "bJuezActivo = " + juJuez.bJuezActivo + " "
+                                + "bActivo = " + bActivo + " "
                                 + " WHERE iIDPersona = " + iIDJuez;
                         
                         stmt.executeUpdate(sQueryPersona);
@@ -212,5 +217,9 @@ public class Juez extends Autor{
 		} catch (SQLException e) {System.out.println ("Cannot execute consultarInformacion()" + e);}
 		
                 return juJuez;
+	}
+	
+	public void setiIDPersona( int iID ) {
+	        iIDPersona = iID;
 	}
 }

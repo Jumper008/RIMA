@@ -136,30 +136,62 @@ public class Autor extends Persona{
 		String sNombre = autAutor.sNombre;
 		String sCorreo = autAutor.sCorreo;
         Calendar cal = Calendar.getInstance();
-		Date dFechaNacimiento = autAutor.dFechaNacimiento;
-		cal.setTime(dFechaNacimiento);
 		
-                int iday = cal.get(Calendar.DATE);
-		int imonth = cal.get(Calendar.MONTH);
-		int iyear = cal.get(Calendar.YEAR);
-		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+        Date dFechaNacimiento = autAutor.dFechaNacimiento;
+            cal.setTime(dFechaNacimiento);
+            int iday = cal.get(Calendar.DATE);
+            int imonth = cal.get(Calendar.MONTH);
+            int iyear = cal.get(Calendar.YEAR);
+            String sMonth;
+            String sDay;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
                 
-                String sContrasena = autAutor.sContrasena;
+            String sContrasena = autAutor.sContrasena;
 		
-                Date dFechaIngreso = autAutor.dFechaIngreso;
-		cal.setTime(dFechaIngreso);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		
-                Date dFechaVencimiento = autAutor.dFechaVencimiento;
-                cal.setTime(dFechaVencimiento);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-
+            Date dFechaIngreso = autAutor.dFechaIngreso;
+            cal.setTime(dFechaIngreso);
+            iday = cal.get(Calendar.DATE);
+            imonth = cal.get(Calendar.MONTH);
+            iyear = cal.get(Calendar.YEAR);
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDateIn = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+            
+            Date dFechaVencimiento = autAutor.dFechaIngreso;
+            cal.setTime(dFechaVencimiento);
+            iday = cal.get(Calendar.DATE);
+            imonth = cal.get(Calendar.MONTH);
+            iyear = cal.get(Calendar.YEAR) + 1;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDateVen = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+            
                 boolean bActivo = autAutor.bActivo;
                 String sTipo = "Autor";
                 
@@ -190,8 +222,9 @@ public class Autor extends Persona{
                              + sTipo+  "')";
                        
                             stmt.executeUpdate(sQueryPersona);
-
+                            System.out.println("Se agrego persona");
                             stmt.executeUpdate(sQueryAutor);
+                            System.out.println("Se agrego autor");
                                 
 				return true;
 			}

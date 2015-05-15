@@ -28,42 +28,62 @@ public class Administrador extends Persona{
 		String sNombre = admAdministrador.sNombre;
 		String sCorreo = admAdministrador.sCorreo;
                 
-                Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
+        
 		Date dFechaNacimiento = admAdministrador.dFechaNacimiento;
-		cal.setTime(dFechaNacimiento);
+            cal.setTime(dFechaNacimiento);
+            int iday = cal.get(Calendar.DATE);
+            int imonth = cal.get(Calendar.MONTH);
+            int iyear = cal.get(Calendar.YEAR);
+            String sMonth;
+            String sDay;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
 		
-                int iday = cal.get(Calendar.DATE);
-		int imonth = cal.get(Calendar.MONTH);
-		int iyear = cal.get(Calendar.YEAR);
-        String sMonth;
-        String sDay;
-        if (imonth < 10) {
-            sMonth = '0' + Integer.toString(imonth);
-        } else {
-            sMonth = Integer.toString(imonth);
-        }
-        if (iday <10) {
-            sDay = '0' + Integer.toString(imonth);
-        } else {
-            sDay = Integer.toString(imonth);
-        }
-		String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+        String sContrasena = admAdministrador.sContrasena;
 		
-                String sContrasena = admAdministrador.sContrasena;
-		
-                Date dFechaIngreso = admAdministrador.dFechaIngreso;
-		cal.setTime(dFechaIngreso);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		
-                Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
-		cal.setTime(dFechaVencimiento);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+        Date dFechaIngreso = admAdministrador.dFechaIngreso;
+            cal.setTime(dFechaIngreso);
+            iday = cal.get(Calendar.DATE);
+            imonth = cal.get(Calendar.MONTH);
+            iyear = cal.get(Calendar.YEAR);
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDateIn = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+            
+            Date dFechaVencimiento = admAdministrador.dFechaIngreso;
+            cal.setTime(dFechaVencimiento);
+            iday = cal.get(Calendar.DATE);
+            imonth = cal.get(Calendar.MONTH);
+            iyear = cal.get(Calendar.YEAR) + 1;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDateVen = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
                 
                 boolean bActivo = admAdministrador.bActivo;
                 String sTipo = "Administrador";

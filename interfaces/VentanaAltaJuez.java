@@ -93,7 +93,8 @@
         // long lano = 31536000000l;
         // lFechaVencimiento = lFechaVencimiento + lano;
         // Date dFechaVencimiento = new Date(lFechaVencimiento);
-	     aj.agregarJuez(iIDPersona, true);
+	     System.out.println("Se trabajara con el ID: " + Integer.toString(iIDPersona));
+		 aj.agregarJuez(iIDPersona, true);
 		 desplegarFeedback();
 	 }
 

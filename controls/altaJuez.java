@@ -21,7 +21,9 @@
 	 public void agregarJuez(int iIDPersona, boolean bActivo) {
 
 		//int iIDPersona = juJuez.generarID();
+		System.out.println("Dando valor al id: " + Integer.toString(iIDJuez));
 		 juJuez.setiIDPersona(iIDPersona);
+		 System.out.println("Dando valor al id: " + Integer.toString(juJuez.iIDPersona));
 		 //juJuez.setsNombre(sNombre);
 		 //juJuez.setsCorreo(sCorreo);
 		// juJuez.setsContrasena(sContrasena);
