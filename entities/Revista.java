@@ -131,12 +131,13 @@ public class Revista {
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
 		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+        String sNombre = reRevista.getsNombre();
 		int iNumPaginas = reRevista.iNumPaginas;
 		boolean bPublicada = reRevista.bPublicada;
 		try {
             System.out.println("Llego");
-			String s = "INSERT INTO Revista (iIDRevista, sFechaPublicacion, iNumPaginas, bPublicada)" +
-			 " VALUES ("+ iIDRevista + " , '" + sDate + " , '"
+			String s = "INSERT INTO Revista (iIDRevista, sNombre, sFechaPublicacion, iNumPaginas, bPublicada)" +
+			 " VALUES ("+ iIDRevista + " , '" + sNombre + "', '" + sDate + "', "
 			 + iNumPaginas + ", " + bPublicada + " )"; 
 			stmt.executeUpdate(s);
 			return true;

@@ -18,7 +18,7 @@
 		 reRevista = new Revista();
 	 }
 	 
-	 public boolean agregarRevista(String dFechaPublicacion, int iNumPaginas, boolean bPublicada) {
+	 public boolean agregarRevista(String dFechaPublicacion, int iNumPaginas, String nombre, boolean bPublicada) {
 
 	 	int iIDRevista = reRevista.generarID();
 	 	
@@ -26,6 +26,7 @@
 		reRevista.setdFechaPublicacion(dFechaPublicacion);
 		reRevista.setiNumPaginas(iNumPaginas);
 		reRevista.setbPublicada(bPublicada);
+		reRevista.setsNombre(nombre);
 		return reRevista.agregarRevista(reRevista);
 	}			
  }

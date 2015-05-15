@@ -54,6 +54,7 @@
 	     out.println("<form method=\"GET\" action=\"publicacion\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
 	     out.println("<p> Numero Paginas  <input type=\"int\" name=\"NumPaginas\" size=\"34\"></p>");
+       out.println("<p> Nombre  <input  name=\"Nombre\" size=\"34\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
 	     out.println("</form>");
 	 
@@ -86,7 +87,8 @@
 		String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 iNumPaginas = Integer.parseInt(thisRequest.getParameter("NumPaginas").trim());
-	   if (aa.agregarRevista(sDate, iNumPaginas, true)) {
+     String nombre = thisRequest.getParameter("Nombre").trim();
+	   if (aa.agregarRevista(sDate, iNumPaginas, nombre, true)) {
       desplegarFeedback();
      } else {
       out.println("<p>Ha ocurrido un eror</p>");
