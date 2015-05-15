@@ -74,7 +74,7 @@
 	 }
   
 	 public void editarAdministrador() {
-	     ea = new editarAdministrador();
+	   ea = new editarAdministrador();
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 sNombre = thisRequest.getParameter("Nombre");
@@ -91,8 +91,12 @@
          Date dFechaNacimiento = cal.getTime();
 	     boolean existe = ea.validarAdministrador(iIDAdministrador);
 	     if (existe) {
-	     	ea.updateAdministrador(iIDAdministrador, sNombre, sCorreo, sContrasena, dFechaNacimiento);
-		 	desplegarFeedback();
+
+	     	if (ea.updateAdministrador(iIDAdministrador, sNombre, sCorreo, sContrasena, dFechaNacimiento)) {
+          desplegarFeedback();
+        } else {
+          out.println("<p>Ocurrio un error.</p>");
+        }
 	     }
 	     else
 	     {

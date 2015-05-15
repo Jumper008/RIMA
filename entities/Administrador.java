@@ -125,57 +125,37 @@ public class Administrador extends Persona{
 		return false;
 	}
 
-	public boolean editarAdministrador( Administrador admAdministrador ) {
-            try {
-                Calendar cal = Calendar.getInstance();
-                int iIDAdministrador = admAdministrador.iIDPersona;
-                String sNombre = admAdministrador.sNombre;
-                String sCorreo = admAdministrador.sCorreo;
-                
-                Date dFechaNacimiento = admAdministrador.dFechaNacimiento;
-                cal.setTime(dFechaNacimiento);
-                int iday = cal.get(Calendar.DATE);
-                int imonth = cal.get(Calendar.MONTH);
-                int iyear = cal.get(Calendar.YEAR);
-                String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-                
-                String sContrasena = admAdministrador.sContrasena;
-                
-                // No se pueden modificar fechas de ingreso, de vencimiento ni bActivo para administrador
-//                Date dFechaIngreso = admAdministrador.dFechaIngreso;
-//                cal.setTime(dFechaIngreso);
-//                iday = cal.get(Calendar.DATE);
-//                imonth = cal.get(Calendar.MONTH);
-//                iyear = cal.get(Calendar.YEAR);
-//                String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-//                
-//                Date dFechaVencimiento = admAdministrador.dFechaVencimiento;
-//                cal.setTime(dFechaVencimiento);
-//                iday = cal.get(Calendar.DATE);
-//                imonth = cal.get(Calendar.MONTH);
-//                iyear = cal.get(Calendar.YEAR);
-//                String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-//                
-//                boolean bActivo = admAdministrador.bActivo;
-                
-                // Actualización en tabla Persona
-                String sQueryPersona;
-                System.out.println("Llego");
-                sQueryPersona = "UPDATE Persona SET "
-                        + "sNombre = '" + sNombre + "',"
-                        + "sCorreo = '" + sCorreo + "',"
-                        + "dFechaNacimiento = '" + sDate + "',"
-                        + "sContrasena = '" + sContrasena + "' "
-//                        + "dFechaIngreso = " + sDateIn + ","
-//                        + "dFechaVencimiento = " + sDateVen + ", "
-//                        + "bActivo = " + bActivo + " "
-                        + " WHERE iIDPersona = " + iIDAdministrador;
-                stmt.executeUpdate(sQueryPersona);
-                
-                // Actualización en tabla Administrador
-                    // (no es necesaria)
-            } catch (SQLException e) {System.out.println ("Cannot execute editarAutor()" + e);}
-            return true;	
+	public boolean editarAdministrador( Administrador admAdministrador, int iIDAdministrador ) {
+        try {
+            Calendar cal = Calendar.getInstance();
+            String sNombre = admAdministrador.sNombre;
+            String sCorreo = admAdministrador.sCorreo;
+            
+            Date dFechaNacimiento = admAdministrador.dFechaNacimiento;
+            cal.setTime(dFechaNacimiento);
+            int iday = cal.get(Calendar.DATE);
+            int imonth = cal.get(Calendar.MONTH);
+            int iyear = cal.get(Calendar.YEAR);
+            String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+            
+            String sContrasena = admAdministrador.sContrasena;
+            
+            // No se pueden modificar fechas de ingreso, de vencimiento ni bActivo para administrador
+            // Actualización en tabla Persona
+            String sQueryPersona;
+            System.out.println("Llego");
+            sQueryPersona = "UPDATE Persona SET "
+                    + "sNombre = '" + sNombre + "', "
+                    + "sCorreo = '" + sCorreo + "', "
+                    + "sFechaNacimiento = '" + sDate + "', "
+                    + "sContrasena = '" + sContrasena + "' "
+                    + " WHERE iIDPersona = " + iIDAdministrador;
+            stmt.executeUpdate(sQueryPersona);
+            return true;
+        } catch (SQLException e) {
+            System.out.println ("Cannot execute editarAutor()" + e);
+            return false;
+        }
 	}
 	
 	public Administrador consultarInformacion( int iIDPersona ) {

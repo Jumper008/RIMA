@@ -24,14 +24,13 @@
      }
 
      //El iIDAdministrador no fue información metida por el usuario
-	 public void updateAdministrador(int iIDAdministrador, String sNombre, String sCorreo, String sContrasena, 
+	 public boolean updateAdministrador(int iIDAdministrador, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento) {
-	 	 adAdministrador.setiIDPersona(iIDAdministrador);
 		 adAdministrador.setsNombre(sNombre);
 		 adAdministrador.setsCorreo(sCorreo);
 		 adAdministrador.setsContrasena(sContrasena);
 		 adAdministrador.setdFechaNacimiento(dFechaNacimiento);
 
-		 adAdministrador.editarAdministrador(adAdministrador);
+		 return adAdministrador.editarAdministrador(adAdministrador, iIDAdministrador);
 	 }
  }
