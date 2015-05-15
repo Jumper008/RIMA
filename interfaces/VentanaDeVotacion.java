@@ -68,6 +68,7 @@
 		 boolean existe = vo.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	vo.votarArticulo(iIDArticulo);
+        out.println("<p>Su voto ha sido registrado</p>");
 	     }
 	     else
 	     {
