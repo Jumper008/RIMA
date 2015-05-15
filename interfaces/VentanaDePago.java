@@ -93,7 +93,11 @@
 		 iAnios = Integer.parseInt(thisRequest.getParameter("Anios").trim());
 		 boolean existe = rp.validarCliente(iIDPersona);
 	     if (existe) {
-	     	rp.realizarPagoSuscripcion(iIDPersona, sCuentaBancaria, iAnios);
+	     	if (rp.realizarPagoSuscripcion(iIDPersona, sCuentaBancaria, iAnios)) {
+					out.println("<p>Pago realizado con exito</p>");
+				} else {
+					out.println("<p>Hubo un error al procesar su pago</p>");
+				}
 	     }
 	     else
 	     {

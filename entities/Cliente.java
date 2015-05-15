@@ -35,7 +35,47 @@ public class Cliente extends Persona{
     }
 
     public boolean realizarPagoSuscripcion( int iIDPersona, String sCuentaBancaria, int iAnos ) {
-        return true;
+        Calendar cal = Calendar.getInstance();
+        try {
+            String q = "SELECT sFechaVencimiento FROM Persona WHERE iIDPersona = " + iIDPersona;
+
+            stmt.executeQuery(q);
+            ResultSet rs = stmt.getResultSet();
+            
+            if(rs.next()) {
+                String _strDate = rs.getString("sFechaVencimiento");
+
+                int day = Integer.parseInt(_strDate.substring(8,10));
+                int month = Integer.parseInt(_strDate.substring(5,7));
+                int year = Integer.parseInt(_strDate.substring(0,4)) ;
+                cal.set(Calendar.DATE, day);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.YEAR, year);
+
+                year += iAnos;
+                String sMonth;
+                String sDay;
+                if (month < 10) {
+                    sMonth = '0' + Integer.toString(month);
+                } else {
+                    sMonth = Integer.toString(month);;
+                }
+                if (day < 10) {
+                    sDay = '0' + Integer.toString(day);
+                } else {
+                    sDay = Integer.toString(day);
+                }
+                String sDate = Integer.toString(year) + "/" + sMonth + "/" + sDay;
+
+                String qUpdate = "UPDATE Cliente SET sFechaVencimiento = '" + sDate + "' WHERE iIDPersona = " + iIDPersona;
+                stmt.executeUpdate(qUpdate);
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println ("Cannot execute consultarClientesRenovar()" + e);
+            return false;
+        }
     }
 
     public boolean realizarPagoRenovacion( int iIDPersona, int iAnos ) {  
