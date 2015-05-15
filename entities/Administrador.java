@@ -35,7 +35,19 @@ public class Administrador extends Persona{
                 int iday = cal.get(Calendar.DATE);
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
-		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+        String sMonth;
+        String sDay;
+        if (imonth < 10) {
+            sMonth = '0' + Integer.toString(imonth);
+        } else {
+            sMonth = Integer.toString(imonth);
+        }
+        if (iday <10) {
+            sDay = '0' + Integer.toString(imonth);
+        } else {
+            sDay = Integer.toString(imonth);
+        }
+		String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
 		
                 String sContrasena = admAdministrador.sContrasena;
 		
@@ -59,7 +71,7 @@ public class Administrador extends Persona{
 		try{
 			if(!corroborarExistencia(iIDAdministrador)){
                             // Agregar entrada en Persona
-                            System.out.println("Llego");
+                            //System.out.println("Llego");
                             String sQueryPersona = "INSERT INTO Persona "
                                     + "(iIDPersona, sNombre, sCorreo, "
                                     + "sContrasena, sFechaNacimiento, "
@@ -82,7 +94,7 @@ public class Administrador extends Persona{
                                     + iIDAdministrador + ")";
                             
                             stmt.executeUpdate(sQueryPersona);
-                            System.out.println("Se inserto la persoa en la base de datos");
+                            System.out.println("Se inserto la persona en la base de datos");
                             stmt.executeUpdate(sQueryAdministrador);
                             return true;
 			}

@@ -35,40 +35,42 @@ public class Juez extends Autor{
     }
 
 	public boolean agregarJuezByAdmin( Juez juJuez ) {
-		Calendar cal = Calendar.getInstance();
+		
 		int iIDJuez = juJuez.iIDPersona;
-		String sNombre = juJuez.sNombre;
-		String sCorreo = juJuez.sCorreo;
+		//String sNombre = juJuez.sNombre;
+		//String sCorreo = juJuez.sCorreo;
+		//Calendar cal = Calendar.getInstance();
+        //        Date dFechaNacimiento = juJuez.dFechaNacimiento;
+		//cal.setTime(dFechaNacimiento);
+		//int iday = cal.get(Calendar.DATE);
+		//int imonth = cal.get(Calendar.MONTH);
+		//int iyear = cal.get(Calendar.YEAR);
+		//String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 		
-                Date dFechaNacimiento = juJuez.dFechaNacimiento;
-		cal.setTime(dFechaNacimiento);
-		int iday = cal.get(Calendar.DATE);
-		int imonth = cal.get(Calendar.MONTH);
-		int iyear = cal.get(Calendar.YEAR);
-		String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+        //        String sContrasena = juJuez.sContrasena;
 		
-                String sContrasena = juJuez.sContrasena;
+       //         Date dFechaIngreso = juJuez.dFechaIngreso;
+		//cal.setTime(dFechaIngreso);
+		//iday = cal.get(Calendar.DATE);
+		//imonth = cal.get(Calendar.MONTH);
+		//iyear = cal.get(Calendar.YEAR);
+		//String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 		
-                Date dFechaIngreso = juJuez.dFechaIngreso;
-		cal.setTime(dFechaIngreso);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
-		
-                Date dFechaVencimiento = juJuez.dFechaVencimiento;
-		cal.setTime(dFechaVencimiento);
-		iday = cal.get(Calendar.DATE);
-		imonth = cal.get(Calendar.MONTH);
-		iyear = cal.get(Calendar.YEAR);
-		String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+       //         Date dFechaVencimiento = juJuez.dFechaVencimiento;
+		//cal.setTime(dFechaVencimiento);
+		//iday = cal.get(Calendar.DATE);
+		//imonth = cal.get(Calendar.MONTH);
+		//iyear = cal.get(Calendar.YEAR);
+		//String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
 
 		try{
                     if( corroborarExistencia(iIDJuez) ) { //Si ya existía, entonces era un autor, por lo que hay que desactivarlo como autor y activarlo como Juez
                         // Entrada en la tabla Juez
 						System.out.println("Llego");
-                        String sQueryJuez = "INSERT INTO Juez (iIDJuez, bJuezActivo)"+
-                                "VALUES ("+ iIDJuez + " , " + true + ")";
+                        String sQueryJuez = "INSERT INTO Juez"
+							+ "(iIDPersona, bJuezActivo) VALUES ("
+							+ iIDJuez + " , '" 
+							+ true + "' )";
                         
                         // Actualización en la tabla Persona (el autor pasa de ser autor a juez)
                         String sQueryPersona = "UPDATE SET "
@@ -81,7 +83,7 @@ public class Juez extends Autor{
                         return true;
                     }
                     else {  //Si no existía, no se agrega a la tabla ya que solo los autores pueden convertirse en juez
-                        return false;
+                    //    return false;
                     }
 			
 		} catch (SQLException e) {System.out.println ("Cannot execute agregarJuez()"+ e);}

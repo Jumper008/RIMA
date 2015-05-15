@@ -58,7 +58,7 @@
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
 	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
 		 out.println("<p> Correo  <input type=\"text\" name=\"Correo\" size=\"20\"></p>");
-		 out.println("<p> Contrasena  <input type=\"text\" name=\"Contrasena\" size=\"15\"></p>");
+		 out.println("<p> Contrasena  <input type=\"password\" name=\"Contrasena\" size=\"15\"></p>");
 		 out.println("<p> Fecha de Nacimiento (aaaa/mm/dd) <input type=\"text\" name=\"FechaNacimiento\" size=\"10\"></p>");
 		 out.println("<p> Cuenta Bancaria <input type=\"text\" name=\"CuentaBancaria\" size=\"18\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
@@ -77,22 +77,25 @@
 		 Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 Date dFechaIngreso = cal.getTime();
-		 sNombre = thisRequest.getParameter("Nombre");
+		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
 		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
-		 sCuentaBancaria = thisRequest.getParameter("CuentaBancaria)").trim();
-		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
-         int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
-         int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
+		 sCuentaBancaria = thisRequest.getParameter("CuentaBancaria").trim();
+		 
+         int day = Integer.parseInt(sFechaNacimiento.substring(8,10));
+         int month = Integer.parseInt(sFechaNacimiento.substring(5,7));
+         int year = Integer.parseInt(sFechaNacimiento.substring(0,4));
          cal.set(Calendar.DATE, day);
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
+         
          long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
          long lano = 31536000000l;
          lFechaVencimiento = lFechaVencimiento + lano;
          Date dFechaVencimiento = new Date(lFechaVencimiento);
+		 System.out.println("Se llamara al control agregar cliente");
 	     ac.agregarCliente(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, true, sCuentaBancaria);
 		 desplegarFeedback();
 	 }

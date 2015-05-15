@@ -79,14 +79,15 @@
 		 sNombre = thisRequest.getParameter("Nombre").trim();
 		 sCorreo = thisRequest.getParameter("Correo").trim();
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
-		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
-		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
-         int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
-         int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
+		 
+         int day = Integer.parseInt(sFechaNacimiento.substring(8,10));
+         int month = Integer.parseInt(sFechaNacimiento.substring(5,7));
+         int year = Integer.parseInt(sFechaNacimiento.substring(0,4));
          cal.set(Calendar.DATE, day);
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
          Date dFechaNacimiento = cal.getTime();
+         
          long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
          long lano = 31536000000l;
          lFechaVencimiento = lFechaVencimiento + lano;

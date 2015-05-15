@@ -133,7 +133,9 @@ public class Articulo {
     			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
     			vArticulos.add(arArticulo);
             }
-		  } catch (SQLException e) { return null;}
+		  } catch (SQLException e) { 
+              System.out.println ("Cannot execute consultarArticulosAutor()"+ e);
+              return null;}
 		  return vArticulos;
 	}
 
@@ -142,7 +144,8 @@ public class Articulo {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
             System.out.println("Llego");
-		     stmt.executeQuery ("SELECT * FROM Articulo, Autor WHERE iIDAutor = " + iIDAutor );
+		     stmt.executeQuery ("SELECT * FROM Articulo A, AutorArticulo aa WHERE A.iIDArticulo=aa.iIDArticulo" +
+                               " AND iIDAutor  = " + iIDAutor );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
     			int _iIDArticulo = rs.getInt("iIDArticulo");
@@ -154,7 +157,8 @@ public class Articulo {
     			Articulo arArticulo = new Articulo(_iIDArticulo,_strNombre,_strResumen,_bPublicado,_iContador, _iIDRevista);
     			vArticulos.add(arArticulo);
 		     }
-		  } catch (SQLException e) { return null;}
+		  } catch (SQLException e) { 
+              System.out.println ("Cannot execute consultarArticulosPropios()"+ e);}
 		  return vArticulos;
 	}
 
@@ -220,7 +224,7 @@ public class Articulo {
                     " VALUES ("+ iIDArticulo + " , '" 
                     + sNombre + "', '"
                     + sResumen + "', " 
-                    + bPublicado + ", '" 
+                    + bPublicado + ", " 
                     + iContador + ", " 
                     + iIDRevista + " )";
             stmt.executeUpdate(s);

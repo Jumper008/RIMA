@@ -135,7 +135,7 @@ public class Persona {
                 stmt.executeQuery ("SELECT * FROM Persona WHERE iIDPersona = " + iIDPersona);
                 ResultSet rs = stmt.getResultSet();
                 if(rs.next()) {
-                   String _strDate = rs.getString("dFechaIngreso");
+                   String _strDate = rs.getString("sFechaIngreso");
                    int day = Integer.parseInt(_strDate.substring(8,9));
                    int month = Integer.parseInt(_strDate.substring(5,6));
                    int year = Integer.parseInt(_strDate.substring(0,3));
@@ -226,11 +226,12 @@ public class Persona {
 	
         public int generarID() {
             try {
-				System.out.println("Llego");
+				System.out.println("generando ID");
                 stmt.executeQuery("SELECT COUNT(*) FROM Persona");
                 ResultSet rsiIDPersona = stmt.getResultSet();
                 
                 if ( rsiIDPersona.next() ) {
+					System.out.println("ID generado");
                     return rsiIDPersona.getInt("COUNT(*)") + 1;
                 }
             } catch (SQLException ex) { System.out.println("Cannot execute generarID()" + ex); }

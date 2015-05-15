@@ -20,6 +20,7 @@
 	 String sCorreo;
 	 String sContrasena;
 	 String sFechaNacimiento;
+	 int iIDPersona;
   
      public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {	
          thisResponse = response;
@@ -56,10 +57,10 @@
 	     out.println("<p>Complete los valores indicados.</p>");
 	     out.println("<form method=\"GET\" action=\"alta_juez\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
-	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
-		 out.println("<p> Correo  <input type=\"text\" name=\"Correo\" size=\"20\"></p>");
-		 out.println("<p> Contrasena  <input type=\"password\" name=\"Contrasena\" size=\"15\"></p>");
-		 out.println("<p> Fecha de Nacimiento (aaaa/mm/dd) <input type=\"text\" name=\"FechaNacimiento\" size=\"10\"></p>");
+	     out.println("<p> iIDPersona  <input type=\"integer\" name=\"iIDPersona\" size=\"8\"></p>");
+		 //out.println("<p> Correo  <input type=\"text\" name=\"Correo\" size=\"20\"></p>");
+		 //out.println("<p> Contrasena  <input type=\"password\" name=\"Contrasena\" size=\"15\"></p>");
+		 //out.println("<p> Fecha de Nacimiento (aaaa/mm/dd) <input type=\"text\" name=\"FechaNacimiento\" size=\"10\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
 	     out.println("</form>");
 	 
@@ -73,25 +74,26 @@
   
 	 public void agregarJuez() {
 	     aj = new altaJuez();
-		 Calendar cal = Calendar.getInstance();
+		 iIDPersona = Integer.parseInt(thisRequest.getParameter("iIDPersona").trim());
+		 //Calendar cal = Calendar.getInstance();
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 Date dFechaIngreso = cal.getTime();
-		 sNombre = thisRequest.getParameter("Nombre").trim();
-		 sCorreo = thisRequest.getParameter("Correo").trim();
-		 sContrasena = thisRequest.getParameter("Contrasena").trim();
-		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
-		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
-         int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
-         int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
-         cal.set(Calendar.DATE, day);
-         cal.set(Calendar.MONTH, month);
-         cal.set(Calendar.YEAR, year);
-         Date dFechaNacimiento = cal.getTime();
-         long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
-         long lano = 31536000000l;
-         lFechaVencimiento = lFechaVencimiento + lano;
-         Date dFechaVencimiento = new Date(lFechaVencimiento);
-	     aj.agregarJuez(sNombre, sCorreo, sContrasena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, true);
+		 //Date dFechaIngreso = cal.getTime();
+		 //sNombre = thisRequest.getParameter("Nombre").trim();
+		// sCorreo = thisRequest.getParameter("Correo").trim();
+		 //sContrasena = thisRequest.getParameter("Contrasena").trim();
+		// sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
+		// int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
+        // int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
+       //  int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
+        // cal.set(Calendar.DATE, day);
+        // cal.set(Calendar.MONTH, month);
+        // cal.set(Calendar.YEAR, year);
+         //Date dFechaNacimiento = cal.getTime();
+         //long lFechaVencimiento = dFechaIngreso.getTime()/ (24 * 60 * 60 * 1000);
+        // long lano = 31536000000l;
+        // lFechaVencimiento = lFechaVencimiento + lano;
+        // Date dFechaVencimiento = new Date(lFechaVencimiento);
+	     aj.agregarJuez(iIDPersona, true);
 		 desplegarFeedback();
 	 }
 

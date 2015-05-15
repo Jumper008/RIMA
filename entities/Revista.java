@@ -14,7 +14,8 @@ import java.util.Calendar;
 
 public class Revista {
 	protected int iIDRevista;
-	protected Date dFechaPublicacion;
+        protected String sNombre; 
+	protected String sFechaPublicacion;
 	protected int iNumPaginas;
 	protected boolean bPublicada;
 	private transient Connection conn;
@@ -30,18 +31,28 @@ public class Revista {
         stmt = conn.createStatement();
         stmt2 = conn.createStatement();
         iIDRevista = 0;
-		dFechaPublicacion = new Date();
+		sFechaPublicacion = "";
 		iNumPaginas = 0;
 		bPublicada = false;
+        sNombre = "";
       }catch (Exception e) { System.out.println ("Cannot connect to database server"); }
    }
 	
-	public Revista(int iIDRevista, Date dFechaPublicacion, int iNumPaginas, boolean bPublicada) {
+	public Revista(int iIDRevista, String sNombre, String sFechaPublicacion, int iNumPaginas, boolean bPublicada) {
 		this.iIDRevista = iIDRevista;
-		this.dFechaPublicacion = dFechaPublicacion;;
+		this.sFechaPublicacion = sFechaPublicacion;;
 		this.iNumPaginas = iNumPaginas;
 		this.bPublicada = bPublicada;
+                this.sNombre = sNombre;
 	}
+        
+        public String getsNombre() {
+            return sNombre;
+        }
+        
+        public void setsNombre( String sNombre ) {
+            this.sNombre = sNombre;
+        }
         
         public boolean getbPublicada() {
             return bPublicada;
@@ -51,12 +62,13 @@ public class Revista {
             this.bPublicada = bPublicada;
         }
         
-        public Date getdFechaPublicacion() {
-            return dFechaPublicacion;
+        public String getdFechaPublicacion() {
+            return sFechaPublicacion;
         }
         
-        public void setdFechaPublicacion( Date dFechaPublicacion ) {
-            this.setdFechaPublicacion(dFechaPublicacion);
+        
+        public void setdFechaPublicacion( String sFechaPublicacion ) {
+            this.sFechaPublicacion = sFechaPublicacion;
         }
         
         public int getiIDRevista() {
@@ -84,33 +96,37 @@ public class Revista {
 		Vector<Revista> vRevistas = new Vector<Revista>();
 		Calendar cal = Calendar.getInstance();
 		try{
-            System.out.println("Llego");
+                     System.out.println("Obteniendo revistas");
 		     stmt.executeQuery ("SELECT * FROM Revista WHERE bPublicada = " + true);
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
 			int _iIDRevista = rs.getInt("iIDRevista");
-			String _strDate = rs.getString("dFechaPublicacion");
-			int iday = Integer.parseInt(_strDate.substring(8,9));
-			int imonth = Integer.parseInt(_strDate.substring(5,6));
-			int iyear = Integer.parseInt(_strDate.substring(0,3));
-			cal.set(Calendar.DATE, iday);
-			cal.set(Calendar.MONTH, imonth);
-			cal.set(Calendar.YEAR, iyear);
-			Date _dFechaPublicacion = cal.getTime();
+			String _strDate = rs.getString("sFechaPublicacion");
+//			int iday = Integer.parseInt(_strDate.substring(8,9));
+//			int imonth = Integer.parseInt(_strDate.substring(5,6));
+//			int iyear = Integer.parseInt(_strDate.substring(0,3));
+//			cal.set(Calendar.DATE, iday);
+//			cal.set(Calendar.MONTH, imonth);
+//			cal.set(Calendar.YEAR, iyear);
+//			Date _dFechaPublicacion = cal.getTime();
 			int _iNumPaginas = rs.getInt("iNumPaginas");
 			boolean _bPublicada = rs.getBoolean("bPublicada");
-			Revista reRevista = new Revista(_iIDRevista,_dFechaPublicacion,_iNumPaginas,_bPublicada);
+                        String _sNombre = rs.getString("sNombre");
+			Revista reRevista = new Revista(_iIDRevista, _sNombre, _strDate,_iNumPaginas,_bPublicada);
 			vRevistas.add(reRevista);
 		     }
 		     return vRevistas;
-		  } catch (SQLException e) { return null;}
+		  } catch (SQLException e) {
+              System.out.println ("Cannot execute mostrarRevistasPublicadas()" + e);
+              return null;
+          }
 	}
 	
 	public boolean agregarRevista( Revista reRevista ) {
 		Calendar cal = Calendar.getInstance();
 		int iIDRevista = reRevista.iIDRevista;
-		Date dFechaPublicacion = reRevista.dFechaPublicacion;
-		cal.setTime(dFechaPublicacion);
+		String sFechaPublicacion = reRevista.sFechaPublicacion;
+		cal.setTime(Calendar.getInstance().getTime());
 		int iday = cal.get(Calendar.DATE);
 		int imonth = cal.get(Calendar.MONTH);
 		int iyear = cal.get(Calendar.YEAR);
@@ -119,7 +135,7 @@ public class Revista {
 		boolean bPublicada = reRevista.bPublicada;
 		try {
             System.out.println("Llego");
-			String s = "INSERT INTO Revista (iIDRevista, dFechaPublicacion, iNumPaginas, bPublicada)" +
+			String s = "INSERT INTO Revista (iIDRevista, sFechaPublicacion, iNumPaginas, bPublicada)" +
 			 " VALUES ("+ iIDRevista + " , '" + sDate + " , '"
 			 + iNumPaginas + " , '" + bPublicada + " )"; 
 			stmt.executeUpdate(s);

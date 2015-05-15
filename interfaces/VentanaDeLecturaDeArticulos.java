@@ -38,7 +38,7 @@
     
 	     String operacion = request.getParameter("operacion");
 	    
-	     if(operacion == null) { // El menú nos envia un parametro para indicar el inicio de una transaccion
+	     if(operacion == null || operacion.equals("inicio")) { // El menú nos envia un parametro para indicar el inicio de una transaccion
 	         iniciarConsulta();  
 	     }
 	    
@@ -49,7 +49,7 @@
   
 	 public void iniciarConsulta() {
 	     out.println("<p>Ingrese el ID del articulo.</p>");
-	     out.println("<form method=\"GET\" action=\"articulos\">");
+	     out.println("<form method=\"GET\" action=\"ver_articulo\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"ver\"/>");
 	     out.println("<p>  IDArticulo <input type=\"int\" name=\"IDArticulo\" size=\"8\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Ver\"></p>");
@@ -71,18 +71,19 @@
 	     if (existe) {
 	     	articulo = va.obtenerArticulo(iIDArticulo);
 	     	if (articulo.getbPublicado()) {
-	     		out.println(articulo.getsNombre() + " | "+ articulo.getsResumen() + "Articulo publicado");
+	     		out.println(articulo.getsNombre() + " | "+ articulo.getsResumen() + " | Articulo publicado");
 	     	}
-	     	out.println(articulo.getsNombre() + " | "+ articulo.getsResumen()+ "No se pudo publicar el articulo");
-	     	
+	     	else {
+                    out.println(articulo.getsNombre() + " | "+ articulo.getsResumen()+ " | Articulo NO publicado");
+               }
 	     }
 	     else
 	     {
 	     	out.println("<p>El Articulo no existe.</p>");
 	     }
 	     out.println("<p>Pulse el boton para buscar otro articulo.</p>");
-	     out.println("<form method=\"GET\" action=\"articulos\">");
-	     out.println("<input type=\"hidden\" name=\"operacion\" value= null/>");
+	     out.println("<form method=\"GET\" action=\"ver_articulo\">");
+	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"inicio\"/>");
 	     out.println("<p><input type=\"submit\" value=\"Intentar de nuevo\"></p>");
 	     out.println("</form>");
 	 

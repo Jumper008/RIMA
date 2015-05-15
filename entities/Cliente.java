@@ -103,7 +103,7 @@ public class Cliente extends Persona{
                             sContrasena, dFechaNacimiento, dFechaIngreso, 
                             dFechaVencimiento, bActivo, sCuentaBancaria ));
             	}
-        	}
+            }
         } catch (SQLException e) {System.out.println ("Cannot execute consultarClientesRenovar()" + e);}
 
         return vecClientes;
@@ -181,12 +181,26 @@ public class Cliente extends Persona{
             int iIDCliente = clCliente.iIDPersona;
             String sNombre = clCliente.sNombre;
             String sCorreo = clCliente.sCorreo;
+            
             Date dFechaNacimiento = clCliente.dFechaNacimiento;
             cal.setTime(dFechaNacimiento);
             int iday = cal.get(Calendar.DATE);
             int imonth = cal.get(Calendar.MONTH);
             int iyear = cal.get(Calendar.YEAR);
-            String sDate = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+            String sMonth;
+            String sDay;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+            
             String sContrasena = clCliente.sContrasena;
             
             Date dFechaIngreso = clCliente.dFechaIngreso;
@@ -194,14 +208,35 @@ public class Cliente extends Persona{
             iday = cal.get(Calendar.DATE);
             imonth = cal.get(Calendar.MONTH);
             iyear = cal.get(Calendar.YEAR);
-            String sDateIn = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
             
-            Date dFechaVencimiento = clCliente.dFechaVencimiento;
+            String sDateIn = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
+            
+            Date dFechaVencimiento = clCliente.dFechaIngreso;
             cal.setTime(dFechaVencimiento);
             iday = cal.get(Calendar.DATE);
             imonth = cal.get(Calendar.MONTH);
-            iyear = cal.get(Calendar.YEAR);
-            String sDateVen = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+            iyear = cal.get(Calendar.YEAR) + 1;
+            if (imonth < 10) {
+                sMonth = '0' + Integer.toString(imonth);
+            } else {
+                sMonth = Integer.toString(imonth);;
+            }
+            if (iday < 10) {
+                sDay = '0' + Integer.toString(iday);
+            } else {
+                sDay = Integer.toString(iday);
+            }
+            String sDateVen = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
             
             String sCuentaBancaria = clCliente.getsCuentaBancaria();
             
@@ -211,7 +246,7 @@ public class Cliente extends Persona{
                 if(!corroborarExistencia(iIDCliente)){
                     // Etrada en tabla Persona
                     System.out.println("Llego");
-                    String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo)"+
+                    String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrasena, sFechaNacimiento, sFechaIngreso, sFechaVencimiento, bActivo, sTipo)"+
                             "VALUES (" + iIDCliente + " , '" 
                             + sNombre + "', '"
                             + sCorreo + "', '" 
@@ -219,7 +254,7 @@ public class Cliente extends Persona{
                             + sDate + "', '"
                             + sDateIn+ "', '" 
                             + sDateVen + "', " 
-                            + bActivo + ")";
+                            + bActivo + ",'Cliente')";
                     
                     // Entrada en tabla Cliente
                     System.out.println("Llego");
@@ -272,11 +307,11 @@ public class Cliente extends Persona{
                 System.out.println("Llego");
                 String sQueryPersona = "UPDATE Persona SET "
                         + "sNombre = '" + sNombre + "',"
-                        + "sCorreo = '" + sCorreo + "',"
-                        + "dFechaNacimiento = '" + sDate + "',"
+                        + "sCorreo = '" + sCorreo + "','"
+                        + "sFechaNacimiento = '" + sDate + "',"
                         + "sContrasena = '" + sContrasena + "',"
-                        + "dFechaIngreso = '" + sDateIn + "',"
-                        + "dFechaVencimiento = '" + sDateVen + "', "
+                        + "sFechaIngreso = '" + sDateIn + "',"
+                        + "sFechaVencimiento = '" + sDateVen + "', "
                         + "bActivo = " + bActivo + " "
                         + " WHERE iIDPersona = " + iIDCliente;
 
@@ -344,7 +379,7 @@ public class Cliente extends Persona{
                     return null;
                 }
                 
-                System.out.println("Llego");
+                System.out.println("Consultando cliente");
                 stmt.executeQuery("SELECT * Cliente WHERE iIDPersona = " + iIDPersona);
                 ResultSet rsQueryCliente = stmt.getResultSet();
                 

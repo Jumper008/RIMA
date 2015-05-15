@@ -18,17 +18,16 @@
 		 juJuez = new Juez();
 	 }
 	 
-	 public void agregarJuez(String sNombre, String sCorreo, String sContrasena, 
-	 		Date dFechaNacimiento, Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
+	 public void agregarJuez(int iIDPersona, boolean bActivo) {
 
-		 int iIDPersona = juJuez.generarID();
+		//int iIDPersona = juJuez.generarID();
 		 juJuez.setiIDPersona(iIDPersona);
-		 juJuez.setsNombre(sNombre);
-		 juJuez.setsCorreo(sCorreo);
-		 juJuez.setsContrasena(sContrasena);
-		 juJuez.setdFechaNacimiento(dFechaNacimiento);
-		 juJuez.setdFechaIngreso(dFechaIngreso);
-		 juJuez.setdFechaVencimiento(dFechaVencimiento);
+		 //juJuez.setsNombre(sNombre);
+		 //juJuez.setsCorreo(sCorreo);
+		// juJuez.setsContrasena(sContrasena);
+		 //juJuez.setdFechaNacimiento(dFechaNacimiento);
+		// juJuez.setdFechaIngreso(dFechaIngreso);
+		// juJuez.setdFechaVencimiento(dFechaVencimiento);
 		 juJuez.setbActivo(bActivo);
 		 juJuez.agregarJuezByAdmin(juJuez);			
 	 }

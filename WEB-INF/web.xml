@@ -110,12 +110,12 @@
     </servlet-mapping>
     
     <servlet>
-      <servlet-name>articulos</servlet-name>
+      <servlet-name>ver_articulo</servlet-name>
       <servlet-class>interfaces.VentanaDeLecturaDeArticulos</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>articulos</servlet-name>
-        <url-pattern>/articulos</url-pattern>
+        <servlet-name>ver_articulo</servlet-name>
+        <url-pattern>/ver_articulo</url-pattern>
     </servlet-mapping>
     
     <servlet>

@@ -30,5 +30,6 @@
 		 auAutor.setdFechaVencimiento(dFechaVencimiento);
 		 auAutor.setbActivo(true);
 		 auAutor.agregarAutor(auAutor);
+		 System.out.println("entra al sistema");
 	 }
  }

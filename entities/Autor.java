@@ -8,6 +8,7 @@ package entities;
 
 import java.util.*;
 import java.sql.*;
+import java.io.*;
 import java.util.Date;
 import java.util.Calendar;
 
@@ -130,10 +131,11 @@ public class Autor extends Persona{
 	}
 	
 	public boolean agregarAutor( Autor autAutor ) {
-		Calendar cal = Calendar.getInstance();
+        System.out.println("entra al autor");
 		int iIDAutor = autAutor.iIDPersona;
 		String sNombre = autAutor.sNombre;
 		String sCorreo = autAutor.sCorreo;
+        Calendar cal = Calendar.getInstance();
 		Date dFechaNacimiento = autAutor.dFechaNacimiento;
 		cal.setTime(dFechaNacimiento);
 		
@@ -164,23 +166,31 @@ public class Autor extends Persona{
 		try{
 			if(!corroborarExistencia(iIDAutor)){
                             // Entrada en la tabla Persona
-                            System.out.println("Llego");
-                            String sQueryPersona = "INSERT INTO Persona (iIDPersona, sNombre, sCorreo, sContrsena, dFechaNacimiento, dFechaIngreso, dFechaVencimiento, bActivo)"+
-                                    "VALUES ("
-                                    + iIDAutor + " , " 
-                                    + sNombre + " , "
-                                    + sCorreo + " , " 
-                                    + sContrasena + ", " 
-                                    + sDate + ", "
-                                    + sDateIn + ", " 
-                                    + sDateVen + " , "  
-                                    + bActivo + ", " 
-                                    + sTipo + " )";
+                            //System.out.println("agrega autor");
+                            String sQueryPersona = "INSERT INTO Persona "  
+                                   + "(iIDPersona, sNombre, sCorreo,"
+                                   + "sContrasena, sFechaNacimiento, "
+                                   + " sFechaIngreso, "
+                                   + " sFechaVencimiento, bActivo, sTipo)"
+                                    + "VALUES ("
+                                    + iIDAutor + " , '" 
+                                    + sNombre + "', '" 
+                                    + sCorreo + "' , '" 
+                                    + sContrasena + "', '" 
+                                    + sDate + "', '" 
+                                    + sDateIn+ "', '" 
+                                    + sDateVen + "', " 
+                                    + bActivo + ", '" 
+                                    + sTipo + "' )";
                             
                             // Entrada en la tabla Autor
-                            String sQueryAutor = "INSERT INTO Autor (iIDAutor) VALUES " + "(" + iIDAutor + ")";
-
+                            String sQueryAutor = "INSERT INTO Autor"
+                            + "(iIDPersona, sTipo) VALUES ("
+                             + iIDAutor + " , '"
+                             + sTipo+  "')";
+                       
                             stmt.executeUpdate(sQueryPersona);
+
                             stmt.executeUpdate(sQueryAutor);
                                 
 				return true;

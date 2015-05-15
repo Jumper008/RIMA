@@ -10,6 +10,8 @@
  import javax.servlet.http.*;
  import java.io.*;
  import java.util.*;
+ import java.util.Date;
+ import java.util.Calendar;
 
  public class VentanaDeCatalogoDeRevistas extends HttpServlet {	 	 
      HttpServletResponse thisResponse;
@@ -47,10 +49,21 @@
 		else {
 			out.println("<table width=\"75%\" border=\"0\">");
 			for (int iI = 0; iI < vRevistas.size(); iI++) {
+				
+				
+				String sFechaPublicacion = vRevistas.get(iI).getdFechaPublicacion();
+//				Calendar cal = Calendar.getInstance(); 
+//				cal.setTime(dFechaPublicacion);
+//				int iday = cal.get(Calendar.DATE);
+//				int imonth = cal.get(Calendar.MONTH);
+//				int iyear = cal.get(Calendar.YEAR) + 1900;
+//				String sFechaPublicacion = Integer.toString(iyear) + "/" + Integer.toString(imonth) + "/" + Integer.toString(iday);
+				
 				out.println("<td align=\"center\">");
 				out.println("<table width=\"99%\" border=\"4\">");
 				out.println("<td align=\"center\">");
-				out.println(vRevistas.get(iI).getdFechaPublicacion() + " | " + vRevistas.get(iI).getiNumPaginas());
+				out.println(vRevistas.get(iI).getsNombre() + " | "
+			 			+ sFechaPublicacion + " | " + vRevistas.get(iI).getiNumPaginas());
 				out.println("</td> ");
 				out.println("</table> ");
 				out.println("</td>");

@@ -68,10 +68,25 @@
 	 public void agregarRevista() {
 	     aa = new altaRevista();
 		 Calendar cal = Calendar.getInstance();
+		 int iday = cal.get(Calendar.DATE);
+		int imonth = cal.get(Calendar.MONTH);
+		int iyear = cal.get(Calendar.YEAR);
+        String sMonth;
+        String sDay;
+        if (imonth < 10) {
+            sMonth = '0' + Integer.toString(imonth);
+        } else {
+            sMonth = Integer.toString(imonth);
+        }
+        if (iday <10) {
+            sDay = '0' + Integer.toString(imonth);
+        } else {
+            sDay = Integer.toString(imonth);
+        }
+		String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
 	     //La funcion trim() elimina espacios antes y despues del valor
-		 Date dFechaPublicacion = cal.getTime();
 		 iNumPaginas = Integer.parseInt(thisRequest.getParameter("NumPaginas").trim());
-	     aa.agregarRevista(dFechaPublicacion, iNumPaginas, true);
+	     aa.agregarRevista(sDate, iNumPaginas, true);
 		 desplegarFeedback();
 	 }
 
