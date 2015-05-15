@@ -67,13 +67,13 @@ public class Cliente extends Persona{
                 }
                 String sDate = Integer.toString(year) + "/" + sMonth + "/" + sDay;
 
-                String qUpdate = "UPDATE Cliente SET sFechaVencimiento = '" + sDate + "' WHERE iIDPersona = " + iIDPersona;
+                String qUpdate = "UPDATE Persona SET sFechaVencimiento = '" + sDate + "' WHERE iIDPersona = " + iIDPersona;
                 stmt.executeUpdate(qUpdate);
                 return true;
             }
             return false;
         } catch (SQLException e) {
-            System.out.println ("Cannot execute consultarClientesRenovar()" + e);
+            System.out.println ("Cannot execute realizarPagoSuscripcion()" + e);
             return false;
         }
     }

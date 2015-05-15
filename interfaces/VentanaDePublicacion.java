@@ -86,8 +86,11 @@
 		String sDate = Integer.toString(iyear) + "/" + sMonth + "/" + sDay;
 	     //La funcion trim() elimina espacios antes y despues del valor
 		 iNumPaginas = Integer.parseInt(thisRequest.getParameter("NumPaginas").trim());
-	     aa.agregarRevista(sDate, iNumPaginas, true);
-		 desplegarFeedback();
+	   if (aa.agregarRevista(sDate, iNumPaginas, true)) {
+      desplegarFeedback();
+     } else {
+      out.println("<p>Ha ocurrido un eror</p>");
+     }
 	 }
 
 	 public void desplegarFeedback() {

@@ -137,11 +137,13 @@ public class Revista {
             System.out.println("Llego");
 			String s = "INSERT INTO Revista (iIDRevista, sFechaPublicacion, iNumPaginas, bPublicada)" +
 			 " VALUES ("+ iIDRevista + " , '" + sDate + " , '"
-			 + iNumPaginas + " , '" + bPublicada + " )"; 
+			 + iNumPaginas + ", " + bPublicada + " )"; 
 			stmt.executeUpdate(s);
-			
-		    } catch (SQLException e) {System.out.println ("Cannot execute agregaraRevista()" + e);}
-		return true;
+			return true;
+		    } catch (SQLException e) {
+                System.out.println ("Cannot execute agregaraRevista()" + e);
+                return false;
+            }
 	}
         
         public boolean publicarRevista() {
