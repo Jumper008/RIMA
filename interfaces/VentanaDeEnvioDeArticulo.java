@@ -56,16 +56,13 @@
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
 	     out.println("<p> Id del Autor  <input type=\"text\" name=\"idAutor\" size=\"20\"></p>");
 	     out.println("<p> Nombre  <input type=\"text\" name=\"Nombre\" size=\"20\"></p>");
-		 	 out.println("<p> Resumen  <textarea name=\"Resumen\" rows=\"4\" cols=\"50\"></textarea></p>");
+		 out.println("<p> Resumen  <textarea name=\"Resumen\" rows=\"4\" cols=\"50\"></textarea></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
 	     out.println("</form>");
 	 
 	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Cancelar\"></p>");
 	     out.println("</form>");
-		 
-		/*<p>Resumen</p>
-		<textarea rows="4" cols="50"></textarea>*/
 		
 	     out.println("</BODY>");
 	     out.println("</HTML>");    

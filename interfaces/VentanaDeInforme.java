@@ -52,6 +52,7 @@
 	     out.println("<p> IDPersona  <input type=\"int\" name=\"IDPersona\" size=\"8\"></p>");
 		 out.println("<p><input type=\"submit\" value=\"consultar\"></p>");
 	     out.println("</form>");
+		 
 	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Cancelar\"></p>");
 	     out.println("</form>");
@@ -74,5 +75,13 @@
 		 else{
 		 	out.println("<p>No se encuentra esa persona.</p>");
 		 }
+		 
+		 out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+	     out.println("</form>"); 
+	     out.println("</BODY>");
+	     out.println("</HTML>"); 	
 	 }
  }

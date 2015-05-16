@@ -47,10 +47,6 @@
 	     else if(operacion.equals("editar")) {
 	         editarAdministrador();
 	     }
-	    
-	     else if (operacion.equals("feedback")) {			     
-	         desplegarFeedback();
-	     }
   	 }
   
 	 public void iniciarEdicion() {
@@ -93,25 +89,21 @@
 	     if (existe) {
 
 	     	if (ea.updateAdministrador(iIDAdministrador, sNombre, sCorreo, sContrasena, dFechaNacimiento)) {
-          desplegarFeedback();
-        } else {
-          out.println("<p>Ocurrio un error.</p>");
-        }
+                    out.println("<p>El administrador ha sido actualzaido con exito.</p>");
+                } else {
+                    out.println("<p>Ocurrio un error. Intente mas tarde</p>");
+                }
 	     }
 	     else
 	     {
 	     	out.println("<p>El administrador no existe.</p>");
 	     }
-
-	 }
-
-	 public void desplegarFeedback() {
-	     out.println("<p>El administrador ha sido actualzaido con exito.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
+          out.println("<p> </p>");
+		out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
 	     out.println("</form>");
-	     out.println("</BODY>");
-	     out.println("</HTML>");   
+          out.println("</BODY>");
+	     out.println("</HTML>"); 
 	 }
  }

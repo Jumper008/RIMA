@@ -49,14 +49,24 @@ public class Persona {
 	
 	public Persona(int iIDPersona, String sNombre, String sCorreo, String sContrasena, Date dFechaNacimiento,
 		Date dFechaIngreso, Date dFechaVencimiento, boolean bActivo) {
-		this.iIDPersona = iIDPersona;
-		this.sNombre = sNombre;
-		this.sCorreo = sCorreo;
-		this.sContrasena = sContrasena;
-		this.dFechaNacimiento = dFechaNacimiento;
-		this.dFechaIngreso = dFechaIngreso;
-		this.dFechaVencimiento = dFechaVencimiento;
-		this.bActivo = bActivo;
+		try {
+			String userName = "root";
+	        String password = "";
+	        String url = "jdbc:mysql://localhost/rima";
+	        Class.forName ("com.mysql.jdbc.Driver").newInstance();
+	        conn = DriverManager.getConnection (url, userName, password);
+	        stmt = conn.createStatement();
+	        stmt2 = conn.createStatement();
+			
+			this.iIDPersona = iIDPersona;
+			this.sNombre = sNombre;
+			this.sCorreo = sCorreo;
+			this.sContrasena = sContrasena;
+			this.dFechaNacimiento = dFechaNacimiento;
+			this.dFechaIngreso = dFechaIngreso;
+			this.dFechaVencimiento = dFechaVencimiento;
+			this.bActivo = bActivo;
+		}catch (Exception e) { System.out.println ("Cannot connect to database server"); }
 	}
 	
 	public void setiIDPersona( int iID ) {
@@ -181,9 +191,12 @@ public class Persona {
 						return true;
 					}
 					else {
+						System.out.println("No se encontro");
 						return false;
 					}
-                } catch (SQLException e) {return false;}
+                } catch (SQLException e) {
+					System.out.println("Cannot execute generarID()" + e);
+					return false;}
 	}
 	
 	public boolean corroborarInformacion( String sCorreo, String sContrasena) {

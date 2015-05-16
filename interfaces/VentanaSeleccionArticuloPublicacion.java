@@ -75,13 +75,18 @@
 	     		out.println("<p>El articulo fue publicado con exito");
 	     	}
 	     	else{
-	     		out.println("<p>El articulo no se pudo publicar");
+	     		out.println("<p>El articulo no se pudo publicar. Intente mas tarde");
 	     	}
 	     }
 	     else
 	     {
 	     	out.println("<p>El ID de Articulo no existe.</p>");
 	     }
+           out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	      out.println("<form method=\"GET\" action=\"menu.html\">");
+	      out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+	      out.println("</form>");   
 	 }
 
  }

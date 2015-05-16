@@ -32,7 +32,7 @@
 	     out.println("<BODY>");
 	     out.println("<TITLE>SEng Bytes & Bits</TITLE>");
 	     out.println("<h2>RIMA</h2>");
-	     out.println("<h3>Dar de alta un autor</h3>");
+	     out.println("<h3>Publicar una revista</h3>");
     
 	     String operacion = request.getParameter("operacion");
 	    
@@ -43,18 +43,14 @@
 	     else if(operacion.equals("agregar")) {
 	         agregarRevista();
 	     }
-	    
-	     else if (operacion.equals("feedback")) {			     
-	         desplegarFeedback();
-	     }
   	 }
   
 	 public void iniciarAlta() {
 	     out.println("<p>Complete los valores indicados.</p>");
 	     out.println("<form method=\"GET\" action=\"publicacion\">");
 	     out.println("<input type=\"hidden\" name=\"operacion\" value=\"agregar\"/>");
+         out.println("<p> Nombre  <input  name=\"Nombre\" size=\"34\"></p>");
 	     out.println("<p> Numero Paginas  <input type=\"int\" name=\"NumPaginas\" size=\"34\"></p>");
-       out.println("<p> Nombre  <input  name=\"Nombre\" size=\"34\"></p>");
 	     out.println("<p><input type=\"submit\" value=\"Agregar\"></p>");
 	     out.println("</form>");
 	 
@@ -89,16 +85,13 @@
 		 iNumPaginas = Integer.parseInt(thisRequest.getParameter("NumPaginas").trim());
      String nombre = thisRequest.getParameter("Nombre").trim();
 	   if (aa.agregarRevista(sDate, iNumPaginas, nombre, true)) {
-      desplegarFeedback();
+      out.println("<p>La revista ha sido publicada exitosamente.</p>");
      } else {
       out.println("<p>Ha ocurrido un eror</p>");
      }
-	 }
-
-	 public void desplegarFeedback() {
-	     out.println("<p>La revista ha sido publicada exitosamente.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
+         out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");

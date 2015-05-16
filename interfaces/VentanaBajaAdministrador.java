@@ -79,10 +79,12 @@
 	        eliminarAdministrador();
 	    }
 	    else {
-	    	out.println("<p>No existe administrador con esa matrícula, intente de nuevo</p>");
-	        iniciarBaja();
+	         	out.println("<p>No existe administrador con esa matrícula, intente de nuevo</p>");
+               out.println("<p> </p>");
+	          iniciarBaja();
 	    }
      }
+     
 	 public void eliminarAdministrador() {
 	     ba.eliminarAdministrador(iIDAdministrador);
 		 desplegarFeedback();
@@ -90,8 +92,9 @@
 
 	 public void desplegarFeedback() {
 	     out.println("<p>El Administrador ha sido dado de baja.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
+	     out.println("<p> </p>");
+		out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");

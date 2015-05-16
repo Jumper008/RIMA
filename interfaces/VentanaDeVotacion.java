@@ -68,12 +68,19 @@
 		 boolean existe = vo.validarArticulo(iIDArticulo);
 	     if (existe) {
 	     	vo.votarArticulo(iIDArticulo);
-        out.println("<p>Su voto ha sido registrado</p>");
+               out.println("<p>Su voto ha sido registrado</p>");
 	     }
 	     else
 	     {
 	     	out.println("<p>El Articulo no existe.</p>");
 	     }
+          out.println("<p> </p>");
+		out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+	     out.println("</form>");
+          out.println("</BODY>");
+	     out.println("</HTML>"); 
 	 }
 
  }

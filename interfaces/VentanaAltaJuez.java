@@ -49,7 +49,7 @@
 	     }
 	    
 	     else if (operacion.equals("feedback")) {			     
-	         desplegarFeedback();
+	         desplegarFeedbackGood();
 	     }
   	 }
   
@@ -94,14 +94,32 @@
         // lFechaVencimiento = lFechaVencimiento + lano;
         // Date dFechaVencimiento = new Date(lFechaVencimiento);
 	     System.out.println("Se trabajara con el ID: " + Integer.toString(iIDPersona));
-		 aj.agregarJuez(iIDPersona, true);
-		 desplegarFeedback();
+		 boolean agregado = aj.agregarJuez(iIDPersona);
+		 if(agregado) {
+			 desplegarFeedbackGood();
+		 }
+		 else 
+		 	 desplegarFeedbackBad();
+		 
 	 }
 
-	 public void desplegarFeedback() {
+	 public void desplegarFeedbackGood() {
 	     out.println("<p>El Juez ha sido agregado exitosamente.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
+	     out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
+	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
+	     out.println("</form>");
+	     out.println("</BODY>");
+	     out.println("</HTML>");   
+	 }
+	 
+	  public void desplegarFeedbackBad() {
+	     out.println("<p>El Juez NO se puedo agregar.</p>");
+		 out.println("<p>Posiblemente no es un autor o el ID es invalido.</p>");
+		 out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");

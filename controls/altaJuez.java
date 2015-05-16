@@ -18,11 +18,10 @@
 		 juJuez = new Juez();
 	 }
 	 
-	 public void agregarJuez(int iIDPersona, boolean bActivo) {
+	 public boolean agregarJuez(int iIDPersona) {
 
 		//int iIDPersona = juJuez.generarID();
 		System.out.println("Dando valor al id: " + Integer.toString(iIDPersona));
-		 juJuez.setiIDPersona(iIDPersona);
 		 //System.out.println("Dando valor al id: " + Integer.toString(juJuez.iIDPersona));
 		 //juJuez.setsNombre(sNombre);
 		 //juJuez.setsCorreo(sCorreo);
@@ -30,7 +29,6 @@
 		 //juJuez.setdFechaNacimiento(dFechaNacimiento);
 		// juJuez.setdFechaIngreso(dFechaIngreso);
 		// juJuez.setdFechaVencimiento(dFechaVencimiento);
-		 juJuez.setbActivo(bActivo);
-		 juJuez.agregarJuezByAdmin(juJuez);			
+		 return juJuez.agregarJuezByAdmin(iIDPersona);	
 	 }
  }

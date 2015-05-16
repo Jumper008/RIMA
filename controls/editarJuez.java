@@ -23,7 +23,6 @@
        return(juJuez.corroborarExistencia(iIDJuez));
      }
 
-     //El iIDJuez no fue información metida por el usuarioJuez
 	 public void updateJuezByJuez(int iIDJuez, String sNombre, String sCorreo, String sContrasena, 
 	 		Date dFechaNacimiento) {
 	 	 
@@ -33,7 +32,7 @@
 		 juJuez.setsContrasena(sContrasena);
 		 juJuez.setdFechaNacimiento(dFechaNacimiento);
 
-		 juJuez.editarAutor(juJuez);
+		 juJuez.editarJuez(juJuez, iIDJuez);
 	 }
 
 	  //El admin puede cambiar TODO menos el IDJuez
@@ -49,6 +48,6 @@
 		 juJuez.setbActivo(bActivo);
 		 juJuez.setbJuezActivo(bJuezActivo);
 
-		 juJuez.editarJuez(juJuez);
+		 juJuez.editarJuez(juJuez, iIDJuez);
 	 }
  }

@@ -121,7 +121,7 @@ public class Articulo {
 		Vector<Articulo> vArticulos = new Vector<Articulo>();
 		try{
             System.out.println("Llego");
-		     stmt.executeQuery ("SELECT * FROM Articulo A, AutorArticulo aa WHERE A.iIDArticulo=aa.iIDArticulo AND iIDAutor = " + iIDAutor + "AND bPublicado = true" );
+		     stmt.executeQuery ("SELECT * FROM Articulo A, AutorArticulo aa WHERE A.iIDArticulo=aa.iIDArticulo AND iIDAutor = " + iIDAutor + " AND bPublicado = true" );
 		     ResultSet rs = stmt.getResultSet();
 		     while(rs.next()) {
     			int _iIDArticulo = rs.getInt("iIDArticulo");

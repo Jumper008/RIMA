@@ -47,10 +47,6 @@
 	     else if(operacion.equals("editar")) {
 	         editarJuez();
 	     }
-	    
-	     else if (operacion.equals("feedback")) {			     
-	         desplegarFeedback();
-	     }
   	 }
   
 	 public void iniciarEdicion() {
@@ -82,9 +78,9 @@
 		 sContrasena = thisRequest.getParameter("Contrasena").trim();
 		 iIDJuez = Integer.parseInt(thisRequest.getParameter("IDJuez").trim());
 		 sFechaNacimiento = thisRequest.getParameter("FechaNacimiento").trim();
-		 int day = Integer.parseInt(sFechaNacimiento.substring(8,9));
-         int month = Integer.parseInt(sFechaNacimiento.substring(5,6));
-         int year = Integer.parseInt(sFechaNacimiento.substring(0,3));
+		 int day = Integer.parseInt(sFechaNacimiento.substring(8,10));
+         int month = Integer.parseInt(sFechaNacimiento.substring(5,7));
+         int year = Integer.parseInt(sFechaNacimiento.substring(0,4));
          cal.set(Calendar.DATE, day);
          cal.set(Calendar.MONTH, month);
          cal.set(Calendar.YEAR, year);
@@ -92,22 +88,19 @@
 	     boolean existe = ej.validarJuez(iIDJuez);
 	     if (existe) {
 	     	ej.updateJuezByJuez(iIDJuez, sNombre, sCorreo, sContrasena, dFechaNacimiento);
-		 	desplegarFeedback();
+		 	out.println("<p>El Juez ha sido actualzaido con exito.</p>");
 	     }
 	     else
 	     {
 	     	out.println("<p>El Juez no existe.</p>");
 	     }
-
-	 }
-
-	 public void desplegarFeedback() {
-	     out.println("<p>El Juez ha sido actualzaido con exito.</p>");
-	     out.println("<p>Presione el boton para terminar.</p>");
-	     out.println("<form method=\"GET\" action=\"index.html\">");
+		 out.println("<p> </p>");
+		 out.println("<p>Presione el boton para terminar.</p>");
+	     out.println("<form method=\"GET\" action=\"menu.html\">");
 	     out.println("<p><input type=\"submit\" value=\"Terminar\"name=\"B1\"></p>");
 	     out.println("</form>");
 	     out.println("</BODY>");
-	     out.println("</HTML>");   
+	     out.println("</HTML>");
+
 	 }
  }

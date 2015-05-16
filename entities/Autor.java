@@ -84,7 +84,7 @@ public class Autor extends Persona{
 		Vector<Autor> vAutores = new Vector<Autor>();
 		try{
             System.out.println("Llego");
-			stmt.executeQuery("SELECT * FROM Persona WHERE Tipo = Autor");
+			stmt.executeQuery("SELECT * FROM Persona WHERE sTipo = 'Autor' AND bActivo = true");
 			ResultSet rsQuery = stmt.getResultSet();
                         Calendar cal = Calendar.getInstance();
                         
@@ -94,7 +94,7 @@ public class Autor extends Persona{
                             String sCorreo = rsQuery.getString("sCorreo");
                             String sContrasena = rsQuery.getString("sContrasena");
 
-                            String _strDate = rsQuery.getString("dFechaNacimiento");
+                            String _strDate = rsQuery.getString("sFechaNacimiento");
                             int day = Integer.parseInt(_strDate.substring(8,9));
                             int month = Integer.parseInt(_strDate.substring(5,6));
                             int year = Integer.parseInt(_strDate.substring(0,3));
@@ -105,7 +105,7 @@ public class Autor extends Persona{
 
                             boolean bActivo = rsQuery.getBoolean("bActivo");
 
-                            _strDate = rsQuery.getString("dFechaIngreso");
+                            _strDate = rsQuery.getString("sFechaIngreso");
                             day = Integer.parseInt(_strDate.substring(8,9));
                             month = Integer.parseInt(_strDate.substring(5,6));
                             year = Integer.parseInt(_strDate.substring(0,3));
@@ -114,7 +114,7 @@ public class Autor extends Persona{
                             cal.set(Calendar.YEAR, year);
                             Date dFechaIngreso = cal.getTime();
 
-                            _strDate = rsQuery.getString("dFechaVencimiento");
+                            _strDate = rsQuery.getString("sFechaVencimiento");
                             day = Integer.parseInt(_strDate.substring(8,9));
                             month = Integer.parseInt(_strDate.substring(5,6));
                             year = Integer.parseInt(_strDate.substring(0,3));
